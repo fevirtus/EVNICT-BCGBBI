@@ -1,0 +1,74 @@
+﻿@using BI_Project.Services.Menus;
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    BI_Project.Services.User.BlockDataMenuLeftModel menuData = (BI_Project.Services.User.BlockDataMenuLeftModel)ViewData["block_menu_left_data"];
+    BlockMenuListLangModel blockLang = (BlockMenuListLangModel)Model.LanguageModel;
+
+    EntityMenuModel blockData = (EntityMenuModel)Model.DataModel;
+}
+
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /main charts -->
+            <div class="panel panel-flat">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>@blockLang.LblNo</th>
+                                    <th>@blockLang.Lblname</th>
+                                    <th hidden>@blockLang.LblPriority</th>
+                                    <th>@blockLang.LblAction</th>
+                                    @{ 
+                                            int index = 0;
+                                            string baseUrl = Url.Content("~");
+                                            foreach (EntityMenuModel menu in menuData.LstAllOfMenus)
+                                            {
+                                                index++;
+                                                string[] lstLevel = Regex.Split(menu.LevelTree + "@@@abc", "@@@");
+
+                                                int level = lstLevel.Length -1 ;
+
+                                                string textItem = menu.Name;
+                                                while(level >1)
+                                                {
+                                                    textItem = "---" + textItem;
+                                                    level--;
+                                                }
+
+
+                                            <tr>
+                                                <td>@index</td>
+                                                <td class="menu_item_@index">@textItem</td>
+                                                <td hidden>@menu.Priority</td>
+                                                <td>
+                                                    <a href="@(baseUrl+"Menus/Create?menuid="+menu.MenuId)">@blockLang.LblEdit</a>
+                                                    <a href="@(baseUrl+"Menus/Delete?menuid="+menu.MenuId)" onclick="return confirm('@blockLang.LBLConfirmDelete?');">@blockLang.LblDelete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+

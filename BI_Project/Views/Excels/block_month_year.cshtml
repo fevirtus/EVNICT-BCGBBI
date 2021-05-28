@@ -1,0 +1,57 @@
+﻿@using BI_Project.Services.Importers
+
+@{ 
+    BlockDataExcelUploadModel blockData = (BlockDataExcelUploadModel)ViewData["dataBlock"];
+    BlockLangExcelUpload blockLang = (BlockLangExcelUpload)ViewData["langBlock"];
+
+    var request = HttpContext.Current.Request;
+    string baseUrl = string.Format("{0}://{1}", request.Url.Scheme, request.Url.Authority);
+    string currentUrl = request.RawUrl;
+}
+
+    <form method="post" id="export" enctype="multipart/form-data" action="@baseUrl/@blockData.Url">
+        <div class="form-group export_excel">
+            <div class="row">
+                <div class="col-md-2">
+                    <input type="hidden" name="PermissionID" value="@blockData.PermissionID" />
+                </div>
+                <div class="col-md-2">
+                    <label><b>@blockLang.YearLable :</b></label>
+                </div>
+                <div class="col-md-2">
+                    <select data-placeholder="@blockLang.MonthSelect.." class="select-size-sm " name="currentMonth" required>
+                        <option></option>
+                        @{
+
+                            for (int i = 1; i <= 12; i++)
+                            {
+                                <option value="@i">@i</option>
+                            }
+                        }
+                    </select>
+
+                </div>
+                <div class="col-md-2">
+                    <select data-placeholder="@blockLang.YearSelect..." class="select-size-sm " name="currentYear" required>
+                        <option></option>
+                        @{
+
+                            for (int i = 2012; i < 2099; i++)
+                            {
+
+                                <option value="@i">@i</option>
+                            }
+
+                        }
+                    </select>
+
+                </div>
+                <div style="color:red"><b>*</b></div>                
+            </div>
+        </div>
+    </form>
+
+
+
+
+

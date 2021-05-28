@@ -1,0 +1,80 @@
+﻿
+@using BI_Project.Services.Departments;
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    BI_Project.Services.User.BlockDataMenuLeftModel menuData = (BI_Project.Services.User.BlockDataMenuLeftModel)ViewData["block_menu_left_data"];
+    BlockDepartmentCreateLangModel blockLang = (BlockDepartmentCreateLangModel)Model.LanguageModel;
+
+    EntityDepartmentModel blockData = (EntityDepartmentModel)Model.DataModel;
+    EntityDepartmentModel data = (EntityDepartmentModel)ViewData["data-form"];
+
+}
+
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+
+<!-- /page header -->
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /main charts -->
+            <div class="panel panel-flat">
+                <div class="panel-body">
+
+
+                    @if (Session["msg_text"] != null)
+                    {
+                        string class_panel = "panel-danger ";
+                        if (Session["msg_code"] != null)
+                        {
+                            int msgCode = (int)Session["msg_code"];
+                            if (msgCode >= 1) { class_panel = " panel-success "; }
+
+                            Session.Remove("msg_code");
+                        }
+                        <div class="panel  @class_panel">
+                            <div class="panel-heading">
+
+                                @Session["msg_text"]
+
+
+                            </div>
+                        </div>
+                        Session.Remove("msg_text");
+                    }
+
+
+                    @using (Html.BeginForm("Create", "Departments", FormMethod.Post))
+                    {
+                        <input type="hidden" name="DepartId" value="@blockData.DepartId" />
+                        <div class="form-group">
+                            @{
+                                string blockTitle = blockLang.BlockTitle;
+                                if (blockData.DepartId > 0)
+                                {
+                                    blockTitle = blockLang.Title_Edit;
+                                }
+                            }
+                            @*<h4>@blockTitle</h4>*@
+                        </div>
+                        <div class="form-group">
+                            <label for="Name">@blockLang.Name <span class="required" style="color: red;">*</span></label>
+                            <input type="text" class="form-control" id="Name" name="Name" value="@blockData.Name">
+                            <label for="Name">@blockLang.Filter01 <span class="required" style="color: red;">*</span></label>
+                            <input type="text" class="form-control" id="Filter01" name="Filter01" value="@blockData.Filter01">
+                        </div>
+                        <button type="submit" class="btn btn-success">@blockLang.BtnSubmit</button>
+                        <input type="button" class="btn btn-default" value="Hủy" onclick="window.location.href='/Home'">
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

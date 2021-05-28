@@ -1,0 +1,267 @@
+﻿@using BI_Project.Services.Departments;
+@using BI_Project.Models.EntityModels;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    BI_Project.Services.User.BlockDataMenuLeftModel menuData = (BI_Project.Services.User.BlockDataMenuLeftModel)ViewData["block_menu_left_data"];
+    IEnumerable<EntityMenuModel> menuDataUser = (IEnumerable<EntityMenuModel>)ViewData["MenuData"];
+
+    List<EntityCycleModel> listcycle = (List<EntityCycleModel>)ViewData["listcycle"];
+    List<EntityAreaModel> listarea = (List<EntityAreaModel>)ViewData["listarea"];
+    List<EntityDepartmentModel> lstDepartments = (List<EntityDepartmentModel>)ViewData["departments"];
+    List<EntityReportBIModel> blockData = (List<EntityReportBIModel>)Model.DataModel;
+    List<EntityReportBIModel> listReport = (List<EntityReportBIModel>)ViewData["reportlist"];
+
+}
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /main charts -->
+            <div class="panel panel-flat">
+                <div class="panel-body">
+
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover datatable-highlight">
+                            <thead>
+                                <tr>
+                                    <td hidden></td>
+                                    <td hidden></td>
+                                    <td hidden></td>
+                                    <th style="width:20px">STT</th>
+                                    <th style="width:80px">Mã báo cáo</th>
+                                    <th style="width:120px">Tên báo cáo</th>
+                                    <th style="width:120px">Mô tả</th>
+                                    <th style="width:120px">URL Link</th>
+                                    <th style="width:100px">Cycle</th>
+                                    <th style="width:20px">Phòng ban</th>
+                                    <th style="width:100px">Lĩnh vực</th>
+                                    <th style="width:100px">Thao tác</th>
+                            </thead>
+                            <tbody>
+                                
+                                @{
+                                    int index = 0;
+                                    string baseUrl = Url.Content("~");
+                                    foreach (EntityReportBIModel item in listReport)
+                                    {
+                                        index++;
+
+                                        <tr>
+                                            <td hidden></td>
+                                            <td hidden></td>
+                                            <td hidden></td>
+                                            <td>@index</td>
+                                            <td class="menu_item_@index">@item.ReportCode</td>
+                                            <td class="menu_item_@index">@item.ReportName</td>
+                                            <td class="menu_item_@index">@item.Description</td>
+                                            <td class="menu_item_@index">@item.UrlLink</td>
+                                            <td class="menu_item_@index">@item.CycleName</td>
+                                            <td class="menu_item_@index">@item.DepartmentCode</td>
+                                             <td class="menu_item_@index">@item.AreaName</td>
+                                            <td>
+                                                <a href="@(baseUrl+"ReportBi/Create?id="+item.Id)"><span class='glyphicon glyphicon-edit'></span></a>
+                                                <a href="#" onclick="DeleteReport(@item.Id, '@item.ReportName')"><span class='glyphicon glyphicon-trash'></span></a>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                }
+                            </tbody>
+
+
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form id="form">
+            <fieldset id="submitForm">
+                <input type="hidden" id="Id" />
+            </fieldset>
+        </form>
+
+
+                <!--popup add/edit-->
+                @* <div class="modal" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                            </div>
+                            <div class="modal-body">
+                                <form id="form">
+                                    <fieldset id="submitForm">
+                                        <input type="hidden" id="Id" />
+
+                                        <div class="form-group">
+                                            <label for="Name">Mã báo cáo<span class="required" style="color: red;">*</span></label>
+                                            <input id="ReportCode" type="text" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Name">Tên báo cáo</label>
+                                            <input id="ReportName" type="text" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Name">UrlLink</label>
+                                            <input id="UrlLink" type="text" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Name">Mô tả</label>
+                                            <input id="Description" type="text" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="Name">Mô tả</label>
+                                            <input id="Description" type="text" class="form-control" />
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="Name">Cycle</label>
+                                            <select class="select select2-hidden-accessible" id="Cycle" name="Cycle" data-live-search="true">
+                                                @foreach (EntityCycleModel cycle in listcycle)
+                                                {
+                                                    if (Cycle == cycle.Id)
+                                                    {
+                                                        <option value="@blockData.Cycle" class="" selected>@Html.Raw(cycle.Name)</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="@cycle.Id" class="">@Html.Raw(cycle.Name)</option>
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+
+
+                                        <button type="submit" class="btn btn-primary" id="btnSave"> Lưu </button>
+
+                                    </fieldset>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+                <!--popup confirm delete-->
+                <div class="modal fade" id="DeleteConfirmation">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                                <h4>Xóa yêu cầu báo cáo</h4>
+                            </div>
+                            <div class="modal-body">
+                                <h4>
+                                    Bạn có chắc chắn muốn xóa <label id="lblTitle"></label>?
+                                </h4>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#" class="btn btn-primary" data-dismiss="modal" id="r">Cancel</a>
+                                <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirm</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+<script>
+
+    // popup cửa sổ thêm mới yêu cầu báo cáo
+   function AddNewReport() {
+        $("#form")[0].reset();
+        $("#Id").val(0);
+        $("#Title").val('');
+        $("#myModal").modal();
+    };
+
+
+    // popup cửa sổ sửa yêu cầu báo cáo
+    function EditReport(reportId) {
+        var url = "/ReportBi/GetReportById?reportId=" + reportId;
+        $("#myModal").modal();
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                //alert("edit: " + data);
+                var obj = JSON.parse(data);
+
+                $("#Id").val(obj.Id);
+                $("#ReportCode").val(obj.ReportCode);
+                $('#ReportName').val(obj.ReportName);
+                $("#UrlLink").val(obj.UrlLink);
+                $("#Description").val(obj.Description);
+                $("#Cycle").val(obj.Cycle);
+                $("#CycleName").val(obj.CycleName);
+                $("#DepartmentId").val(obj.DepartmentId);
+                $("#DepartmentCode").val(obj.DepartmentCode);
+                $("#AreaId").val(obj.AreaId);
+            }
+        })
+    }
+
+    // user click vào nút submit trên popup Add/edit
+    $("#btnSave").click(function () {
+        var data1 = $("#submitForm").serialize();
+        var id = document.getElementById("Id").value;
+        var reportCode = document.getElementById("ReportCode").value;
+        var reportName = document.getElementById("ReportName").value;
+        var description = document.getElementById("Description").value;
+        var urlLink = document.getElementById("UrlLink").value;
+        var cycle = document.getElementById("Cycle").value;
+        var departmentId = document.getElementById("DepartmentId").value;
+        var departmentCode = document.getElementById("DepartmentCode").value;
+        var areaId = document.getElementById("AreaId").value;
+
+        var dataform = { 'Id': id, 'ReportCode': reportCode, 'ReportName': reportName, 'Description': description, 'UrlLink': urlLink};
+
+        $.ajax({
+            type: "Post",
+            url: "/ReportBi/Save",
+            data: dataform,
+            dataType: "json",
+            success: function (result) {
+                alert("Cập nhật thành công");
+                location.reload();
+                //window.location.href = "/ReportRequire/List";
+                $("#MyModal").modal("hide");
+            }
+        })
+    })
+
+    //Show The Popup Modal For DeleteComfirmation
+    function DeleteReport(reportId, title) {
+        
+        $("#Id").val(reportId);
+        document.getElementById('lblTitle').innerHTML = " báo cáo "+title;
+
+        $("#DeleteConfirmation").modal("show");
+    }
+
+    var ConfirmDelete = function () {
+        var id = $("#Id").val();
+       
+        $.ajax({
+            type: "POST",
+            url: "/ReportBi/Delete?id=" + id,
+            success: function (result) {
+                $("#DeleteConfirmation").modal("hide");
+                //$(".row_" + StuId).remove();
+                location.reload();
+            }
+        })
+    }
+
+
+
+
+</script>

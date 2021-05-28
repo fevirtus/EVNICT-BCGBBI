@@ -1,0 +1,329 @@
+﻿@using BI_Project.Services.Roles;
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    BlockLangRoleCreateModel blockLang = (BlockLangRoleCreateModel)Model.LanguageModel;
+
+    BlockDataRoleCreateModel blockData = (BlockDataRoleCreateModel)Model.DataModel;
+
+    List<EntityDepartmentModel> lstDepartments = (List<EntityDepartmentModel>)ViewData["departments"];
+    List<EntityDepartmentModel> lstDepartmentsAdmin = (List<EntityDepartmentModel>)ViewData["listdepartmentsadmin"];
+
+    BI_Project.Services.User.BlockDataMenuLeftModel menuData = (BI_Project.Services.User.BlockDataMenuLeftModel)ViewData["block_menu_left_data"];
+    List<EntityReportBIModel> lstReportBI = (List<EntityReportBIModel>)ViewData["reportbis"];
+
+
+    Dictionary<string, string> dicExtraClass = new Dictionary<string, string>();
+    dicExtraClass["ul_class"] = "";
+    string fancyTreeHtml = null;
+    string fancyReportTreeHtml = null;
+    string list = null;
+    var curUserIsSuperAdmin = (bool)Session["IsSuperAdmin"];
+    int? currentRoleId = (int?)ViewData["CurrentRoleId"];
+    var currentOrgId = (int?)ViewData["CurrentOrgId"];
+    //validate
+    BlockDataRoleCreateModel data = (BlockDataRoleCreateModel)ViewData["data-form"];
+
+    if (data != null && data.StrAllowedMenus != null)
+    {
+        List<int> lstMenuSelelected = new List<int>();
+        var a = blockData.StrAllowedMenus;
+        string[] lstMenu = null;
+        if (data.StrAllowedMenus.Contains(','))
+        {
+            lstMenu = data.StrAllowedMenus.ToString().Split(',');
+            for (int i = 0; i < lstMenu.Length; i++)
+            {
+                lstMenuSelelected.Add(Convert.ToInt32(lstMenu[i]));
+            }
+        }
+        else
+        {
+            lstMenuSelelected.Add(Convert.ToInt32(data.StrAllowedMenus));
+        }
+
+        fancyTreeHtml = BI_Project.Helpers.UIHelper.GeneralTreeFantacy("", dicExtraClass, menuData.LstAllOfMenus, lstMenuSelelected);
+        list = string.Join(",", lstMenuSelelected);
+    }
+    else
+    {
+        fancyTreeHtml = BI_Project.Helpers.UIHelper.GeneralTreeFantacy("", dicExtraClass, menuData.LstAllOfMenus, blockData.ListRoleMenus);
+        list = string.Join(",", blockData.ListRoleMenus);
+    }
+
+
+    string listReport = null;
+
+    if (data != null && data.StrAllowedReportBI != null)
+    {
+        List<int> lstReportSelected = new List<int>();
+        var a = blockData.StrAllowedReportBI;
+        string[] lstReport = null;
+        if (data.StrAllowedReportBI.Contains(','))
+        {
+            lstReport = data.StrAllowedReportBI.ToString().Split(',');
+            for (int i = 0; i < lstReport.Length; i++)
+            {
+                lstReportSelected.Add(Convert.ToInt32(lstReport[i]));
+            }
+        }
+        else
+        {
+            lstReportSelected.Add(Convert.ToInt32(data.StrAllowedReportBI));
+        }
+
+        fancyReportTreeHtml = BI_Project.Helpers.UIHelper.GeneralReportFantacy("", dicExtraClass, lstReportBI, lstReportSelected);
+        listReport = string.Join(",", lstReportSelected);
+    }
+    else
+    {
+        fancyReportTreeHtml = BI_Project.Helpers.UIHelper.GeneralReportFantacy("", dicExtraClass, lstReportBI, blockData.ListRoleMenus);
+        listReport = string.Join(",", blockData.ListRoleReportBI);
+    }
+
+
+
+
+}
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+
+<!-- /page header -->
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /main charts -->
+            <div class="panel panel-flat">
+                @if (Session["msg_text"] != null)
+                {
+                    string class_panel = "panel-danger ";
+                    if (Session["msg_code"] != null)
+                    {
+                        int msgCode = (int)Session["msg_code"];
+                        if (msgCode >= 1) { class_panel = " panel-success "; }
+
+                        Session.Remove("msg_code");
+                    }
+                    <div class="panel  @class_panel">
+                        <div class="panel-heading">
+
+                            @Session["msg_text"]
+
+
+                        </div>
+                    </div>
+                    Session.Remove("msg_text");
+                }
+                <div class="panel-body">
+                    @using (Html.BeginForm("Create", "Roles", FormMethod.Post, new { data_toggle = "validator", role = "form" }))
+                    {
+                        <input type="hidden" name="RoleId" value="@blockData.RoleId" />
+                        <div class="form-group row">
+                            @{
+                                string blockTitle = blockLang.BlockTitle;
+                                if (blockData.RoleId > 0)
+                                {
+                                    blockTitle = blockLang.title_edit;
+                                }
+                            }
+                            @*<h4>@blockTitle</h4>*@
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <label for="Name">@blockLang.Lblname <span class="required" style="color: red;">*</span></label>
+                            </div>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="Name" name="Name" value="@blockData.Name" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-2">
+                                <label for="Name">@blockLang.LblDescription <span class="required" style="color: red;">*</span></label>
+                            </div>
+                            <div class="col-md-10">
+                                <textarea name="Description" class="form-control" id="Description">@blockData.Description</textarea>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+                            <label for="LstSelectedDepartment" class="col-md-2">@blockLang.Departments</label>
+
+                            <div class="col-md-10 multi-select-full">
+                                <select class="select select2-hidden-accessible" id="DeptID" name="DeptID" data-live-search="true">
+
+                                    @if (curUserIsSuperAdmin)
+                                    {
+                                        <option value="" disabled selected hidden></option>
+                                        foreach (EntityDepartmentModel depart in lstDepartments)
+                                        {
+
+
+                                            if (currentOrgId == depart.DepartId)
+                                            {
+                                                <option value="@depart.DepartId" class="" selected>@Html.Raw(depart.Name)</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@depart.DepartId" class="">@Html.Raw(depart.Name)</option>
+                                            }
+
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <option value="" disabled selected hidden></option>
+                                        foreach (EntityDepartmentModel depart in lstDepartmentsAdmin)
+                                        {
+
+                                            if (currentOrgId == depart.DepartId)
+                                            {
+                                                <option value="@depart.DepartId" class="" selected>@Html.Raw(depart.Name)</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@depart.DepartId" class="">@Html.Raw(depart.Name)</option>
+                                            }
+                                        }
+                                        @*<option value="@Session["session_id_department"]" selected>@Session["session_filter01_department"]</option>*@
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            <div class="col-md-2">
+                                <label for="Name">@blockLang.LblMenus <span class="required" style="color: red;">*</span></label>
+                            </div>
+
+                            <div class="col-md-10">
+                                <input type="hidden" name="StrAllowedMenus" id="StrAllowedMenus" value="@list" />
+
+                                <div class="tree-checkbox-hierarchical well border-left-danger border-left-lg" id="readdyTree">
+                                    <ul>
+                                        @Html.Raw(fancyTreeHtml))
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row ">
+                            <div class="col-md-2">
+                                <label for="Name">Danh mục báo cáo BI <span class="required" style="color: red;">*</span></label>
+                            </div>
+
+                            <div class="col-md-10">
+                                <input type="hidden" name="StrAllowedReportBI" id="StrAllowedReportBI" value="@listReport" />
+
+                                <div class="tree-checkbox-hierarchical well border-left-danger border-left-lg" id="treeReportBI">
+                                    <ul>
+                                        @*@Html.Raw(fancyReportTreeHtml))*@
+                                    </ul>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-10  col-md-offset-2">
+                                <button type="submit" class="btn btn-success">@blockLang.BtnSubmit</button>
+                                <input type="button" class="btn btn-default" value="Hủy" onclick="window.location.href='/Home'">
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var orgId = $('#DeptID').val();
+        $('#DeptID').change(function () {
+            orgId = $('#DeptID').val();
+            var tree = $("#readdyTree").fancytree("getTree");
+            tree.reload({
+                url: '/Menus/List?DeptID=' + orgId + '&roleId=@currentRoleId.ToString()'
+            });
+        });
+        $('#readdyTree').fancytree({
+            checkbox: true,
+            selectMode: 3,
+            source: {
+                url: '/Menus/List?DeptID=' + orgId + '&roleId=@currentRoleId.ToString()',
+                cache: false
+            },
+            select: function (evt, data) {
+                getSelectedNodes();
+            },
+            init: function () {
+                getSelectedNodes();
+            },
+            loadError: function (e, data) {
+                data.message = "Danh sách trống!";
+            }
+        });
+
+        $('#treeReportBI').fancytree({
+            checkbox: true,
+            selectMode: 3,
+            source: {
+                url: '/Roles/ReportList?DeptID=' + orgId + '&roleId=@currentRoleId.ToString()',
+                cache: false
+            },
+            select: function (evt, data) {
+                getSelectedReportBINodes();
+            },
+            init: function () {
+                getSelectedReportBINodes();
+            },
+            loadError: function (e, data) {
+                data.message = "Danh sách trống!";
+            },
+            filter: {
+                mode: "show",
+                autoApply: true
+            }
+        });
+    })
+    function getSelectedNodes() {
+        selectedNodes = $("#readdyTree").fancytree("getTree").getSelectedNodes();
+        selectedArr = selectedNodes.map(x => x.key);
+        selectedNodes.forEach(e => {
+            var p = e.parent;
+            while (p.parent != null) {
+                if (selectedArr.indexOf(p.key) == -1) selectedArr.push(p.key);
+                p = p.parent;
+            }
+        });
+
+        $('#StrAllowedMenus').val(selectedArr.toString());
+    }
+
+    function getSelectedReportBINodes() {
+        selectedNodes = $("#treeReportBI").fancytree("getTree").getSelectedNodes();
+        selectedArr = selectedNodes.map(x => x.key);
+        selectedNodes.forEach(e => {
+            var p = e.parent;
+            while (p.parent != null) {
+                if (selectedArr.indexOf(p.key) == -1 && p.key > 0) selectedArr.push(p.key);
+                p = p.parent;
+            }
+        });
+
+        $('#StrAllowedReportBI').val(selectedArr.toString());
+        console.log(selectedArr.toString());
+    }
+</script>
+

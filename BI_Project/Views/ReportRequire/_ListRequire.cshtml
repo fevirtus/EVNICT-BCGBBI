@@ -1,0 +1,82 @@
+﻿@using BI_Project.Services.Menus;
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@using BI_Project.Helpers;
+@using BI_Project.Services.ReportRequire;
+@using System.Web.Mvc.Html;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    //List<ReportRequireModel> lstReport = (List<ReportRequireModel>)ViewData["RequireReportList"];
+    List<ReportRequireModel> lstReport = (List<ReportRequireModel>)ViewData["reportList"];
+}
+
+<table class="table table-bordered table-hover datatable-highlight">
+    <thead>
+        <tr>
+            <th class="text-center" width="50px">Stt</th>
+            <th class="text-center" width="300px">Yêu cầu xác nhận báo cáo</th>
+            <th class="text-center" width="100px">Hạn hoàn thành xác nhận</th>
+            <th class="text-center" width="150px">Trạng thái</th>
+            <th class="text-center" width="100px">Thời gian tạo</th>
+            <th class="text-center" width="150px">Người tạo</th>
+            <th class="text-center">Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (ReportRequireModel item in lstReport)
+            {
+                <tr>
+                    <td align="center">@item.Stt</td>
+                    <td align="left">@item.Title</td>
+                    <td align="center">@item.ConfirmExpired.ToString("dd/MM/yyyy")</td>
+                    <td align="center">
+                        @{
+                            if (item.Status == 0)
+                            {<span> Chưa gửi</span> }
+                            else
+                            {
+                                if (item.Status == 1)
+                                {
+                                    <span>Đã gửi</span>
+                                }
+                                else
+                                { <span>
+                                        Hoàn thành
+                                    </span>
+                                }
+                            }
+                        }
+                    </td>
+                    <td align="center">@item.Created.ToString("dd/MM/yyyy hh:MM")</td>
+                    <td align="center">@item.FullName</td>
+                    <td align="center">
+                        <a href="#" style="" onclick="EditReport(@item.Id)"><span class='glyphicon glyphicon-edit'></span></a>
+                        <a href="#" onclick="DeleteReport(@item.Id, '@item.Title')"><span style="color:red" class='glyphicon glyphicon-trash'></span></a>
+                        <a href="/BCGB/List/140?ReportRequirementId=@item.Id"><span class='glyphicon glyphicon-share-alt'></span></a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>

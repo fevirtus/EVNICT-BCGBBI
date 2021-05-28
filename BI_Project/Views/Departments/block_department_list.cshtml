@@ -1,0 +1,117 @@
+﻿@using BI_Project.Services.Departments;
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+
+    BlockDepartmentListLangModel blockLang = (BlockDepartmentListLangModel)Model.LanguageModel;
+
+    List<EntityDepartmentModel> blockData = (List<EntityDepartmentModel>)Model.DataModel;
+
+    List<EntityDepartmentModel> lstDepartments = (List<EntityDepartmentModel>)ViewData["departments"];
+
+    List<EntityDepartmentModel> lstDepartmentsAdmin = (List<EntityDepartmentModel>)ViewData["listdepartmentsadmin"];
+    var curUserIsSuperAdmin = (bool)Session["IsSuperAdmin"];
+}
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /main charts -->
+            <div class="panel panel-flat">
+                <div class="panel-body">
+
+                    @if (Session["msg_text"] != null)
+                    {
+                        string class_panel = "panel-body";
+                        if (Session["msg_code"] != null)
+                        {
+                            int msgCode = (int)Session["msg_code"];
+                            if (msgCode >= 1) { class_panel = " panel-success "; }
+
+                            Session.Remove("msg_code");
+                        }
+                        <div class="panel  @class_panel">
+                            <div class="panel-heading">
+
+                                @Session["msg_text"]
+
+
+                            </div>
+                        </div>
+                        Session.Remove("msg_text");
+                    }
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover datatable-highlight">
+                            <thead>
+                                <tr>
+                                    <td hidden></td>
+                                    <td hidden></td>
+                                    <td hidden></td>
+                                    <th style="width:20px">@blockLang.LblNo</th>
+                                    <th>@blockLang.Name</th>
+                                    <th>@blockLang.LblAction</th>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int index = 0;
+                                    string baseUrl = Url.Content("~");
+                                    if (curUserIsSuperAdmin)
+                                    {
+                                        foreach (EntityDepartmentModel item in lstDepartments)
+                                        {
+                                            index++;
+
+
+
+                                            <tr>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                                <td hidden></td>
+                                                <td>@index</td>
+                                                <td class="menu_item_@index">@item.Name</td>
+                                                <td>
+                                                    <a href="@(baseUrl+"Departments/Create?departid="+item.DepartId)">@blockLang.LblEdit</a>
+                                                    <a href="@(baseUrl+"Departments/Delete?departid="+item.DepartId)" onclick="return confirm('@blockLang.LBLConfirmDelete?');">@blockLang.LblDelete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        foreach (EntityDepartmentModel item in lstDepartmentsAdmin)
+                                        {
+                                            index++;
+
+
+
+                                            <tr>
+                                                <td>@index</td>
+                                                <td class="menu_item_@index">@item.Name</td>
+                                                <td>
+                                                    <a href="@(baseUrl+"Departments/Create?departid="+item.DepartId)">@blockLang.LblEdit</a>
+                                                    <a href="@(baseUrl+"Departments/Delete?departid="+item.DepartId)" onclick="return confirm('@blockLang.LBLConfirmDelete?');">@blockLang.LblDelete</a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                }
+                            </tbody>
+
+
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

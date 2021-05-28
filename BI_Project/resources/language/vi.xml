@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<roots>
+  <commons>
+    <system_title>Hệ thống nghiệp vụ thông minh</system_title>
+    <messages>
+      <ServerError>Hệ thống đang bận-không phản hồi</ServerError>
+    </messages>
+  </commons>
+  <messages>
+    <block_login>
+      <success>Đăng nhập thành công</success>
+      <error_business_1>Tên đăng nhập hoặc mật khẩu không đúng</error_business_1>
+
+    </block_login>
+    <block_role_create>
+      <success>Thêm mới nhóm quyền thành công</success>
+      <success_edit>Chỉnh sửa nhóm quyền thành công</success_edit>
+      <error_business_1>Bạn chưa nhập đầy đủ thông tin nhóm quyền</error_business_1>
+    </block_role_create>
+
+    <block_role_list>
+      <success>Thêm mới nhóm quyền thành công</success>
+      <success_delete>Xóa nhóm quyền thành công</success_delete>
+    </block_role_list>
+    <block_user_create>
+      <success>Thêm mới  người dùng thành công</success>
+      <success_edit>Chỉnh sửa  người dùng thành công</success_edit>
+      <error_business_1>Chưa nhập đầy đủ thông tin người dùng</error_business_1>
+      <error_email>Chưa đúng định dạng email</error_email>
+      <error_password>Nhập lại mật khẩu chưa khớp</error_password>
+      <error_phone>Số điện thoại chỉ được nhập số</error_phone>
+      <error_User>Tài khoản đã tồn tại trong hệ thống</error_User>
+      <error_Role>Chưa chọn nhóm quyền cho tài khoản</error_Role>
+      <error_pass>Mật khẩu chứa ít nhất 8 ký tự, trong đó có ít nhất 1 ký tự số và bao gồm ký tự thường, ký tự in hoa và ký tự đặc biệt.</error_pass>
+    </block_user_create>
+    <block_menu_create>
+      <success>Thêm mới chức năng thành công</success>
+      <success_edit>Chỉnh sửa chức năng thành công</success_edit>
+      <error_business_1>Bạn chưa nhập đầy đủ thông tin chức năng</error_business_1>
+    </block_menu_create>
+    
+    <block_user_list>
+      <success_delete>Xóa người dùng thành công</success_delete>
+    </block_user_list>
+    
+    <block_user_changepw>
+      <not_equalto>Mật khẩu và nhập lại mật khẩu không giống nhau</not_equalto>
+      <not_exist_user>Mật khẩu cũ không đúng</not_exist_user>
+      <success>Thay đổi mật khẩu thành công </success>
+    </block_user_changepw>
+    
+    <block_upload_excel>
+      <success>Upload thành công </success>
+      <error>Có lỗi xảy ra, mời bạn xem lại file upload:</error>
+    </block_upload_excel>
+    
+    <block_department_create>
+      <success>Thêm mới đơn vị thành công</success>
+      <success_edit>Chỉnh sửa đơn vị thành công</success_edit>
+      <error_business_1>Chưa nhập đầy đủ thông tin người dùng</error_business_1>
+      <error_code>Bạn chưa nhập mã đơn vị</error_code>
+    </block_department_create>
+    
+  </messages>
+  <pages>
+    <change_password>
+      <title>Thay đổi mật khẩu</title>
+    </change_password>
+    <login>
+      <title>Đăng nhập </title>
+    </login>
+    <SetDefaultPage>
+      <title>Trang mặc định</title>
+    </SetDefaultPage>
+    <index>
+      <title></title>
+    </index>
+    <menu_create>
+      <title>Tạo mới chức năng</title>
+    </menu_create>
+
+    <menu_list>
+      <title>Danh sách chức năng</title>
+    </menu_list>
+    <role_list>
+      <title>Danh sách nhóm quyền</title>
+    </role_list>
+
+    <role_create>
+      <title>Tạo mới nhóm quyền</title>
+    </role_create>
+    <role_edit>
+      <title>Chỉnh sửa nhóm quyền</title>
+    </role_edit>
+    <user_create>
+      <title>Tạo mới người dùng</title>
+    </user_create>
+    <user_edit>
+      <title>Chỉnh sửa người dùng</title>
+    </user_edit>
+    <user_list>
+      <title>Danh sách người dùng</title>
+    </user_list>
+    <department_list>
+      <title>Danh sách đơn vị</title>
+    </department_list>
+    <department_create>
+      <title>Thêm mới đơn vị</title>
+    </department_create>
+    <department_edit>
+      <title>Sửa thông tin đơn vị</title>
+    </department_edit>
+    <dnt_upload>
+      <title>Điện nông thôn</title>
+    </dnt_upload>
+    <Embed_Tableau>
+      <title>BÁO CÁO QUẢN TRỊ ĐIỀU HÀNH</title>
+    </Embed_Tableau>
+    <upload_excel>
+      <title>Upload excel</title>
+      <page_excel>
+
+        <menu1131>
+          <title>Upload excel - Điện nông thôn</title>
+          <h1>Upload excel - Điện nông thôn</h1>
+          <UploadedDirectory>CallCentre</UploadedDirectory>
+        </menu1131>
+        <menu67>
+          <title>Upload excel - Luu chuyen tien te</title>
+          <h1>Upload excel - Luu chuyen tien te</h1>
+          <UploadedDirectory>luuchuyentiente</UploadedDirectory>
+        </menu67>
+
+        <menu68>
+          <title>Upload excel - Báo cáo tài chính kế toán</title>
+          <h1>Upload excel - Báo cáo tài chính kế toán</h1>
+          <UploadedDirectory>baocaotaichinhketoan</UploadedDirectory>
+        </menu68>
+        <menu69>
+          <title>Upload excel- Hoạt động kinh doanh</title>
+          <h1>Upload excel- Hoạt động kinh doanh</h1>
+          <UploadedDirectory>hoatdongkinhdoanh</UploadedDirectory>
+        </menu69>
+        <menu70>
+          <title>Upload excel- Công nợ phải thu</title>
+          <h1>Upload excel- Công nợ phải thu</h1>
+          <UploadedDirectory>congnophaithu</UploadedDirectory>
+        </menu70>
+        <menu1065>
+          <title>Upload excel-Dữ liệu giao dịch tckt</title>
+          <h1>Upload excel- Dữ liệu giao dịch tckt</h1>
+          <UploadedDirectory>transactiondata</UploadedDirectory>
+        </menu1065>
+        <menu1066>
+          <title>Upload excel-Dữ liệu KPI</title>
+          <h1>Upload excel- KPI</h1>
+          <UploadedDirectory>kpi</UploadedDirectory>
+        </menu1066>
+        <menu1067>
+          <title>Upload ERP-sts</title>
+          <h1>Upload ERP-sts</h1>
+          <UploadedDirectory>erp-sts</UploadedDirectory>
+        </menu1067>
+        <menu1072>
+          <title>Upload phàn nàn</title>
+          <h1>Upload phàn nàn</h1>
+          <UploadedDirectory>phannan</UploadedDirectory>
+        </menu1072>
+        <menu1073>
+          <title>Upload quản lý chi phí </title>
+          <h1>Upload quản lý chi phí </h1>
+          <UploadedDirectory>quanlychiphi</UploadedDirectory>
+        </menu1073>
+        <menu1074>
+          <title>Upload khiếu nại</title>
+          <h1>Upload khiếu nại</h1>
+          <UploadedDirectory>feedback</UploadedDirectory>
+        </menu1074>
+        <menu1075>
+          <title>Upload thu hồi vốn</title>
+          <h1>Upload thu hồi vốn</h1>
+          <UploadedDirectory>thuhoivon</UploadedDirectory>
+        </menu1075>
+        <menu1076>
+          <title>Upload chi phí hoạt động cửa hàng </title>
+          <h1>Upload chi phí hoạt động cửa hàng </h1>
+          <UploadedDirectory>ChiPhiHoatDong</UploadedDirectory>
+        </menu1076>
+        <menu1077>
+          <title>Upload FAV </title>
+          <h1>Upload FAV </h1>
+          <UploadedDirectory>FAV</UploadedDirectory>
+        </menu1077>
+        <menu1078>
+          <title>Upload lợi nhuận </title>
+          <h1>Upload lợi nhuận </h1>
+          <UploadedDirectory>Loi_Nhuan</UploadedDirectory>
+        </menu1078>
+        <menu1079>
+          <title>Upload tỷ lệ lãi gộp trước thanh lý </title>
+          <h1>Upload tỷ lệ lãi gộp trước thanh lý </h1>
+          <UploadedDirectory>TLLG_TruocThanhLy</UploadedDirectory>
+        </menu1079>
+        <menu1080>
+          <title>Upload dư nợ </title>
+          <h1>Upload dư nợ </h1>
+          <UploadedDirectory>Du_No</UploadedDirectory>
+        </menu1080>
+        <menu1081>
+          <title>Upload số cửa hàng </title>
+          <h1>Upload số cửa hàng </h1>
+          <UploadedDirectory>So_Cua_Hang</UploadedDirectory>
+        </menu1081>
+        <menu1082>
+          <title>Upload thanh lý </title>
+          <h1>Upload thanh lý </h1>
+          <UploadedDirectory>Thanh_Ly</UploadedDirectory>
+        </menu1082>
+        <menu1083>
+          <title>Upload khách hàng bí mật </title>
+          <h1>Upload khách hàng bí mật </h1>
+          <UploadedDirectory>KH_BiMat</UploadedDirectory>
+        </menu1083>
+        <menu1084>
+          <title>Upload Traffic</title>
+          <h1>Upload Traffic </h1>
+          <UploadedDirectory>Traffic</UploadedDirectory>
+        </menu1084>
+        <menu1085>
+          <title>Upload company level </title>
+          <h1>Upload company level </h1>
+          <UploadedDirectory>Company_Level</UploadedDirectory>
+        </menu1085>
+        <menu1086>
+          <title>Upload store level </title>
+          <h1>Upload store level </h1>
+          <UploadedDirectory>Store_Level</UploadedDirectory>
+        </menu1086>
+        <menu1096>
+          <title>Upload thanh lý </title>
+          <h1>Upload thanh lý </h1>
+          <UploadedDirectory>Thanh_Ly</UploadedDirectory>
+        </menu1096>
+        <menu1098>
+          <title>Upload hàng tồn kho </title>
+          <h1>Upload hàng tồn kho</h1>
+          <UploadedDirectory>HangTonKho</UploadedDirectory>
+        </menu1098>
+        <menu1100>
+          <title>Management call centre</title>
+          <h1>Management call centre</h1>
+          <UploadedDirectory>CallCentre</UploadedDirectory>
+        </menu1100>
+
+        <menu1070>
+          <title>Management cost</title>
+          <h1>Management cost</h1>
+          <UploadedDirectory>ManagementCost</UploadedDirectory>
+        </menu1070>
+        <menu1171>
+          <title>1171</title>
+          <h1>1171</h1>
+          <UploadedDirectory>CallCentre</UploadedDirectory>
+        </menu1171>
+        <menu1172>
+          <title>1172</title>
+          <h1>1172</h1>
+          <UploadedDirectory>CallCentre</UploadedDirectory>
+        </menu1172>
+        <menu1173>
+          <title>1173</title>
+          <h1>1173</h1>
+          <UploadedDirectory>CallCentre</UploadedDirectory>
+        </menu1173>
+        <menu1174>
+          <title>1174</title>
+          <h1>1174</h1>
+          <UploadedDirectory>CallCentre</UploadedDirectory>
+        </menu1174>
+        <menu1175>
+          <title>1175</title>
+          <h1>1175</h1>
+          <UploadedDirectory>CallCentre</UploadedDirectory>
+        </menu1175>
+        <menu1176>
+          <title>1176</title>
+          <h1>1176</h1>
+          <UploadedDirectory>CallCentre</UploadedDirectory>
+        </menu1176>
+        
+      </page_excel>
+    </upload_excel>
+  </pages>
+  <blocks>
+
+    <block_upload_excel>
+      <Filehoder>Chọn file</Filehoder>
+      <Username>Tài khoản</Username>
+      <Fullname>Họ tên</Fullname>
+      <Uploadedtime>Thời gian upload</Uploadedtime>
+      <Uploadmonth>Tháng</Uploadmonth>
+      <Uploadyear>Năm</Uploadyear>
+      <Title>upload_excel</Title>
+      <Dowload>Tải xuống</Dowload>
+      <Page_next>Trang tiếp</Page_next>
+      <Page_pre>Trang trước</Page_pre>
+      <Btnupload>Tải lên</Btnupload>
+      <Helpdoc>Tài liệu hướng dẫn sử dụng</Helpdoc>
+      <Export>Tải template</Export>
+      <HistoryTitle>Lịch sử upload</HistoryTitle>
+      <Month>Tháng</Month>
+      <PerPage>Số bản ghi</PerPage>
+      <Year>Năm</Year>
+      <Search>Tìm kiếm</Search>
+      <NumberInsertedRow><![CDATA[Số bản ghi đã upload]]></NumberInsertedRow>
+      <year_lable>Chọn năm</year_lable>
+      <year_select>Chọn năm báo cáo</year_select>
+      <month_select>Chọn tháng báo cáo</month_select>
+      <Export_of>Tải template sẵn có</Export_of>
+    </block_upload_excel>
+
+    <block_menu_left>
+      <ManagingUsers>Quản lý người dùng</ManagingUsers>
+      <ListofUser>Danh sách người dùng</ListofUser>
+      <CreateNewUser>Tạo mới người dùng</CreateNewUser>
+      <ManagingRoles>Quản lý nhóm quyền</ManagingRoles>
+      <ListofRole>Danh sách nhóm quyền</ListofRole>
+      <CreateNewRole>Tạo mới nhóm quyền</CreateNewRole>
+      <ManagingMenus>Quản lý chức năng</ManagingMenus>
+      <ListofMenu>Danh sách chức năng</ListofMenu>
+      <CreateNewMenu>Tạo mới chức năng</CreateNewMenu>
+      <ManaginDepartments>Quản lý đơn vị</ManaginDepartments>
+      <ListofDepartments>Danh sách đơn vị</ListofDepartments>
+      <CreateNewDepartments>Tạo mới đơn vị</CreateNewDepartments>
+    </block_menu_left>
+
+    <block_user_changepw>
+      <title>Thay đổi mật khẩu</title>
+      <OldPassword>Mật khẩu cũ</OldPassword>
+      <Password>Mật khẩu mới</Password>
+      <ConfirmPassword>Nhập lại mật khẩu mới</ConfirmPassword>
+      <BtnSubmit>Ghi</BtnSubmit>
+    </block_user_changepw>
+    
+    <block_user_create>
+      <title> Tạo mới người dùng</title>
+      <title_edit>Sửa thông tin người dùng </title_edit>
+      <UserName>Tên đăng nhập</UserName>
+      <Password>Mật khẩu</Password>
+      <ConfirmPassword>Nhập lại mật khẩu</ConfirmPassword>
+      <Email>Địa chỉ email</Email>
+      <FullName>Tên người dùng</FullName>
+      <Phone>Số điện thoại</Phone>
+      <IsAdmin>Có là admin? </IsAdmin>
+      <Roles>Thuộc vào nhóm quyền</Roles>
+      <Menus>Chức năng được phân quyền:</Menus>
+      <BtnSubmit>Ghi</BtnSubmit>
+      <Departments>Đơn vị</Departments>
+    </block_user_create>
+    
+    <block_user_list>
+      <title>Danh sách người dùng</title>
+      <LblNo>STT</LblNo>
+      <Lblname>Tên đăng nhập</Lblname>
+      <Email>Địa chỉ email</Email>
+      <Phone>Số điện thoại</Phone>
+      <FullName>Tên người dùng</FullName>
+      <Roles>Nhóm quyền</Roles>
+      <Menus>Chức năng được phân quyền</Menus>
+      <DepartName>Đơn vị</DepartName>
+      <LblDescription>Mô tả</LblDescription>
+      <LblAction>Thao tác </LblAction>
+      <LblEdit>Sửa </LblEdit>
+      <LblDelete>Xóa </LblDelete>
+      <LBLConfirmDelete>Bạn có chắc xóa không?</LBLConfirmDelete>
+    </block_user_list>
+    
+    <block_role_create>
+      <title> Tạo mới nhóm người dung</title>
+      <title_edit>Sửa nhóm quyền </title_edit>
+      <Lblname>Tên nhóm</Lblname>
+      <LblMenus>Danh sách chức năng</LblMenus>
+      <LblDescription>Mô tả</LblDescription>
+      <Departments>Đơn vị</Departments>
+      <BtnSubmit>Ghi</BtnSubmit>
+    </block_role_create>
+    
+    <block_role_list>
+      <title>Danh sách nhóm quyền</title>
+      <LblNo>STT</LblNo>
+      <Lblname>Tên nhóm quyền</Lblname>
+      <LblDescription>Mô tả</LblDescription>
+      <LblAction>Thao tác </LblAction>
+      <LblEdit>Sửa </LblEdit>
+      <LblDelete>Xóa </LblDelete>
+      <LBLConfirmDelete>Bạn có chắc xóa không?</LBLConfirmDelete>
+      <Department>Đơn vị</Department>
+    </block_role_list>
+    
+    <block_menu_list>
+      <title>Danh sách chức năng</title>
+      <LblNo>STT</LblNo>
+      <Lblname>Tên chức năng</Lblname>
+      <Lblparent>Danh mục cha</Lblparent>
+      <LblPath>Đường dẫn</LblPath>
+      <LblPriority>Thứ tự hiển thị</LblPriority>
+      <LblAction>Thao tác </LblAction>
+      <LblEdit>Sửa </LblEdit>
+      <LblDelete>Xóa </LblDelete>
+      <LBLConfirmDelete>Bạn có chắc xóa không?</LBLConfirmDelete>
+    </block_menu_list>
+    
+    <block_dnt_upload>
+      <title>Cập nhật Điện nông thôn</title>
+      <Month>Tháng</Month>
+      <Year>Năm</Year>
+      <Search>Tìm kiếm</Search>
+      <File>Chọn File</File>
+    </block_dnt_upload>
+
+    <block_create_menu>
+      <title> Tạo mới chức năng </title>
+      <title_edit>Sửa chức năng </title_edit>
+      <Lblname>Tên chức năng</Lblname>
+      <Lblparent>Danh mục cha</Lblparent>
+      <LblPath>Đường dẫn</LblPath>
+      <Departments>Đơn vị</Departments>
+      <PathTableau>Đường dẫn tableau</PathTableau>
+      <LblPriority>Thứ tự hiển thị</LblPriority>
+      <BtnSubmit>Ghi</BtnSubmit>
+    </block_create_menu>
+    <block_login>
+      <title> ĐĂNG NHẬP</title>
+      <LblHelpTitle>Nhập thông tin bên dưới</LblHelpTitle>
+      <LblUserName>Tên đăng nhập</LblUserName>
+      <LblPassword>Mật khẩu</LblPassword>
+      <BtnSubmit>Đăng nhập</BtnSubmit>
+      <LblForgetPassword>Quên mật khẩu</LblForgetPassword>
+    </block_login>
+    <block_trademark>
+      <company_title>Công ty EVN</company_title>
+    </block_trademark>
+
+    <block_welcome>
+      <Lblwelcome>
+        <![CDATA[
+        Chào mừng bạn đến với hệ thống quản trị thông tin ---  <b>............</b>
+        ]]>
+      </Lblwelcome>
+    </block_welcome>
+
+    <block_department_list>
+      <LblNo>STT</LblNo>
+      <Name>Tên đơn vị</Name>
+      <LblEdit>Sửa</LblEdit>
+      <LblDelete>Xóa</LblDelete>
+      <LblAction>Thao tác</LblAction>
+      <LBLConfirmDelete>Bạn có chắc xóa không?</LBLConfirmDelete>
+    </block_department_list>
+    <block_department_create>
+      <title> Tạo mới đơn vị</title>
+      <Name>Tên đơn vị</Name>
+      <Filter01>Mã đơn vị</Filter01>
+      <BtnSubmit>Ghi</BtnSubmit>
+      <title_edit>Sửa thông tin đơn vị</title_edit>
+    </block_department_create>
+  </blocks>
+</roots>

@@ -1,0 +1,94 @@
+﻿<!-- Main content -->
+
+@{
+    string pageName = (ViewData["pagename"] == null ? "index" : ViewData["pagename"].ToString());
+
+    BI_Project.Models.UI.PageModel pageModel;
+    if (null == ViewData["page_model"])
+    {
+        pageModel = new BI_Project.Models.UI.PageModel(pageName);
+        pageModel.SetLanguage(ViewData["VIEWDATA_LANGUAGE"]);
+    }
+    else
+    {
+        pageModel = (BI_Project.Models.UI.PageModel)ViewData["page_model"];
+    }
+
+
+}
+
+@*<div class="content-wrapper">
+    @if (!string.IsNullOrEmpty(pageModel.Title))
+    {
+        <div class="page-header page-header-default" style="margin-bottom: 0px !important;">
+            <div class="page-header-content row">
+                <div class="page-title">
+                    <h4> <span class="text-semibold">@pageModel.Title</span></h4>
+                </div>
+            </div>
+
+        </div>
+    }
+    <div class="content">*@
+
+
+        @{
+            string actionBlock = (null == ViewData["action_block"] ? "Home/block_welcome" : ViewData["action_block"].ToString());
+            actionBlock = actionBlock + ".cshtml";
+
+        }
+
+        @Html.Partial("~/views/" + actionBlock, ViewData["BlockData"])
+
+        @{
+
+            if (ViewData["action_block"] == "Tableau/TableauView")
+            {
+                BI_Core.Tableau.TableauModel tableauModel;
+                tableauModel = (BI_Core.Tableau.TableauModel)ViewData["BlockData"];
+
+                <p resize_value="@Convert.ToInt32(tableauModel.Hidden)" id="resize_menu"></p>
+            }
+            else
+            {
+                BI_Project.Models.UI.BlockModel blockModel;
+                if (ViewData.ContainsKey("BlockData"))
+                {
+                    blockModel = (BI_Project.Models.UI.BlockModel)ViewData["BlockData"];
+                }
+                else
+                {
+                    blockModel = new BI_Project.Models.UI.BlockModel();
+                }                
+                <p resize_value="@Convert.ToInt32(blockModel.Hidden)" id="resize_menu"></p>
+            }
+
+        }
+
+
+
+        <!-- Footer -->
+        @*<div class="footer text-muted" style="margin-bottom:-20px;">
+                Tập đoàn điện lực EVN
+                Thiết kế bởi  <a href="http://evn.com.vn/" target="_blank">evn.com.vn</a>
+            </div>*@
+        <!-- /main content -->
+    </div>
+    <!-- /page content -->
+</div>
+
+
+
+
+
+<script>
+
+    $(document).ready(function (e) {
+        var x = document.getElementById("resize_menu").getAttribute("resize_value");
+
+        if (x != 0) {
+            document.getElementsByClassName("sidebar-main-toggle")[0].click();
+        }
+    });
+
+</script>

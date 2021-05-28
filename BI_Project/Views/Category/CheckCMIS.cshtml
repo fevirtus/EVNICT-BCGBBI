@@ -1,0 +1,137 @@
+﻿@using BI_Project.Models.EntityModels;
+@{
+    List<LRS_RESUL> blockData = (List<LRS_RESUL>)ViewData["LRS_RESUL"];
+    EntityTimKiemModel _ttinTK = (EntityTimKiemModel)ViewData["timkiem"];
+    List<EntityDepartmentModel> lstDepartments = (List<EntityDepartmentModel>)ViewData["dsDonVi"];
+
+}
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+
+<!-- /page header -->
+<div class="content" >
+
+    @if (Session["msg_text"] != null)
+    {
+        string class_panel = "panel-body";
+        if (Session["msg_code"] != null)
+        {
+            int msgCode = (int)Session["msg_code"];
+            if (msgCode >= 1) { class_panel = " panel-success "; }
+
+            Session.Remove("msg_code");
+        }
+        <div class="panel row @class_panel">
+            <div class="panel-heading">
+                @Session["msg_text"]
+            </div>
+        </div>
+        Session.Remove("msg_text");
+    }
+
+          
+    <div class="row">
+        <div class="panel panel-flat">
+            
+            <div class="panel-body">
+                <form action="/EVNCategory/CheckCMIS" method="post">
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="form-field-1" class="col-sm-1 control-label">TCTĐL<span class="symbol required"></span></label>
+                            <div class="col-md-2">
+                                <select name="MaDV" id="MaDV" class="form-control">
+                                    @foreach (EntityDepartmentModel depart in lstDepartments)
+                                    {
+                                        if (_ttinTK.MA_DVIQLY == depart.Code)
+                                        {
+                                            <option value="@depart.Code" class="" selected>@Html.Raw(depart.Name)</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@depart.Code" class="">@Html.Raw(depart.Name)</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+
+                            <label for="form-field-1" class="col-sm-1 control-label">Tháng<span class="symbol required"></span></label>
+                            <div class="col-md-1">
+                                <select name="Thang" id="Thang" class="form-control">
+                                    <option value="1" @(_ttinTK.THANG == 1 ? "selected" : "")>1</option>
+                                    <option value="2" @(_ttinTK.THANG == 2 ? "selected" : "")>2</option>
+                                    <option value="3" @(_ttinTK.THANG == 3 ? "selected" : "")>3</option>
+                                    <option value="4" @(_ttinTK.THANG == 4 ? "selected" : "")>4</option>
+                                    <option value="5" @(_ttinTK.THANG == 5 ? "selected" : "")>5</option>
+                                    <option value="6" @(_ttinTK.THANG == 6 ? "selected" : "")>6</option>
+                                    <option value="7" @(_ttinTK.THANG == 7 ? "selected" : "")>7</option>
+                                    <option value="8" @(_ttinTK.THANG == 8 ? "selected" : "")>8</option>
+                                    <option value="9" @(_ttinTK.THANG == 9 ? "selected" : "")>9</option>
+                                    <option value="10" @(_ttinTK.THANG == 10 ? "selected" : "")>10</option>
+                                    <option value="11" @(_ttinTK.THANG == 11 ? "selected" : "")>11</option>
+                                    <option value="12" @(_ttinTK.THANG == 12 ? "selected" : "")>12</option>
+                                </select>
+                            </div>
+
+                            <label for="form-field-1" class="col-sm-1 control-label">Năm<span class="symbol required"></span></label>
+                            <div class="col-md-2">
+                                <select name="Nam" id="Nam" class="form-control">
+                                    <option value="2019" @(_ttinTK.NAM == 2019 ? "selected" : "")>2019</option>
+                                    <option value="2020" @(_ttinTK.NAM == 2020 ? "selected" : "")>2020</option>
+                                    <option value="2021" @(_ttinTK.NAM == 2021 ? "selected" : "")>2021</option>
+                                    <option value="2022" @(_ttinTK.NAM == 2021 ? "selected" : "")>2022</option>
+                                </select>
+                            </div>
+
+                            <label for="form-field-1" class="col-sm-1 control-label">Loại BC<span class="symbol required"></span></label>
+                            <div class="col-md-2">
+                                <select name="LoaiBC" id="LoaiBC" class="form-control">
+                                    <option value="0" @(_ttinTK.LUYKE == 0 ? "selected" : "")>Tháng</option>
+                                    <option value="1"  @(_ttinTK.LUYKE == 1 ? "selected" : "")>Lũy kế</option>
+                                </select>
+                            </div>
+
+                            <div class="text-right">
+                                <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-camera"></i> Xem</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+
+                <table class="table datatable-column-search-inputs">
+                    <thead>
+                        <tr>
+                            <th>Mã NCPT</th>
+                            <th>NCPT</th>
+                            <th>CMIS</th>
+                            <th>Chênh lệch(kWh)</th>
+                            <th>Chênh lệch(%)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+                            foreach (var kq in blockData)
+                            {
+                                string styleRow = " style='background-color:yellow' ";
+                                <tr @Html.Raw(styleRow)>
+                                    <td>@kq.PROFILEID</td>
+                                    <td>@kq.Total</td>
+                                    <td>@kq.SAN_LUONG</td>
+                                    <td>@(kq.Total - kq.SAN_LUONG)</td>
+                                    <td>@(Math.Round(((kq.Total - kq.SAN_LUONG) / kq.Total * 100 ),2))</td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+               
+            </div>
+        </div>
+    </div>
+
+</div>
+

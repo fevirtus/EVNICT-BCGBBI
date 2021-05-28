@@ -1,0 +1,129 @@
+﻿@model BI_Project.Services.User.BlockDataMenuLeftModel
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@{
+
+    var request = HttpContext.Current.Request;
+    string baseUrl = string.Format("{0}://{1}", request.Url.Scheme, request.Url.Authority);
+
+
+}
+
+<ul class="navigation navigation-main navigation-accordion">
+    <!-- Main -->
+    <li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
+    @{
+
+        if ( (null != Session["IsAdmin"]) && ((bool)Session["IsAdmin"] == true))
+        {
+            <li><a href="~/Users/Create"><i class="icon-people"></i><span>Managing Users</span></a>
+                <ul>
+                    <li><a href="~/Users/List"><i class="icon-tree6"></i><span>List Of User</span></a></li>
+                    <li><a href="~/Users/Create"><i class="icon-tree6"></i><span>Create new user</span></a></li>
+                </ul>    
+            </li>
+            <li>
+                <a href="~/Roles/Create"><i class="icon-pencil"></i><span>Managing Roles</span></a>
+                <ul>
+                    <li><a href="~/Roles/List"><i class="icon-tree6"></i><span>List Of Roles</span></a></li>
+                    <li><a href="~/Roles/Create"><i class="icon-tree6"></i><span>Create new Roles</span></a></li>
+                </ul>
+
+            </li>
+            <li><a href="~/Menus/List"><i class="icon-tree6"></i><span>Managing Menus</span></a>
+                
+                <ul>
+                    <li><a href="~/Menus/List"><i class="icon-tree6"></i><span>List of Menus</span></a></li>
+                    <li><a href="~/Menus/Create"><i class="icon-tree6"></i><span>Create new menu</span></a></li>
+                </ul>
+            </li>
+
+        }
+
+        int beforelevel = 1, currentLevel = 1, i = 0;
+        string ul_open = "<ul class=\"collapse\" ", li_open = "<li ", li_close = "</li>";
+        string strMenus = "";
+        List<Dictionary<string, string>> textMenus = new List<Dictionary<string, string>>();
+
+        foreach (EntityMenuModel menu in Model.LstAllOfMenus)
+        {
+            Dictionary<string, string> textItem = new Dictionary<string, string>();
+            textMenus.Add(textItem);
+
+
+            string a_open = "<a href=\"" + baseUrl+"/"+ menu.Path+"/"+menu.MenuId + "\"> ";
+            string a_text = menu.Name;
+
+            string[] lstLevel = Regex.Split(menu.LevelTree + "@@@abc", "@@@");
+            currentLevel = lstLevel.Length - 1;
+            //WHEN NEXT TO SUB MENU 
+            if (currentLevel > beforelevel)
+            {
+                //string str_pan = "<a href=\"#dropdown\"" + i.ToString() + " data-toggle=\"collapse\" >" +                        " </a>";
+
+                textMenus[i - 1]["ul_open"] = ul_open + " id=\"dropdown" + i.ToString() + "\" >";
+                textMenus[i - 1]["a_text"] = textMenus[i - 1]["a_text"] ;
+                
+
+            }
+            //SET VALUE FOR ALL NORMAL ELEMENTS
+            textMenus[i]["open_li"] = li_open + " class ='icon_" + i.ToString() + "' >";
+            textMenus[i]["a_open"] = a_open;
+            textMenus[i]["a_text"] = a_text;
+            textMenus[i]["close_li"] = li_close;
+
+            int gap = beforelevel - currentLevel;
+            if (gap>0)
+            {
+                textMenus[i - 1]["close_li"] = "";
+                while (gap > 0)
+                {
+                    textMenus[i - 1]["close_li"] += "</li></ul>";
+                    gap--;
+                }
+            }
+
+
+
+
+
+            beforelevel = currentLevel;
+            i++;
+        }
+
+        if (currentLevel > 1)
+        {
+            textMenus[i - 1]["close_li"] = "";
+            while (currentLevel > 1)
+            {
+                textMenus[i - 1]["close_li"] += "</li></ul>";
+                currentLevel--;
+            }
+
+
+        }
+
+
+
+        foreach (Dictionary<string, string> menuItem in textMenus)
+        {
+            if (menuItem.Keys.Contains<string>("ul_close"))
+            {
+                strMenus += menuItem["ul_close"];
+            }
+            strMenus += menuItem["open_li"];
+            strMenus += menuItem["a_open"] + menuItem["a_text"] + "</a>";
+            if (menuItem.Keys.Contains<string>("ul_open"))
+            {
+                strMenus += menuItem["ul_open"];
+            }
+            if (menuItem.ContainsKey("close_li"))
+            {
+                strMenus += menuItem["close_li"];
+            }
+
+        }
+        }
+    @Html.Raw( strMenus)
+
+</ul>

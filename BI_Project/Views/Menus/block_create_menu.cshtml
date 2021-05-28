@@ -1,0 +1,315 @@
+﻿@using BI_Project.Services.Menus;
+@using BI_Project.Models.EntityModels;
+@using BI_Project.Services.User;
+@using System.Text.RegularExpressions;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    BI_Project.Services.User.BlockDataMenuLeftModel menuData = (BI_Project.Services.User.BlockDataMenuLeftModel)ViewData["block_menu_left_data"];
+    BlockCreateMenuLangModel blockLang = (BlockCreateMenuLangModel)Model.LanguageModel;
+
+    EntityMenuModel blockData = (EntityMenuModel)Model.DataModel;
+    var curUserIsSuperAdmin = (bool)Session["IsSuperAdmin"];
+    List<EntityDepartmentModel> lstDepartments = (List<EntityDepartmentModel>)ViewData["departments"];
+    List<EntityDepartmentModel> lstDepartmentsAdmin = (List<EntityDepartmentModel>)ViewData["listdepartmentsadmin"];
+    var currentOrgId = (int?)ViewData["CurrentOrgId"];
+}
+
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+
+<!-- /page header -->
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /main charts -->
+            <div class="panel panel-flat">
+                <div class="panel-body">
+                    @*@if (ViewBag.ErrorMessage != null)
+        {
+            <div class="panel panel-body">
+                <div class="col-lg-10">
+                    <div class="form-horizontal">
+                        <h4>ErorrMessage</h4>
+                        <hr />
+                        @ViewBag.ErrorMessage
+
+                    </div>
+                </div>
+            </div>
+        }*@
+
+                    @if (Session["msg_text"] != null)
+                    {
+                        string class_panel = "panel-danger ";
+                        if (Session["msg_code"] != null)
+                        {
+                            int msgCode = (int)Session["msg_code"];
+                            if (msgCode >= 1) { class_panel = " panel-success "; }
+
+                            Session.Remove("msg_code");
+                        }
+                        <div class="panel  @class_panel">
+                            <div class="panel-heading">
+
+                                @Session["msg_text"]
+
+
+                            </div>
+                        </div>
+                        Session.Remove("msg_text");
+                    }
+
+
+                    @using (Html.BeginForm("Create", "Menus", FormMethod.Post))
+                    {
+                        <input type="hidden" name="MenuId" value="@blockData.MenuId" />
+                        <div class="form-group">
+                            @{
+                                string blockTitle = blockLang.BlockTitle;
+                                if (blockData.MenuId > 0)
+                                {
+                                    blockTitle = blockLang.title_edit;
+                                }
+                            }
+                            @*<h4>@blockTitle</h4>*@
+                        </div>
+                        <div class="form-group">
+                            <label for="Name">@blockLang.Lblname <span class="required" style="color: red;">*</span></label>
+                            <input type="text" class="form-control" id="Name" name="Name" value="@blockData.Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Name">@blockLang.Departments <span class="required" style="color: red;">*</span></label>
+
+                            <select class="form-control selectpicker show-tick" id="DeptID" name="DeptID" data-live-search="true">
+                                @if (curUserIsSuperAdmin)
+                                {
+                                    foreach (EntityDepartmentModel depart in lstDepartments)
+                                    {
+
+                                        if (blockData != null)
+                                        {
+                                            if (currentOrgId == depart.DepartId)
+                                            {
+                                                <option value="@blockData.DeptID" class="" selected>@Html.Raw(depart.Name)</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@depart.DepartId" class="">@Html.Raw(depart.Name)</option>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <option value="@depart.DepartId" class="" selected>@Html.Raw(depart.Name)</option>
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (EntityDepartmentModel depart in lstDepartmentsAdmin)
+                                    {
+                                        if (blockData != null)
+                                        {
+                                            if (blockData.DeptID == depart.DepartId)
+                                            {
+                                                <option value="@blockData.DeptID" class="" selected>@Html.Raw(depart.Name)</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@depart.DepartId" class="">@Html.Raw(depart.Name)</option>
+                                            }
+
+                                        }
+                                        else
+                                        {
+                                            <option value="@depart.DepartId" class="" selected>@Html.Raw(depart.Name)</option>
+                                        }
+                                    }
+                                    @*<option value="@Session["session_id_department"]" selected>@Session["session_filter01_department"]</option>*@
+                                }
+
+                            </select>
+
+
+
+                        </div>
+
+                        // lấy danh mục cha old
+
+                        @*<div class="form-group">
+                <label for="Name">@blockLang.Lblparent <span class="required" style = "color: red;" >*</span></label>
+                <select class="form-control" id="ParentId" name="ParentId">
+                    <option value="0">[---Root---]</option>
+                    @{
+
+                        foreach (EntityMenuModel menu in menuData.LstAllOfMenus)
+                        {
+                            string[] lstLevel = Regex.Split(menu.LevelTree + "@@@abc", "@@@");
+
+                            int level = lstLevel.Length - 1;
+                            string selected = "  ";
+                            if (blockData.ParentId == menu.MenuId) { selected = " selected "; }
+                            string textItem = menu.Name;
+                            while (level > 1)
+                            {
+                                textItem = "---" + textItem;
+                                level--;
+                            }
+                            <option value="@menu.MenuId" @selected>@textItem</option>
+                        }
+                    }
+                </select>
+            </div>*@
+
+                        <div class="form-group">
+                            <label for="Name">@blockLang.Lblparent [<a data-toggle="modal" data-target="#select-modal">Chỉnh sửa</a>]</label>
+                            <input type="hidden" class="form-control" id="ParentId" name="ParentId" value="@blockData.ParentId">
+                            @{
+                                var currentMenu = menuData.LstAllOfMenus.Where(x => x.MenuId == blockData.ParentId).FirstOrDefault();
+                                var menuName = currentMenu != null ? currentMenu.Name : "gốc";
+                            }
+                            <input type="text" class="form-control" id="ParentTitle" value="@menuName" readonly required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="Priority">@blockLang.LblPriority <span class="required" style="color: red;">*</span></label>
+
+                            <select class="form-control" id="Priority" name="Priority">
+
+                                @{
+                                    int i = 9;
+                                    if (blockData == null)
+                                    {
+
+                                        if (blockData.MenuId == 0) { blockData.Priority = 9; }
+                                        while (i >= 0)
+                                        {
+                                            string selected = "  ";
+                                            if (blockData.Priority == i) { selected = " selected "; }
+                                            <option value="@i" @selected>@i</option>
+                                            i--;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        while (i >= 0)
+                                        {
+                                            string selected = "  ";
+                                            if (blockData.Priority == i) { selected = " selected "; }
+                                            <option value="@i" @selected>@i</option>
+                                            i--;
+                                        }
+                                    }
+
+                                }
+                            </select>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="Name">@blockLang.LblPath <span class="required" style="color: red;">*</span></label>
+                            <input type="text" class="form-control" id="Path" name="Path" value="@blockData.Path">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Name">@blockLang.PathTableau</label>
+                            <input type="text" class="form-control" id="TableauUrl" name="TableauUrl" value="@blockData.TableauUrl">
+                        </div>
+                        <div class="form-group">
+                            <label for="Name">Icon Css</label>
+                            <input type="text" class="form-control" id="IconCSS" name="IconCSS" value="@blockData.IconCSS">
+                        </div>
+                        <button type="submit" class="btn btn-success">@blockLang.BtnSubmit</button>
+                        <input type="button" class="btn btn-default" value="Hủy" onclick="window.location.href='/Home'">
+                    }
+                    <!-- Modal -->
+                    <div id="select-modal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Danh mục cha</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="tree col-md-12 fancytree-radio" id="tree">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" id="save-button">Chọn</button>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tree').fancytree({
+            checkbox: true,
+            selectMode: 1,
+            source: {
+                url: '/Menus/List?DeptID='+@blockData.DeptID
+            },
+            renderNode: function (event, data) {
+                if (data.node.key == @blockData.MenuId) {
+                    data.node.unselectable = true;
+                }
+                var p = data.node;
+                while (p != null) {
+                    if (p.key == @blockData.MenuId) {
+                        data.node.unselectable = true;
+                        data.node.addClass('opacity');
+                        return;
+                    }
+                    p = p.parent;
+                }
+            },
+            loadError: function (e, data) {
+                data.message = "Không có chức năng";
+            }
+        })
+        $('#DeptID').change(function () {
+            var orgId = $(this).val();
+            $('#ParentId').val(0);
+            $('#ParentTitle').val('');
+            var tree = $('#tree').fancytree('getTree');
+            tree.reload({
+                url: '/Menus/List?DeptID=' + orgId
+            })
+        });
+
+        $('#save-button').click(function () {
+            setParentInforAttr();
+            $('#select-modal').modal('hide');
+        })
+    })
+    function setParentInforAttr() {
+        var tree = $('#tree').fancytree('getTree');
+        var selectedNode = tree.getSelectedNodes()[0];
+        if (selectedNode != undefined) {
+            $('#ParentId').val(selectedNode.key);
+            $('#ParentTitle').val(selectedNode.title);
+        }
+        else {
+            $('#ParentId').val(0);
+            $('#ParentTitle').val('gốc');
+        }
+    }
+</script>

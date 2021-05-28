@@ -1,0 +1,54 @@
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for BidIdentityAttribute: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for BidMetaTextAttribute: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleBFile: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleBinary: type is a value type.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleBoolean: type is a value type.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleCommand: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleCommandBuilder: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleConnection: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleConnectionStringBuilder: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleDataAdapter: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleDataReader: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleDateTime: type is a value type.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleException: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleClientFactory: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleInfoMessageEventArgs: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleInfoMessageEventHandler: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleLob: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleLobOpenMode: type is a value type.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleMonthSpan: type is a value type.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleNumber: type is a value type.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleParameter: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleParameterCollection: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OraclePermission: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OraclePermissionAttribute: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleRowUpdatedEventArgs: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleRowUpdatedEventHandler: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleRowUpdatingEventArgs: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleRowUpdatingEventHandler: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleString: type is a value type.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleTimeSpan: type is a value type.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleTransaction: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.OracleType: type is a value type.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.ResDescriptionAttribute: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for System.Data.OracleClient.ResCategoryAttribute: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate stub for <PrivateImplementationDetails><System_Data_OracleClient_netmodule>: type is sealed.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for BidIdentityAttribute: type is not visible to exported or assembly(System.Data.OracleClient.Fakes).
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for BidMetaTextAttribute: type is not visible to exported or assembly(System.Data.OracleClient.Fakes).
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleCommand: type is obsolete.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleCommandBuilder: type is obsolete.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleConnection: type is obsolete.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleConnectionStringBuilder: type is obsolete.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleDataAdapter: type is obsolete.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleClientFactory: type is obsolete.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleInfoMessageEventHandler: type is a delegate.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleLobOpenMode: type is an enum.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleParameter+OracleParameterConverter: type is not visible to exported or assembly(System.Data.OracleClient.Fakes).
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OraclePermission: type is obsolete.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OraclePermissionAttribute: type is obsolete.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleRowUpdatedEventHandler: type is a delegate.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleRowUpdatingEventHandler: type is a delegate.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.OracleType: type is an enum.
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.ResDescriptionAttribute: type is not visible to exported or assembly(System.Data.OracleClient.Fakes).
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for System.Data.OracleClient.ResCategoryAttribute: type is not visible to exported or assembly(System.Data.OracleClient.Fakes).
+D:\BI\BI_Project\bievn\thamkhao\BI_Project\BI_Project\Fakes\System.Data.OracleClient.fakes : warning : Cannot generate shim for <PrivateImplementationDetails><System_Data_OracleClient_netmodule>: type is not supported because of internal limitations.

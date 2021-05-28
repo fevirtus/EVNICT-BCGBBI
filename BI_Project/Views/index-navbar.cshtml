@@ -1,0 +1,134 @@
+﻿    <!-- Main navbar -->
+<div class="navbar navbar-inverse navbackground">
+    <div class="navbar-header">
+
+        @{
+            string url = Url.Content("~");
+        }
+
+
+        <a class="navbar-brand" href="@url"><img src="~/resources/images/logo.png" alt="" style=" height: 40px; position: relative; top: -11px; left: -1px; z-index : 1;"></a>
+        <ul class="nav navbar-nav visible-xs-block">
+            <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            <li><a class="sidebar-mobile-main-toggle"><i class="icon-paragraph-justify3"></i></a></li>
+        </ul>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+        <ul class="nav navbar-nav">
+            <li><a class="sidebar-control sidebar-main-toggle hidden-xs" style="left:-35px"><i class="icon-paragraph-justify3"></i></a></li>
+            <li><a class="navbar-brand" id="navbar" style="font-size : 15px">HỆ THỐNG QUẢN LÝ XÁC NHẬN SỐ LIỆU BÁO CÁO BI</a></li>
+            <li class="dropdown">
+                @*<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-git-compare"></i>
+                        <span class="visible-xs-inline-block position-right">Git updates</span>
+                        <span class="badge bg-warning-400">9</span>
+                    </a>*@
+
+                <div class="dropdown-menu dropdown-content">
+                    <div class="dropdown-content-heading">
+                        Git updates
+                        <ul class="icons-list">
+                            <li><a href="#"><i class="icon-sync"></i></a></li>
+                        </ul>
+                    </div>
+                    <ul class="media-list dropdown-content-body width-350">
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
+                            </div>
+                            <div class="media-body">
+                                Drop the IE <a href="#">specific hacks</a> for temporal inputs
+                                <div class="media-annotation">4 minutes ago</div>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#" class="btn border-warning text-warning btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-commit"></i></a>
+                            </div>
+
+                            <div class="media-body">
+                                Add full font overrides for popovers and tooltips
+                                <div class="media-annotation">36 minutes ago</div>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#" class="btn border-info text-info btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-branch"></i></a>
+                            </div>
+
+                            <div class="media-body">
+                                <a href="#">Chris Arney</a> created a new <span class="text-semibold">Design</span> branch
+                                <div class="media-annotation">2 hours ago</div>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#" class="btn border-success text-success btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-merge"></i></a>
+                            </div>
+
+                            <div class="media-body">
+                                <a href="#">Eugene Kopyov</a> merged <span class="text-semibold">Master</span> and <span class="text-semibold">Dev</span> branches
+                                <div class="media-annotation">Dec 18, 18:36</div>
+                            </div>
+                        </li>
+                        <li class="media">
+                            <div class="media-left">
+                                <a href="#" class="btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm"><i class="icon-git-pull-request"></i></a>
+                            </div>
+
+                            <div class="media-body">
+                                Have Carousel ignore keyboard events
+                                <div class="media-annotation">Dec 12, 05:46</div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="dropdown-content-footer">
+                        <a href="#" data-popup="tooltip" title="All activity"><i class="icon-menu display-block"></i></a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            @*@if (Session["HDSD"].ToString() == "PA" || Session["HDSD"].ToString() == "PB" || Session["HDSD"].ToString() == "PC" || Session["HDSD"].ToString() == "PD" || Session["HDSD"].ToString() == "PE")
+                {
+                    <li><a href="~/HDSD/TAI LIEU HDSD CONG THONG TIN DIEU HANH KINH DOANH VA DICH VU KHACH HANG/TAI LIU HDSD CNG THONG TIN DIU HANH KINH DOANH VA DCH V KHACH HANG.html" target="_blank"> <i class="icon-book"></i>HDSD</a></li>
+                }
+                @if (Session["HDSD"].ToString() == "PW")
+                {
+                    <li><a href="~/HDSD/TAI LIEU HDSD HE THONG THEO DOI TINH HINH SU DUNG DIEN/TAI LIEU HDSD HE THONG THEO DOI TINH HINH SU DUNG DIEN.html" target="_blank"><i class="icon-book"></i> HDSD</a></li>
+                }
+                @if (Session["HDSD"].ToString() == "PX")
+                {
+                    <li><a href="~/HDSD/TAI LIEU HDSD HE THONG THEO DOI TINH HINH SU DUNG DIEN TRU SO DIEN LUC/Tai liu HDSD Theo doi tinh hinh s dng din.html" target="_blank"><i class="icon-book"></i> HDSD</a></li>
+                }*@
+
+
+            <li class="dropdown dropdown-user">
+                <a class="dropdown-toggle" data-toggle="dropdown">
+                    @*<img src="~/resources/images/" alt="">*@
+
+                    <span>
+                        @if (Session["FullName"] != null && Session["FullName"].ToString() != "")
+                        {
+                            @Html.Raw(Session["FullName"].ToString())
+                        }
+                        else
+                        {
+                           
+                            @Html.Raw(Session["UserName"].ToString())
+                        }
+                    </span>
+                    <i class="caret"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-right">
+
+                    <li class="divider"></li>
+                    <li><a href="~/DefaultPage/SetDefaultPage?id=@Session["session_userid"] "><i class="icon-user-plus"></i> Trang mặc định</a></li>
+                    <li><a href="~/Users/ChangePassword"><i class="icon-lock"></i> Change Password</a></li>
+                    <li><a href="~/Home/Logout"><i class="icon-switch2"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!-- /main navbar -->

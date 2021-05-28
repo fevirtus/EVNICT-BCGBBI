@@ -1,0 +1,74 @@
+﻿@using BI_Project.Models.BusinessModels;
+
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    BlockLoginLangModel languageBlock = (BlockLoginLangModel)Model.LanguageModel;
+
+}
+
+@using (Html.BeginForm(new { data_toggle = "validator", role = "form" }))
+{
+    <!-- Simple login form -->
+    <form action="index.html">
+
+        @*<div class="panel panel-body login-form panel-flat" style="text-align : right">*@
+        <div>
+            <div id="login_form">
+                <div id="header">
+                    <img class="logoImage" id="companyLogo" src="~/resources/images/header_evn.png" alt="EVN">
+                </div>
+                <div class="text-center">
+                    @*<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>*@
+                    @*<div class="icon-object border-slate-300 text-slate-300">
+                <img src="~/resources/images/logoLogin.jpg" width="85px"/>
+            </div>*@
+                    @*<div><span>CỔNG THÔNG TIN ĐIỀU HÀNH CÔNG TÁC KINH DOANH VÀ DỊCH VỤ KHÁCH HÀNG - EVN</span></div>*@
+                    <h5 style="color:white" class="content-group">@languageBlock.BlockTitle @*<small class="display-block">@languageBlock.LblHelpTitle</small>*@</h5>
+                </div>
+                <div class="form-group has-feedback has-feedback-left">
+                    <input type="text" class="form-control" placeholder="@languageBlock.LblUserName" name="UserName" required oninvalid="this.setCustomValidity('@languageBlock.LblUserName')">
+                    <div class="form-control-feedback">
+                        <i class="icon-user text-muted"></i>
+                    </div>
+                </div>
+                <div class="form-group has-feedback has-feedback-left">
+                    <input type="password" class="form-control" placeholder="@languageBlock.LblPassword" name="Password" required oninvalid="this.setCustomValidity('@languageBlock.LblPassword')">
+                    <div class="form-control-feedback">
+                        <i class="icon-lock2 text-muted"></i>
+                    </div>
+                </div>
+
+                <div class="form-group has-feedback has-feedback-left">
+                    <select hidden="hidden" name="Department" required oninvalid="this.setCustomValidity('@languageBlock.LblDepartment')">
+                        <option value="" disabled selected hidden>Đơn vị</option>
+                        <option value="P" class="" selected>Tập đoàn EVN</option>
+                        <option value="PE" class="">Tổng công ty điện lực miền nam</option>
+                        <option value="PA" class="">Tổng công ty điện lực miền bắc</option>
+                        <option value="PB" class="">Tổng công ty điện lực miền trung</option>
+                        <option value="PC" class="">Tổng công ty điện lực miền tây</option>
+                        <option value="PD" class="">Tổng công ty điện lực miền đông</option>
+                    </select>
+                    <div class="form-control-feedback" style="display:none">
+                        <i class="icon-attachment text-muted"></i>
+                    </div>
+                </div>
+
+
+                @if (Session["msgcode"] != null)
+                {
+                    <div class="form-group">
+                        <span class="text-warning-400">
+                            @languageBlock.GetMessage((int)(Session["msgcode"]))
+                        </span>
+                        <br />
+                    </div>
+                    Session["msgcode"] = null;
+                }
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">@languageBlock.BtnSubmit<i class="icon-circle-right2 position-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+}

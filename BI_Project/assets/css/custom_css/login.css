@@ -1,0 +1,60 @@
+.navbar-brand >img {
+    height: 90%;
+    width: auto;
+    margin: auto;
+    position: absolute;
+    top:50%;
+    bottom: 50%;
+}
+
+
+.navbar-brand {
+    height: 100px;
+}
+.cenland_logo {
+    width: 44px;
+    height: 48px;
+}
+
+.login-container .page-container .login-form, .login-container .page-container .registration-form {
+    background: #ffffff00;
+    border-radius: 5px;
+    border: none;
+    left: 800px;
+}
+
+.display-block, label.display-block {
+    color: #746f6f;
+}
+.text-muted {
+}
+.login
+{
+    width: 40% !important;
+    margin:0 auto;
+}
+#login_form {
+    width: 440px;
+    height: 438px;
+    position: absolute;
+    top: 50%;
+    margin-top: -220px;
+    left: 50%;
+    margin-left: -177px;
+    background-color: #fff;
+    padding: 40px;
+    box-sizing: border-box;
+}
+#branding {
+    height: 100%;
+    margin-left: 0px;
+    background-color: inherit;
+    background-repeat: no-repeat;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+.illustrationClass {
+    background-image: url('../../../resources/images/backgrounds/BackgroundLogin.jpg');
+}

@@ -1,0 +1,53 @@
+﻿@using BI_Project.Models.EntityModels;
+@model  BI_Project.Services.User.UserServices
+@{
+    List<EntityUserMenuModel> _usermenu = (List<EntityUserMenuModel>)ViewData["usermenu"];
+
+    SelectList usermenulist = new SelectList(_usermenu, "MenuID", "Name");
+}
+<div class="content">
+    <div class="panel panel-default">
+        <div class="panel-body" style="margin-left: 5px; margin-right: 5px">
+
+            <form action="/DefaultPage/SetDefaultPage?id=@Session["session_userid"]" method="post">
+                @*@using (Html.BeginForm("SetDefaultPage", "DefaultPage", new { id = Session["session_userid"] }, FormMethod.Post))
+                    {*@
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-2">
+                            <label>Trang mặc định</label>
+                        </div>
+                        <div class="col-md-6">
+                            <select class="form-control selectpicker show-tick" id="MenuId" name="MenuId" data-live-search="true" data-allow-clear="true">
+                                @foreach (EntityUserMenuModel item in _usermenu)
+                                {
+                                    if (item.IsDefaultPage == true)
+
+                                    {
+                                        <option value="@item.MenuId" selected>@item.Name</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.MenuId">@item.Name</option>
+                                    }
+
+                                    @*<option value="@item.MenuId">@item.Name</option>*@
+
+
+                                }
+                            </select>
+                        </div>
+
+                    </div>
+                    <br />
+
+                    <div class="text-right">
+                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-save"></i> Lưu </button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+        <br />
+    </div>
+</div>

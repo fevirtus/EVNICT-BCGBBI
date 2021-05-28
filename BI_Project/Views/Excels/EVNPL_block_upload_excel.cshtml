@@ -1,0 +1,243 @@
+﻿@using BI_Project.Services.Importers;
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    BlockLangExcelUpload blockLang = (BlockLangExcelUpload)Model.LanguageModel;
+
+    BlockDataExcelUploadModel blockData = (BlockDataExcelUploadModel)Model.DataModel;
+
+    var request = HttpContext.Current.Request;
+    string baseUrl = string.Format("{0}://{1}", request.Url.Scheme, request.Url.Authority);
+    string currentUrl = request.RawUrl;
+
+
+
+}
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+
+<!-- /page header -->
+<div class="content">
+
+    @if (Session["msg_text"] != null)
+    {
+        string class_panel = "panel-body";
+        if (Session["msg_code"] != null)
+        {
+            int msgCode = (int)Session["msg_code"];
+            if (msgCode >= 1) { class_panel = " panel-success "; }
+
+            Session.Remove("msg_code");
+        }
+        <div class="panel row @class_panel">
+            <div class="panel-heading">
+
+                @Session["msg_text"]
+
+
+            </div>
+        </div>
+        Session.Remove("msg_text");
+    }
+
+    <div class="row panel-body">
+        @*<div class="panel panel-flat" style="padding: 10px 10px 0 0">
+                @{
+                    if (blockData.ExportBaseMonth == true && blockData.Export == true)
+                    {
+                        Html.RenderPartial("~/Views/Excels/block_month_year.cshtml", null, new ViewDataDictionary { {"dataBlock", blockData }, {"langBlock", blockLang} });
+                    }
+                <div class="panel-body text-center" style="padding: 10px">
+                    @{
+                        if (blockData.Export == true && blockData.ExportOff == true && blockData.ExportBaseMonth == false)
+                        {
+                            <form id="exportOff" method="post" action="@baseUrl/@blockData.Url">
+                                <input hidden name="PermissionId" value="@blockData.PermissionID" />
+                                <input type="checkbox" name="ExportOff" value="true" /> @blockLang.ExportOff
+                            </form>
+                            <a href="#" class="export_excel" onclick="document.getElementById('exportOff').submit()">@blockLang.Export</a>
+                        }
+                        if (blockData.Export == true && blockData.ExportBaseMonth == false && blockData.ExportOff == false)
+                        {
+                            <a href="@baseUrl/@blockData.Url/@blockData.PermissionID">@blockLang.Export</a>
+                        }
+                        if (blockData.Export == true && blockData.ExportBaseMonth == true && blockData.ExportOff == false)
+                        {
+                            <a href="#" class="export_excel" onclick="document.getElementById('export').submit()">@blockLang.Export</a>
+                        }
+                    }
+                </div>
+                }
+            </div>*@
+        <div class="panel panel-flat">
+
+            <form method="post" enctype="multipart/form-data" action="@baseUrl/EVNImportExcelPL/ImportExcel">
+                <div class="row" style="height: 73px;">
+                    <div class="col-md-1" style="width: 160px; margin-top:15px;">
+                        <label style="margin-left: 10px;"><b>Chọn tháng upload :</b></label>
+                    </div>
+                    <div class="col-md-2" style=" margin-top:15px;">
+
+                        <select id="dropdownMonth" class="form-control" name="currentMonth" value="@blockData.currentMonth" style="width: 100px; margin-left: 10px;" required></select>
+
+                    </div>
+                    <div class="col-md-1" style="margin-top: 15px ; width:150px">
+                        <label style="margin-left: 10px;"><b>Chọn năm upload :</b></label>
+                    </div>
+                    <div class="col-md-2" style="margin-top: 15px">
+                        <div>
+                            <select id="dropdownYear" class="form-control" name="currentyear" value="@blockData.currentyear" style="width: 100px; margin-left: 10px;" required></select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3" style="margin-top: 15px">
+                        <input type="file" class="file-styled" id="FileObj" name="FileObj">
+                        <input type="hidden" name="PermissionID" value="@blockData.PermissionID" />
+                    </div>
+                    <div class="col-md-2" style="margin-top: 15px">
+                        <input type="submit" value="@blockLang.Btnupload" class="btn btn-primary" />
+                    </div>
+                </div>
+
+                
+
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel panel-flat">
+
+            <div class="panel-body">
+                <form method="post" action="@baseUrl/EVNImportExcelPL/Index/@blockData.PermissionID" id="frmsearch">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <input type="hidden" name="PermissionID" value="@blockData.PermissionID" />
+                        </div>
+                        <div class="col-md-2">
+                            <select name="Month" class="form-control">
+                                <option value="0">[@blockLang.Month]</option>
+                                @{
+                                    string selected = "  ";
+
+                                    for (int i = 1; i < 12; i++)
+                                    {
+                                        if (i == blockData.Month) { selected = " selected  "; }
+                                        else { selected = "  "; }
+                                        <option value="@i" @selected>@i</option>
+                                    }
+
+                                }
+
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select name="Year" class="form-control">
+                                <option value="0">[@blockLang.Year]</option>
+                                @{
+                                    selected = "   ";
+                                    for (int i = 2000; i < 2099; i++)
+                                    {
+                                        if (i == blockData.Year) { selected = " selected "; }
+                                        else { selected = "  "; }
+                                        <option value="@i" @selected>@i</option>
+                                    }
+
+                                }
+
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select name="PerPage" class="form-control">
+                                <option value="0">[@blockLang.PerPage]</option>
+                                @{
+                                    selected = "   ";
+                                    for (int i = 10; i < 100; i = i + 5)
+                                    {
+                                        if (i == blockData.PerPage) { selected = " selected "; }
+                                        else { selected = "  "; }
+                                        <option value="@i" @selected>@i</option>
+                                    }
+
+                                }
+
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" value="@blockLang.Search" class="btn btn-primary btn-xlg" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel-body">
+                <table class="table datatable-column-search-inputs">
+                    <thead>
+                        <tr>
+                            <th>@blockLang.Username</th>
+                            <th>@Html.Raw(blockLang.NumberInsertedRow)</th>
+                            <th>@blockLang.Uploadedtime</th>
+                            <th>@blockLang.Uploadmonth</th>
+                            <th>@blockLang.Uploadyear</th>
+                            <th class="text-center">@blockLang.Dowload</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{
+
+                            foreach (BI_Project.Models.EntityModels.EntityUploadHistoryModel history in blockData.ListHistory)
+                            {
+                                string styleRow = " style='background-color:yellow' ";
+                                if (history.NumberInsertedRow > 0) { styleRow = ""; }
+                                <tr @Html.Raw(styleRow)>
+                                    <td>@history.UserName</td>
+                                    <td>@history.NumberInsertedRow</td>
+                                    <td>@history.StartTime</td>
+                                    <td>@history.Month</td>
+                                    <td>@history.Year</td>
+                                    <td><a href="@baseUrl/resources/excel_uploads/@blockData.FolderUpload/@history.FileUploadedName">@blockLang.Dowload</a></td>
+                                    <td><a href="@baseUrl/EVNImportExcelPL/Delete?treeId=@blockData.PermissionID&fileUpload=@history.FileUploadedName" onclick="return confirm('@blockLang.LBLConfirmDelete?');">@blockLang.Delete</a></td>
+                                </tr>
+
+                            }
+
+                        }
+
+                    </tbody>
+                </table>
+                <ul class="pagination">
+                    @{
+                        for (int i = 1; i < blockData.NumberPages + 1; i++)
+                        {
+                            string class_active = "  ", aHref = "<a href=\"javascript: SubmitForm(" + i + ")\">" + i + "</a>";
+                            if (i == blockData.CurrentPage)
+                            {
+                                class_active = " active ";
+                                aHref = "<a >" + i.ToString() + "</a>";
+                            }
+                            <li class="@class_active">@Html.Raw(aHref)</li>
+                        }
+                    }
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/assets/js/custom_js/CurrentMonth-Year.js"></script>
+<script type="text/javascript">
+    function SubmitForm(page) {
+        var url = '@baseUrl/EVNImportExcelPL/Index/@blockData.PermissionID' + "?page=" + page;
+        var form = document.getElementById('frmsearch');
+        form.action = url;
+
+        form.submit();
+    }
+</script>

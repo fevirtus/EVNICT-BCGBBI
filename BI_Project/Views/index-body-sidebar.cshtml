@@ -1,0 +1,45 @@
+﻿            <!-- Main sidebar -->
+<div class="sidebar sidebar-main sidebar-fixed">
+@*<div class="sidebar sidebar-main">*@
+    <div class="sidebar-content">
+        <!-- User menu -->
+        <div class="sidebar-user" style="display:none">
+            <div class="category-content">
+                <div class="media">
+                    <a href="#" class="media-left"><img src="~/resources/images/avartar_yody.png" class="img-circle img-sm" alt=""></a>
+                    <div class="media-body">
+                        <span class="media-heading text-semibold">
+                            @if (Session["FullName"].ToString() != "")
+                            {
+                                @Html.Raw(Session["FullName"].ToString())
+                            }
+                            else
+                            {
+                                @Html.Raw(Session["UserName"].ToString())
+                            }
+                        </span>
+                        <div class="text-size-mini text-muted">
+                            <i class="icon-pin text-size-small"></i> EVN
+                        </div>
+                    </div>
+                    @*<div class="media-right media-middle">
+                            <ul class="icons-list">
+                                <li>
+                                    <a href="#"><i class="icon-cog3"></i></a>
+                                </li>
+                            </ul>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+        <!-- /user menu -->
+        <!-- Main navigation -->
+        <div class="sidebar-category sidebar-category-visible">
+            <div class="category-content no-padding">
+                @Html.Partial("~/views/block_menu_left.cshtml", ViewData["block_menu_left_data"])
+            </div>
+        </div>
+        <!-- /main navigation -->
+    </div>
+</div>
+<!-- /main sidebar -->

@@ -1,0 +1,23 @@
+﻿@using BI_Project.Models.BusinessModels;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    BlockWelcomeLangModel blockWelcomeLang = (BlockWelcomeLangModel)Model.LanguageModel;
+}
+@*@Html.Raw( blockWelcomeLang.Lblwelcome)*@
+<style>
+    .content {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        opacity: 0.6;
+        padding: 0;
+    }
+
+        .content:first-child {
+            padding-top: 0px;
+        }
+</style>
+
+<div class="content">
+    <img src="~/resources/images/discover.jpg"/>
+</div>

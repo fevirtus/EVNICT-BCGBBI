@@ -1,0 +1,160 @@
+﻿@using BI_Project.Services.BCGB;
+@model BI_Project.Models.UI.BlockModel
+@using BI_Project.Models.EntityModels;
+@{
+    List<EntityReportBIModel> lstReportBI = new List<EntityReportBIModel>();
+    if (ViewData["ListReportBI"] != null)
+    {
+        lstReportBI = (List<EntityReportBIModel>)ViewData["ListReportBI"];
+    }
+
+    List<EntityReportRequirementModel> ListReportRequirement = new List<EntityReportRequirementModel>();
+    if (ViewData["ListReportRequirement"] != null)
+    {
+        ListReportRequirement = (List<EntityReportRequirementModel>)ViewData["ListReportRequirement"];
+    }
+
+    var CurrentReportRequirementId = "";
+    if (ViewData["CurrentDepartmentCode"] != null)
+    {
+        CurrentReportRequirementId = ViewData["CurrentReportRequirementId"].ToString();
+    }
+
+    var CurrentReportBIId = "";
+    if (ViewData["CurrentReportBIId"] != null)
+    {
+        CurrentReportBIId = ViewData["CurrentReportBIId"].ToString();
+    }
+}
+<style>
+
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+<!-- /page header -->
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /main charts -->
+            <div class="panel panel-flat">
+                <div class="panel-body">
+                    <div class="panel panel-flat">
+                        @if (Session["msg_text"] != null)
+                        {
+                            string class_panel = "panel-danger ";
+                            if (Session["msg_code"] != null)
+                            {
+                                int msgCode = (int)Session["msg_code"];
+                                if (msgCode >= 1) { class_panel = " panel-success "; }
+
+                                Session.Remove("msg_code");
+                            }
+                            <div class="panel  @class_panel">
+                                <div class="panel-heading">
+                                    @Session["msg_text"]
+                                </div>
+                            </div>
+                            Session.Remove("msg_text");
+                        }
+                        <div class="panel-body">
+                            @using (Html.BeginForm("Confirm", "BCGB", FormMethod.Post, new { data_toggle = "validator", role = "form" }))
+                            {
+
+                                <form id="formConfirmTask">
+                                    <div class="row">
+
+                                        <label for="form-field-1" class="col-sm-1 control-label" style="width: 30%">
+                                            Yêu cầu xin báo cáo
+                                        </label>
+                                        <div class="col-md-3" style="width: 70%">
+                                            <select class="select select2-hidden-accessible" id="ReportRequirementId" name="ReportRequirementId" data-live-search="true">
+                                                @{
+                                                    <option value="" hidden selected disabled></option>
+                                                    foreach (EntityReportRequirementModel rr in ListReportRequirement)
+                                                    {
+                                                        if (CurrentReportRequirementId == rr.Id.ToString())
+                                                        {
+                                                            <option value="@rr.Id" class="" selected>@Html.Raw(rr.Title)</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@rr.Id" class="">@Html.Raw(rr.Title)</option>
+                                                        }
+
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <label for="form-field-1" class="col-sm-1 control-label" style="width: 30%">
+                                            Ban thực hiện
+                                        </label>
+                                        <div class="col-md-3" style="width: 70%">
+                                            <select class="select select2-hidden-accessible" id="ReportBIId" name="ReportBIId" data-live-search="true">
+                                                @{
+                                                    <option value="" hidden selected disabled></option>
+                                                    foreach (EntityReportBIModel rbi in lstReportBI)
+                                                    {
+                                                        if (CurrentReportBIId == rbi.Id.ToString())
+                                                        {
+                                                            <option value="@rbi.Id" class="" selected>@Html.Raw(rbi.ReportName)</option>
+                                                        }
+                                                        else
+                                                        {
+                                                            <option value="@rbi.Id" class="">@Html.Raw(rbi.ReportName)</option>
+                                                        }
+
+                                                    }
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="display:flex; align-items: baseline;">
+                                        <label for="xxx" style="margin-left: 10px;">Số liệu đúng</label>
+                                        <input type="checkbox" id="xxx" name="xxx" value="somethingelse" class="col-sm-1">
+
+                                    </div>
+
+                                    <div class="row">
+                                        <label for="Comment" class="col-md-1" style="width: 100%">
+                                            Ý kiến (nếu số liệu chưa đúng)
+                                            <span class="required" style="color: red;">*</span>
+                                        </label>
+                                        <div class="col-md-10" style="width: 100%">
+                                            <input type="text" class="form-control" id="Comment" name="Comment" value="" rows="4" cols="50">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-1" style="width: 30%">
+                                            File số liệu báo cáo
+                                        </label>
+                                        <button onclick="document.getElementById('file-input').click();">Open</button>
+                                        <input id="file-input" type="file" name="name" style="display: none;" />
+                                    </div>
+
+
+
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <button type="submit" class="btn btn-success">Xác nhận</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+</script>

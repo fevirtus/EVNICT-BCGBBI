@@ -1,0 +1,107 @@
+/*****************************************MENU LIST *********************************************/
+.menu_level_1 {
+    margin-left: 0px;
+}
+
+option.menu_level_2 {
+    margin-left: 30px;
+    padding-left: 30px;
+    text-indent: 30px;
+    color: red;
+}
+
+option.menu_level_3 {
+    margin-left: 60px;
+    padding-left: 100px;
+}
+/*****************************************MENU LIST *********************************************/
+
+.cenland_logo {
+    width: 44px;
+    height: 48px;
+}http://localhost:56266/resources/images/discover.jpg
+.required{
+    color : red !important;
+}
+.navbar-top{
+    padding-top: 0px !important;
+    overflow-x : hidden;
+}
+/*****************************************DOWNLOAD TEMPLATE *********************************************/
+.export_excel {
+    padding: 10px !important;
+}
+
+.page-container > .page-content > .content-wrapper {
+    position: relative;
+    top: 48px;
+}
+
+.page-container > .page-content > .content-wrapper > .content > .content > img {
+    height: calc(100vh - 48px);
+    width: 100%;
+}
+
+.page-container {
+    overflow: hidden;
+}
+
+.navbar-inverse .navbar-collapse {
+    position: relative;
+}
+
+.navbar-inverse .navbar-collapse > ul.nav.navbar-nav:first-child {
+    width: calc(100% - 280px);
+}
+
+.navbar-inverse .navbar-collapse > ul.nav.navbar-nav:first-child > li:first-child {
+    position: relative;
+    z-index: 1;
+}
+
+@media screen and (max-width: 1040px) {
+    .navbar-inverse .navbar-collapse > ul.nav.navbar-nav:first-child > li:first-child {
+        left: calc(100vw / 2 - 520px);
+    }
+}
+
+.navbar-inverse .navbar-collapse > ul.nav.navbar-nav:first-child > li:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+    left: 0;
+}
+
+.navbar-inverse .navbar-collapse > ul.nav.navbar-nav:first-child > li:nth-child(2) > a {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+}
+
+.navbar-inverse .navbar-collapse > ul.nav.navbar-nav:last-child {
+    position: absolute;
+    right: 10px;
+}
+
+navbar-header {
+    position : relative;
+    z-index : 1;
+}
+
+@media screen and (max-width: 1079px) {
+    #navbar {
+        margin-left:0 ;
+    }
+}
+
+@media screen and (max-width: 767.8px) {
+    .page-container > .page-content > .content-wrapper {
+        top: 0;
+    }
+}
+.table thead tr th {
+    background-color: #bbb !important;
+    font-weight: bold !important;
+}

@@ -1,0 +1,2078 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>System.Data.OracleClient.Fakes</name>
+    </assembly>
+    <members>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleBFile">
+            <summary>Shim type of System.Data.OracleClient.OracleBFile</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBFile.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBFile.#ctor(System.Data.OracleClient.OracleBFile)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.CanReadGet">
+            <summary>Sets the shim of OracleBFile.get_CanRead()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.CanSeekGet">
+            <summary>Sets the shim of OracleBFile.get_CanSeek()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.CanWriteGet">
+            <summary>Sets the shim of OracleBFile.get_CanWrite()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.Clone">
+            <summary>Sets the shim of OracleBFile.Clone()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.ConnectionGet">
+            <summary>Sets the shim of OracleBFile.get_Connection()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.CopyToInt64OracleLobInt64Int64">
+            <summary>Sets the shim of OracleBFile.CopyTo(Int64 sourceOffset, OracleLob destination, Int64 destinationOffset, Int64 amount)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.CopyToOracleLob">
+            <summary>Sets the shim of OracleBFile.CopyTo(OracleLob destination)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.CopyToOracleLobInt64">
+            <summary>Sets the shim of OracleBFile.CopyTo(OracleLob destination, Int64 destinationOffset)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.DirectoryNameGet">
+            <summary>Sets the shim of OracleBFile.get_DirectoryName()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.DisposeBoolean">
+            <summary>Sets the shim of OracleBFile.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.FileExistsGet">
+            <summary>Sets the shim of OracleBFile.get_FileExists()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.FileNameGet">
+            <summary>Sets the shim of OracleBFile.get_FileName()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.Flush">
+            <summary>Sets the shim of OracleBFile.Flush()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.IsNullGet">
+            <summary>Sets the shim of OracleBFile.get_IsNull()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.LengthGet">
+            <summary>Sets the shim of OracleBFile.get_Length()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.PositionGet">
+            <summary>Sets the shim of OracleBFile.get_Position()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.PositionSetInt64">
+            <summary>Sets the shim of OracleBFile.set_Position(Int64 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.ReadByteArrayInt32Int32">
+            <summary>Sets the shim of OracleBFile.Read(Byte[] buffer, Int32 offset, Int32 count)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.SeekInt64SeekOrigin">
+            <summary>Sets the shim of OracleBFile.Seek(Int64 offset, SeekOrigin origin)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.SetFileNameStringString">
+            <summary>Sets the shim of OracleBFile.SetFileName(String directory, String file)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.SetLengthInt64">
+            <summary>Sets the shim of OracleBFile.SetLength(Int64 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.ValueGet">
+            <summary>Sets the shim of OracleBFile.get_Value()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.AllInstances.WriteByteArrayInt32Int32">
+            <summary>Sets the shim of OracleBFile.Write(Byte[] buffer, Int32 offset, Int32 count)</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBFile.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBFile.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBFile.Bind(System.Data.SqlTypes.INullable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBFile.Bind(System.ICloneable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBFile.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.CanReadGet">
+            <summary>Sets the shim of OracleBFile.get_CanRead()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.CanSeekGet">
+            <summary>Sets the shim of OracleBFile.get_CanSeek()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.CanWriteGet">
+            <summary>Sets the shim of OracleBFile.get_CanWrite()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.Clone">
+            <summary>Sets the shim of OracleBFile.Clone()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.ConnectionGet">
+            <summary>Sets the shim of OracleBFile.get_Connection()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.Constructor">
+            <summary>Sets the shim of OracleBFile.OracleBFile()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.CopyToInt64OracleLobInt64Int64">
+            <summary>Sets the shim of OracleBFile.CopyTo(Int64 sourceOffset, OracleLob destination, Int64 destinationOffset, Int64 amount)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.CopyToOracleLob">
+            <summary>Sets the shim of OracleBFile.CopyTo(OracleLob destination)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.CopyToOracleLobInt64">
+            <summary>Sets the shim of OracleBFile.CopyTo(OracleLob destination, Int64 destinationOffset)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.DirectoryNameGet">
+            <summary>Sets the shim of OracleBFile.get_DirectoryName()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.DisposeBoolean">
+            <summary>Sets the shim of OracleBFile.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.FileExistsGet">
+            <summary>Sets the shim of OracleBFile.get_FileExists()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.FileNameGet">
+            <summary>Sets the shim of OracleBFile.get_FileName()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.Flush">
+            <summary>Sets the shim of OracleBFile.Flush()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.IsNullGet">
+            <summary>Sets the shim of OracleBFile.get_IsNull()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.LengthGet">
+            <summary>Sets the shim of OracleBFile.get_Length()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.PositionGet">
+            <summary>Sets the shim of OracleBFile.get_Position()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.PositionSetInt64">
+            <summary>Sets the shim of OracleBFile.set_Position(Int64 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.ReadByteArrayInt32Int32">
+            <summary>Sets the shim of OracleBFile.Read(Byte[] buffer, Int32 offset, Int32 count)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.SeekInt64SeekOrigin">
+            <summary>Sets the shim of OracleBFile.Seek(Int64 offset, SeekOrigin origin)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.SetFileNameStringString">
+            <summary>Sets the shim of OracleBFile.SetFileName(String directory, String file)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.SetLengthInt64">
+            <summary>Sets the shim of OracleBFile.SetLength(Int64 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.StaticConstructor">
+            <summary>Sets the shim of OracleBFile.OracleBFile()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.ValueGet">
+            <summary>Sets the shim of OracleBFile.get_Value()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBFile.WriteByteArrayInt32Int32">
+            <summary>Sets the shim of OracleBFile.Write(Byte[] buffer, Int32 offset, Int32 count)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleBinary">
+            <summary>Shim type of System.Data.OracleClient.OracleBinary</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBinary.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.AdditionOpOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.op_Addition(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleBinary.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBinary.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBinary.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.ConcatOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.Concat(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.EqualityOpOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.op_Equality(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.EqualsOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.Equals(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.ExplicitOpOracleBinaryByteArray">
+            <summary>Sets the shim of OracleBinary.op_Explicit(OracleBinary x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.GreaterThanOpOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.op_GreaterThan(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.GreaterThanOrEqualOpOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.op_GreaterThanOrEqual(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.GreaterThanOrEqualOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.GreaterThanOrEqual(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.GreaterThanOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.GreaterThan(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.ImplicitOpByteArrayOracleBinary">
+            <summary>Sets the shim of OracleBinary.op_Implicit(Byte[] b)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.InequalityOpOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.op_Inequality(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.LessThanOpOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.op_LessThan(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.LessThanOrEqualOpOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.op_LessThanOrEqual(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.LessThanOrEqualOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.LessThanOrEqual(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.LessThanOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.LessThan(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.NotEqualsOracleBinaryOracleBinary">
+            <summary>Sets the shim of OracleBinary.NotEquals(OracleBinary x, OracleBinary y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBinary.StaticConstructor">
+            <summary>Sets the shim of OracleBinary.OracleBinary()</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleBoolean">
+            <summary>Shim type of System.Data.OracleClient.OracleBoolean</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBoolean.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleBoolean.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.AndOracleBooleanOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.And(OracleBoolean x, OracleBoolean y)</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBoolean.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleBoolean.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.BitwiseAndOpOracleBooleanOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_BitwiseAnd(OracleBoolean x, OracleBoolean y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.BitwiseOrOpOracleBooleanOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_BitwiseOr(OracleBoolean x, OracleBoolean y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.EqualityOpOracleBooleanOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_Equality(OracleBoolean x, OracleBoolean y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.EqualsOracleBooleanOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.Equals(OracleBoolean x, OracleBoolean y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.ExclusiveOrOpOracleBooleanOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_ExclusiveOr(OracleBoolean x, OracleBoolean y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.ExplicitOpOracleBooleanBoolean">
+            <summary>Sets the shim of OracleBoolean.op_Explicit(OracleBoolean x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.ExplicitOpOracleNumberOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_Explicit(OracleNumber x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.ExplicitOpStringOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_Explicit(String x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.FalseOpOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_False(OracleBoolean x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.ImplicitOpBooleanOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_Implicit(Boolean x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.InequalityOpOracleBooleanOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_Inequality(OracleBoolean x, OracleBoolean y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.LogicalNotOpOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_LogicalNot(OracleBoolean x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.NotEqualsOracleBooleanOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.NotEquals(OracleBoolean x, OracleBoolean y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.OnesComplementOpOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_OnesComplement(OracleBoolean x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.OnesComplementOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.OnesComplement(OracleBoolean x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.OrOracleBooleanOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.Or(OracleBoolean x, OracleBoolean y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.ParseString">
+            <summary>Sets the shim of OracleBoolean.Parse(String s)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.StaticConstructor">
+            <summary>Sets the shim of OracleBoolean.OracleBoolean()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.TrueOpOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.op_True(OracleBoolean x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleBoolean.XorOracleBooleanOracleBoolean">
+            <summary>Sets the shim of OracleBoolean.Xor(OracleBoolean x, OracleBoolean y)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleDataReader">
+            <summary>Shim type of System.Data.OracleClient.OracleDataReader</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleDataReader.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleDataReader.#ctor(System.Data.OracleClient.OracleDataReader)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.Close">
+            <summary>Sets the shim of OracleDataReader.Close()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.Constructor">
+            <summary>Sets the shim of OracleDataReader.OracleDataReader()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.DepthGet">
+            <summary>Sets the shim of OracleDataReader.get_Depth()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.FieldCountGet">
+            <summary>Sets the shim of OracleDataReader.get_FieldCount()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetBooleanInt32">
+            <summary>Sets the shim of OracleDataReader.GetBoolean(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetByteInt32">
+            <summary>Sets the shim of OracleDataReader.GetByte(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetBytesInt32Int64ByteArrayInt32Int32">
+            <summary>Sets the shim of OracleDataReader.GetBytes(Int32 i, Int64 fieldOffset, Byte[] buffer2, Int32 bufferoffset, Int32 length)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetCharInt32">
+            <summary>Sets the shim of OracleDataReader.GetChar(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetCharsInt32Int64CharArrayInt32Int32">
+            <summary>Sets the shim of OracleDataReader.GetChars(Int32 i, Int64 fieldOffset, Char[] buffer2, Int32 bufferoffset, Int32 length)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetDataTypeNameInt32">
+            <summary>Sets the shim of OracleDataReader.GetDataTypeName(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetDateTimeInt32">
+            <summary>Sets the shim of OracleDataReader.GetDateTime(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetDecimalInt32">
+            <summary>Sets the shim of OracleDataReader.GetDecimal(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetDoubleInt32">
+            <summary>Sets the shim of OracleDataReader.GetDouble(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetEnumerator">
+            <summary>Sets the shim of OracleDataReader.GetEnumerator()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetFieldTypeInt32">
+            <summary>Sets the shim of OracleDataReader.GetFieldType(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetFloatInt32">
+            <summary>Sets the shim of OracleDataReader.GetFloat(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetGuidInt32">
+            <summary>Sets the shim of OracleDataReader.GetGuid(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetInt16Int32">
+            <summary>Sets the shim of OracleDataReader.GetInt16(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetInt32Int32">
+            <summary>Sets the shim of OracleDataReader.GetInt32(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetInt64Int32">
+            <summary>Sets the shim of OracleDataReader.GetInt64(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetNameInt32">
+            <summary>Sets the shim of OracleDataReader.GetName(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetOracleBFileInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleBFile(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetOracleBinaryInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleBinary(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetOracleDateTimeInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleDateTime(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetOracleLobInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleLob(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetOracleMonthSpanInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleMonthSpan(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetOracleNumberInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleNumber(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetOracleStringInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleString(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetOracleTimeSpanInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleTimeSpan(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetOracleValueInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleValue(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetOracleValuesObjectArray">
+            <summary>Sets the shim of OracleDataReader.GetOracleValues(Object[] values)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetOrdinalString">
+            <summary>Sets the shim of OracleDataReader.GetOrdinal(String name)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetProviderSpecificFieldTypeInt32">
+            <summary>Sets the shim of OracleDataReader.GetProviderSpecificFieldType(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetProviderSpecificValueInt32">
+            <summary>Sets the shim of OracleDataReader.GetProviderSpecificValue(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetProviderSpecificValuesObjectArray">
+            <summary>Sets the shim of OracleDataReader.GetProviderSpecificValues(Object[] values)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetSchemaTable">
+            <summary>Sets the shim of OracleDataReader.GetSchemaTable()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetStringInt32">
+            <summary>Sets the shim of OracleDataReader.GetString(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetTimeSpanInt32">
+            <summary>Sets the shim of OracleDataReader.GetTimeSpan(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetValueInt32">
+            <summary>Sets the shim of OracleDataReader.GetValue(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.GetValuesObjectArray">
+            <summary>Sets the shim of OracleDataReader.GetValues(Object[] values)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.HasRowsGet">
+            <summary>Sets the shim of OracleDataReader.get_HasRows()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.IsClosedGet">
+            <summary>Sets the shim of OracleDataReader.get_IsClosed()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.IsDBNullInt32">
+            <summary>Sets the shim of OracleDataReader.IsDBNull(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.ItemGetInt32">
+            <summary>Sets the shim of OracleDataReader.get_Item(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.ItemGetString">
+            <summary>Sets the shim of OracleDataReader.get_Item(String name)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.NextResult">
+            <summary>Sets the shim of OracleDataReader.NextResult()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.Read">
+            <summary>Sets the shim of OracleDataReader.Read()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.AllInstances.RecordsAffectedGet">
+            <summary>Sets the shim of OracleDataReader.get_RecordsAffected()</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleDataReader.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleDataReader.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleDataReader.Bind(System.Data.IDataReader)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleDataReader.Bind(System.Data.IDataRecord)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleDataReader.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleDataReader.Bind(System.Collections.IEnumerable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.Close">
+            <summary>Sets the shim of OracleDataReader.Close()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.Constructor">
+            <summary>Sets the shim of OracleDataReader.OracleDataReader()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.DepthGet">
+            <summary>Sets the shim of OracleDataReader.get_Depth()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.FieldCountGet">
+            <summary>Sets the shim of OracleDataReader.get_FieldCount()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetBooleanInt32">
+            <summary>Sets the shim of OracleDataReader.GetBoolean(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetByteInt32">
+            <summary>Sets the shim of OracleDataReader.GetByte(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetBytesInt32Int64ByteArrayInt32Int32">
+            <summary>Sets the shim of OracleDataReader.GetBytes(Int32 i, Int64 fieldOffset, Byte[] buffer2, Int32 bufferoffset, Int32 length)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetCharInt32">
+            <summary>Sets the shim of OracleDataReader.GetChar(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetCharsInt32Int64CharArrayInt32Int32">
+            <summary>Sets the shim of OracleDataReader.GetChars(Int32 i, Int64 fieldOffset, Char[] buffer2, Int32 bufferoffset, Int32 length)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetDataTypeNameInt32">
+            <summary>Sets the shim of OracleDataReader.GetDataTypeName(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetDateTimeInt32">
+            <summary>Sets the shim of OracleDataReader.GetDateTime(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetDecimalInt32">
+            <summary>Sets the shim of OracleDataReader.GetDecimal(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetDoubleInt32">
+            <summary>Sets the shim of OracleDataReader.GetDouble(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetEnumerator">
+            <summary>Sets the shim of OracleDataReader.GetEnumerator()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetFieldTypeInt32">
+            <summary>Sets the shim of OracleDataReader.GetFieldType(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetFloatInt32">
+            <summary>Sets the shim of OracleDataReader.GetFloat(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetGuidInt32">
+            <summary>Sets the shim of OracleDataReader.GetGuid(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetInt16Int32">
+            <summary>Sets the shim of OracleDataReader.GetInt16(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetInt32Int32">
+            <summary>Sets the shim of OracleDataReader.GetInt32(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetInt64Int32">
+            <summary>Sets the shim of OracleDataReader.GetInt64(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetNameInt32">
+            <summary>Sets the shim of OracleDataReader.GetName(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetOracleBFileInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleBFile(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetOracleBinaryInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleBinary(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetOracleDateTimeInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleDateTime(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetOracleLobInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleLob(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetOracleMonthSpanInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleMonthSpan(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetOracleNumberInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleNumber(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetOracleStringInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleString(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetOracleTimeSpanInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleTimeSpan(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetOracleValueInt32">
+            <summary>Sets the shim of OracleDataReader.GetOracleValue(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetOracleValuesObjectArray">
+            <summary>Sets the shim of OracleDataReader.GetOracleValues(Object[] values)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetOrdinalString">
+            <summary>Sets the shim of OracleDataReader.GetOrdinal(String name)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetProviderSpecificFieldTypeInt32">
+            <summary>Sets the shim of OracleDataReader.GetProviderSpecificFieldType(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetProviderSpecificValueInt32">
+            <summary>Sets the shim of OracleDataReader.GetProviderSpecificValue(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetProviderSpecificValuesObjectArray">
+            <summary>Sets the shim of OracleDataReader.GetProviderSpecificValues(Object[] values)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetSchemaTable">
+            <summary>Sets the shim of OracleDataReader.GetSchemaTable()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetStringInt32">
+            <summary>Sets the shim of OracleDataReader.GetString(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetTimeSpanInt32">
+            <summary>Sets the shim of OracleDataReader.GetTimeSpan(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetValueInt32">
+            <summary>Sets the shim of OracleDataReader.GetValue(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.GetValuesObjectArray">
+            <summary>Sets the shim of OracleDataReader.GetValues(Object[] values)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.HasRowsGet">
+            <summary>Sets the shim of OracleDataReader.get_HasRows()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.IsClosedGet">
+            <summary>Sets the shim of OracleDataReader.get_IsClosed()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.IsDBNullInt32">
+            <summary>Sets the shim of OracleDataReader.IsDBNull(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.ItemGetInt32">
+            <summary>Sets the shim of OracleDataReader.get_Item(Int32 i)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.ItemGetString">
+            <summary>Sets the shim of OracleDataReader.get_Item(String name)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.NextResult">
+            <summary>Sets the shim of OracleDataReader.NextResult()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.Read">
+            <summary>Sets the shim of OracleDataReader.Read()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDataReader.RecordsAffectedGet">
+            <summary>Sets the shim of OracleDataReader.get_RecordsAffected()</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleDateTime">
+            <summary>Shim type of System.Data.OracleClient.OracleDateTime</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleDateTime.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleDateTime.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleDateTime.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleDateTime.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.EqualityOpOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.op_Equality(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.EqualsOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.Equals(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.ExplicitOpOracleDateTimeDateTime">
+            <summary>Sets the shim of OracleDateTime.op_Explicit(OracleDateTime x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.ExplicitOpStringOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.op_Explicit(String x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.GreaterThanOpOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.op_GreaterThan(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.GreaterThanOrEqualOpOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.op_GreaterThanOrEqual(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.GreaterThanOrEqualOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.GreaterThanOrEqual(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.GreaterThanOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.GreaterThan(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.InequalityOpOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.op_Inequality(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.LessThanOpOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.op_LessThan(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.LessThanOrEqualOpOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.op_LessThanOrEqual(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.LessThanOrEqualOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.LessThanOrEqual(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.LessThanOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.LessThan(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.NotEqualsOracleDateTimeOracleDateTime">
+            <summary>Sets the shim of OracleDateTime.NotEquals(OracleDateTime x, OracleDateTime y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.ParseString">
+            <summary>Sets the shim of OracleDateTime.Parse(String s)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleDateTime.StaticConstructor">
+            <summary>Sets the shim of OracleDateTime.OracleDateTime()</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleException">
+            <summary>Shim type of System.Data.OracleClient.OracleException</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleException.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleException.#ctor(System.Data.OracleClient.OracleException)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleException.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleException.AllInstances.CodeGet">
+            <summary>Sets the shim of OracleException.get_Code()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleException.AllInstances.GetObjectDataSerializationInfoStreamingContext">
+            <summary>Sets the shim of OracleException.GetObjectData(SerializationInfo si, StreamingContext context)</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleException.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleException.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleException.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleException.Bind(System.Runtime.Serialization.ISerializable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleException.CodeGet">
+            <summary>Sets the shim of OracleException.get_Code()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleException.ConstructorSerializationInfoStreamingContext">
+            <summary>Sets the shim of OracleException.OracleException(SerializationInfo si, StreamingContext sc)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleException.ConstructorStringInt32">
+            <summary>Sets the shim of OracleException.OracleException(String message, Int32 code)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleException.GetObjectDataSerializationInfoStreamingContext">
+            <summary>Sets the shim of OracleException.GetObjectData(SerializationInfo si, StreamingContext context)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs">
+            <summary>Shim type of System.Data.OracleClient.OracleInfoMessageEventArgs</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.#ctor(System.Data.OracleClient.OracleInfoMessageEventArgs)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.AllInstances.CodeGet">
+            <summary>Sets the shim of OracleInfoMessageEventArgs.get_Code()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.AllInstances.Constructor">
+            <summary>Sets the shim of OracleInfoMessageEventArgs.OracleInfoMessageEventArgs()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.AllInstances.MessageGet">
+            <summary>Sets the shim of OracleInfoMessageEventArgs.get_Message()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.AllInstances.SourceGet">
+            <summary>Sets the shim of OracleInfoMessageEventArgs.get_Source()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.AllInstances.ToString01">
+            <summary>Sets the shim of OracleInfoMessageEventArgs.ToString()</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.CodeGet">
+            <summary>Sets the shim of OracleInfoMessageEventArgs.get_Code()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.Constructor">
+            <summary>Sets the shim of OracleInfoMessageEventArgs.OracleInfoMessageEventArgs()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.MessageGet">
+            <summary>Sets the shim of OracleInfoMessageEventArgs.get_Message()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.SourceGet">
+            <summary>Sets the shim of OracleInfoMessageEventArgs.get_Source()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleInfoMessageEventArgs.ToString">
+            <summary>Sets the shim of OracleInfoMessageEventArgs.ToString()</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleLob">
+            <summary>Shim type of System.Data.OracleClient.OracleLob</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleLob.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleLob.#ctor(System.Data.OracleClient.OracleLob)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.AppendOracleLob">
+            <summary>Sets the shim of OracleLob.Append(OracleLob source)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.BeginBatch">
+            <summary>Sets the shim of OracleLob.BeginBatch()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.BeginBatchOracleLobOpenMode">
+            <summary>Sets the shim of OracleLob.BeginBatch(OracleLobOpenMode mode)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.CanReadGet">
+            <summary>Sets the shim of OracleLob.get_CanRead()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.CanSeekGet">
+            <summary>Sets the shim of OracleLob.get_CanSeek()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.CanWriteGet">
+            <summary>Sets the shim of OracleLob.get_CanWrite()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.ChunkSizeGet">
+            <summary>Sets the shim of OracleLob.get_ChunkSize()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.Clone">
+            <summary>Sets the shim of OracleLob.Clone()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.ConnectionGet">
+            <summary>Sets the shim of OracleLob.get_Connection()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.CopyToInt64OracleLobInt64Int64">
+            <summary>Sets the shim of OracleLob.CopyTo(Int64 sourceOffset, OracleLob destination, Int64 destinationOffset, Int64 amount)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.CopyToOracleLob">
+            <summary>Sets the shim of OracleLob.CopyTo(OracleLob destination)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.CopyToOracleLobInt64">
+            <summary>Sets the shim of OracleLob.CopyTo(OracleLob destination, Int64 destinationOffset)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.DisposeBoolean">
+            <summary>Sets the shim of OracleLob.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.EndBatch">
+            <summary>Sets the shim of OracleLob.EndBatch()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.Erase">
+            <summary>Sets the shim of OracleLob.Erase()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.EraseInt64Int64">
+            <summary>Sets the shim of OracleLob.Erase(Int64 offset, Int64 amount)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.Flush">
+            <summary>Sets the shim of OracleLob.Flush()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.IsBatchedGet">
+            <summary>Sets the shim of OracleLob.get_IsBatched()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.IsNullGet">
+            <summary>Sets the shim of OracleLob.get_IsNull()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.IsTemporaryGet">
+            <summary>Sets the shim of OracleLob.get_IsTemporary()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.LengthGet">
+            <summary>Sets the shim of OracleLob.get_Length()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.LobTypeGet">
+            <summary>Sets the shim of OracleLob.get_LobType()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.PositionGet">
+            <summary>Sets the shim of OracleLob.get_Position()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.PositionSetInt64">
+            <summary>Sets the shim of OracleLob.set_Position(Int64 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.ReadByteArrayInt32Int32">
+            <summary>Sets the shim of OracleLob.Read(Byte[] buffer, Int32 offset, Int32 count)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.SeekInt64SeekOrigin">
+            <summary>Sets the shim of OracleLob.Seek(Int64 offset, SeekOrigin origin)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.SetLengthInt64">
+            <summary>Sets the shim of OracleLob.SetLength(Int64 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.ValueGet">
+            <summary>Sets the shim of OracleLob.get_Value()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.WriteByteArrayInt32Int32">
+            <summary>Sets the shim of OracleLob.Write(Byte[] buffer, Int32 offset, Int32 count)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AllInstances.WriteByteByte">
+            <summary>Sets the shim of OracleLob.WriteByte(Byte value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.AppendOracleLob">
+            <summary>Sets the shim of OracleLob.Append(OracleLob source)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.BeginBatch">
+            <summary>Sets the shim of OracleLob.BeginBatch()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.BeginBatchOracleLobOpenMode">
+            <summary>Sets the shim of OracleLob.BeginBatch(OracleLobOpenMode mode)</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleLob.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleLob.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleLob.Bind(System.Data.SqlTypes.INullable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleLob.Bind(System.ICloneable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleLob.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.CanReadGet">
+            <summary>Sets the shim of OracleLob.get_CanRead()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.CanSeekGet">
+            <summary>Sets the shim of OracleLob.get_CanSeek()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.CanWriteGet">
+            <summary>Sets the shim of OracleLob.get_CanWrite()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.ChunkSizeGet">
+            <summary>Sets the shim of OracleLob.get_ChunkSize()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.Clone">
+            <summary>Sets the shim of OracleLob.Clone()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.ConnectionGet">
+            <summary>Sets the shim of OracleLob.get_Connection()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.Constructor">
+            <summary>Sets the shim of OracleLob.OracleLob()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.CopyToInt64OracleLobInt64Int64">
+            <summary>Sets the shim of OracleLob.CopyTo(Int64 sourceOffset, OracleLob destination, Int64 destinationOffset, Int64 amount)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.CopyToOracleLob">
+            <summary>Sets the shim of OracleLob.CopyTo(OracleLob destination)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.CopyToOracleLobInt64">
+            <summary>Sets the shim of OracleLob.CopyTo(OracleLob destination, Int64 destinationOffset)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.DisposeBoolean">
+            <summary>Sets the shim of OracleLob.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.EndBatch">
+            <summary>Sets the shim of OracleLob.EndBatch()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.Erase">
+            <summary>Sets the shim of OracleLob.Erase()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.EraseInt64Int64">
+            <summary>Sets the shim of OracleLob.Erase(Int64 offset, Int64 amount)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.Flush">
+            <summary>Sets the shim of OracleLob.Flush()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.IsBatchedGet">
+            <summary>Sets the shim of OracleLob.get_IsBatched()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.IsNullGet">
+            <summary>Sets the shim of OracleLob.get_IsNull()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.IsTemporaryGet">
+            <summary>Sets the shim of OracleLob.get_IsTemporary()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.LengthGet">
+            <summary>Sets the shim of OracleLob.get_Length()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.LobTypeGet">
+            <summary>Sets the shim of OracleLob.get_LobType()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.PositionGet">
+            <summary>Sets the shim of OracleLob.get_Position()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.PositionSetInt64">
+            <summary>Sets the shim of OracleLob.set_Position(Int64 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.ReadByteArrayInt32Int32">
+            <summary>Sets the shim of OracleLob.Read(Byte[] buffer, Int32 offset, Int32 count)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.SeekInt64SeekOrigin">
+            <summary>Sets the shim of OracleLob.Seek(Int64 offset, SeekOrigin origin)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.SetLengthInt64">
+            <summary>Sets the shim of OracleLob.SetLength(Int64 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.StaticConstructor">
+            <summary>Sets the shim of OracleLob.OracleLob()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.ValueGet">
+            <summary>Sets the shim of OracleLob.get_Value()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.WriteByteArrayInt32Int32">
+            <summary>Sets the shim of OracleLob.Write(Byte[] buffer, Int32 offset, Int32 count)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleLob.WriteByteByte">
+            <summary>Sets the shim of OracleLob.WriteByte(Byte value)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleMonthSpan">
+            <summary>Shim type of System.Data.OracleClient.OracleMonthSpan</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.EqualityOpOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.op_Equality(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.EqualsOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.Equals(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.ExplicitOpOracleMonthSpanInt32">
+            <summary>Sets the shim of OracleMonthSpan.op_Explicit(OracleMonthSpan x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.ExplicitOpStringOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.op_Explicit(String x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.GreaterThanOpOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.op_GreaterThan(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.GreaterThanOrEqualOpOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.op_GreaterThanOrEqual(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.GreaterThanOrEqualOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.GreaterThanOrEqual(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.GreaterThanOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.GreaterThan(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.InequalityOpOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.op_Inequality(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.LessThanOpOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.op_LessThan(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.LessThanOrEqualOpOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.op_LessThanOrEqual(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.LessThanOrEqualOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.LessThanOrEqual(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.LessThanOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.LessThan(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.NotEqualsOracleMonthSpanOracleMonthSpan">
+            <summary>Sets the shim of OracleMonthSpan.NotEquals(OracleMonthSpan x, OracleMonthSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.ParseString">
+            <summary>Sets the shim of OracleMonthSpan.Parse(String s)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleMonthSpan.StaticConstructor">
+            <summary>Sets the shim of OracleMonthSpan.OracleMonthSpan()</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleNumber">
+            <summary>Shim type of System.Data.OracleClient.OracleNumber</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleNumber.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.AbsOracleNumber">
+            <summary>Sets the shim of OracleNumber.Abs(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.AcosOracleNumber">
+            <summary>Sets the shim of OracleNumber.Acos(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.AddOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.Add(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.AdditionOpOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Addition(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleNumber.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.AsinOracleNumber">
+            <summary>Sets the shim of OracleNumber.Asin(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.Atan2OracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.Atan2(OracleNumber y, OracleNumber x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.AtanOracleNumber">
+            <summary>Sets the shim of OracleNumber.Atan(OracleNumber n)</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleNumber.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleNumber.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.CeilingOracleNumber">
+            <summary>Sets the shim of OracleNumber.Ceiling(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.CosOracleNumber">
+            <summary>Sets the shim of OracleNumber.Cos(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.CoshOracleNumber">
+            <summary>Sets the shim of OracleNumber.Cosh(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.DivideOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.Divide(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.DivisionOpOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Division(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.EqualityOpOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Equality(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.EqualsOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.Equals(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ExpOracleNumber">
+            <summary>Sets the shim of OracleNumber.Exp(OracleNumber p)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ExplicitOpDecimalOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Explicit(Decimal x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ExplicitOpDoubleOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Explicit(Double x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ExplicitOpInt32OracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Explicit(Int32 x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ExplicitOpInt64OracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Explicit(Int64 x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ExplicitOpOracleNumberDecimal">
+            <summary>Sets the shim of OracleNumber.op_Explicit(OracleNumber x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ExplicitOpOracleNumberDouble">
+            <summary>Sets the shim of OracleNumber.op_Explicit(OracleNumber x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ExplicitOpOracleNumberInt32">
+            <summary>Sets the shim of OracleNumber.op_Explicit(OracleNumber x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ExplicitOpOracleNumberInt64">
+            <summary>Sets the shim of OracleNumber.op_Explicit(OracleNumber x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ExplicitOpStringOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Explicit(String x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.FloorOracleNumber">
+            <summary>Sets the shim of OracleNumber.Floor(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.GreaterThanOpOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_GreaterThan(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.GreaterThanOrEqualOpOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_GreaterThanOrEqual(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.GreaterThanOrEqualOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.GreaterThanOrEqual(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.GreaterThanOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.GreaterThan(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.InequalityOpOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Inequality(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.LessThanOpOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_LessThan(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.LessThanOrEqualOpOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_LessThanOrEqual(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.LessThanOrEqualOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.LessThanOrEqual(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.LessThanOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.LessThan(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.Log10OracleNumber">
+            <summary>Sets the shim of OracleNumber.Log10(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.LogOracleNumber">
+            <summary>Sets the shim of OracleNumber.Log(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.LogOracleNumberInt32">
+            <summary>Sets the shim of OracleNumber.Log(OracleNumber n, Int32 newBase)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.LogOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.Log(OracleNumber n, OracleNumber newBase)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.MaxOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.Max(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.MinOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.Min(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ModuloOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.Modulo(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ModulusOpOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Modulus(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.MultiplyOpOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Multiply(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.MultiplyOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.Multiply(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.NegateOracleNumber">
+            <summary>Sets the shim of OracleNumber.Negate(OracleNumber x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.NotEqualsOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.NotEquals(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ParseString">
+            <summary>Sets the shim of OracleNumber.Parse(String s)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.PowOracleNumberInt32">
+            <summary>Sets the shim of OracleNumber.Pow(OracleNumber x, Int32 y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.PowOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.Pow(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.RoundOracleNumberInt32">
+            <summary>Sets the shim of OracleNumber.Round(OracleNumber n, Int32 position)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.ShiftOracleNumberInt32">
+            <summary>Sets the shim of OracleNumber.Shift(OracleNumber n, Int32 digits)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.SignOracleNumber">
+            <summary>Sets the shim of OracleNumber.Sign(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.SinOracleNumber">
+            <summary>Sets the shim of OracleNumber.Sin(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.SinhOracleNumber">
+            <summary>Sets the shim of OracleNumber.Sinh(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.SqrtOracleNumber">
+            <summary>Sets the shim of OracleNumber.Sqrt(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.StaticConstructor">
+            <summary>Sets the shim of OracleNumber.OracleNumber()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.SubtractOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.Subtract(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.SubtractionOpOracleNumberOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_Subtraction(OracleNumber x, OracleNumber y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.TanOracleNumber">
+            <summary>Sets the shim of OracleNumber.Tan(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.TanhOracleNumber">
+            <summary>Sets the shim of OracleNumber.Tanh(OracleNumber n)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.TruncateOracleNumberInt32">
+            <summary>Sets the shim of OracleNumber.Truncate(OracleNumber n, Int32 position)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleNumber.UnaryNegationOpOracleNumber">
+            <summary>Sets the shim of OracleNumber.op_UnaryNegation(OracleNumber x)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleParameter">
+            <summary>Shim type of System.Data.OracleClient.OracleParameter</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameter.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameter.#ctor(System.Data.OracleClient.OracleParameter)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.DbTypeGet">
+            <summary>Sets the shim of OracleParameter.get_DbType()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.DbTypeSetDbType">
+            <summary>Sets the shim of OracleParameter.set_DbType(DbType value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.DirectionGet">
+            <summary>Sets the shim of OracleParameter.get_Direction()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.DirectionSetParameterDirection">
+            <summary>Sets the shim of OracleParameter.set_Direction(ParameterDirection value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.IsNullableGet">
+            <summary>Sets the shim of OracleParameter.get_IsNullable()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.IsNullableSetBoolean">
+            <summary>Sets the shim of OracleParameter.set_IsNullable(Boolean value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.OffsetGet">
+            <summary>Sets the shim of OracleParameter.get_Offset()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.OffsetSetInt32">
+            <summary>Sets the shim of OracleParameter.set_Offset(Int32 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.OracleTypeGet">
+            <summary>Sets the shim of OracleParameter.get_OracleType()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.OracleTypeSetOracleType">
+            <summary>Sets the shim of OracleParameter.set_OracleType(OracleType value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.ParameterNameGet">
+            <summary>Sets the shim of OracleParameter.get_ParameterName()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.ParameterNameSetString">
+            <summary>Sets the shim of OracleParameter.set_ParameterName(String value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.PrecisionGet">
+            <summary>Sets the shim of OracleParameter.get_Precision()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.PrecisionSetByte">
+            <summary>Sets the shim of OracleParameter.set_Precision(Byte value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.ResetDbType">
+            <summary>Sets the shim of OracleParameter.ResetDbType()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.ResetOracleType">
+            <summary>Sets the shim of OracleParameter.ResetOracleType()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.ScaleGet">
+            <summary>Sets the shim of OracleParameter.get_Scale()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.ScaleSetByte">
+            <summary>Sets the shim of OracleParameter.set_Scale(Byte value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.SizeGet">
+            <summary>Sets the shim of OracleParameter.get_Size()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.SizeSetInt32">
+            <summary>Sets the shim of OracleParameter.set_Size(Int32 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.SourceColumnGet">
+            <summary>Sets the shim of OracleParameter.get_SourceColumn()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.SourceColumnNullMappingGet">
+            <summary>Sets the shim of OracleParameter.get_SourceColumnNullMapping()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.SourceColumnNullMappingSetBoolean">
+            <summary>Sets the shim of OracleParameter.set_SourceColumnNullMapping(Boolean value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.SourceColumnSetString">
+            <summary>Sets the shim of OracleParameter.set_SourceColumn(String value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.SourceVersionGet">
+            <summary>Sets the shim of OracleParameter.get_SourceVersion()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.SourceVersionSetDataRowVersion">
+            <summary>Sets the shim of OracleParameter.set_SourceVersion(DataRowVersion value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.SystemICloneableClone">
+            <summary>Sets the shim of OracleParameter.System.ICloneable.Clone()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.ToString01">
+            <summary>Sets the shim of OracleParameter.ToString()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.ValueGet">
+            <summary>Sets the shim of OracleParameter.get_Value()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.AllInstances.ValueSetObject">
+            <summary>Sets the shim of OracleParameter.set_Value(Object value)</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameter.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameter.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameter.Bind(System.Data.IDataParameter)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameter.Bind(System.Data.IDbDataParameter)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameter.Bind(System.ICloneable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.Constructor">
+            <summary>Sets the shim of OracleParameter.OracleParameter()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ConstructorStringObject">
+            <summary>Sets the shim of OracleParameter.OracleParameter(String name, Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ConstructorStringOracleType">
+            <summary>Sets the shim of OracleParameter.OracleParameter(String name, OracleType oracleType)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ConstructorStringOracleTypeInt32">
+            <summary>Sets the shim of OracleParameter.OracleParameter(String name, OracleType oracleType, Int32 size)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ConstructorStringOracleTypeInt32ParameterDirectionBooleanByteByteStringDataRowVersionObject">
+            <summary>Sets the shim of OracleParameter.OracleParameter(String name, OracleType oracleType, Int32 size, ParameterDirection direction, Boolean isNullable, Byte precision, Byte scale, String srcColumn, DataRowVersion srcVersion, Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ConstructorStringOracleTypeInt32ParameterDirectionStringDataRowVersionBooleanObject">
+            <summary>Sets the shim of OracleParameter.OracleParameter(String name, OracleType oracleType, Int32 size, ParameterDirection direction, String sourceColumn, DataRowVersion sourceVersion, Boolean sourceColumnNullMapping, Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ConstructorStringOracleTypeInt32String">
+            <summary>Sets the shim of OracleParameter.OracleParameter(String name, OracleType oracleType, Int32 size, String srcColumn)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.DbTypeGet">
+            <summary>Sets the shim of OracleParameter.get_DbType()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.DbTypeSetDbType">
+            <summary>Sets the shim of OracleParameter.set_DbType(DbType value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.DirectionGet">
+            <summary>Sets the shim of OracleParameter.get_Direction()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.DirectionSetParameterDirection">
+            <summary>Sets the shim of OracleParameter.set_Direction(ParameterDirection value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.IsNullableGet">
+            <summary>Sets the shim of OracleParameter.get_IsNullable()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.IsNullableSetBoolean">
+            <summary>Sets the shim of OracleParameter.set_IsNullable(Boolean value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.OffsetGet">
+            <summary>Sets the shim of OracleParameter.get_Offset()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.OffsetSetInt32">
+            <summary>Sets the shim of OracleParameter.set_Offset(Int32 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.OracleTypeGet">
+            <summary>Sets the shim of OracleParameter.get_OracleType()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.OracleTypeSetOracleType">
+            <summary>Sets the shim of OracleParameter.set_OracleType(OracleType value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ParameterNameGet">
+            <summary>Sets the shim of OracleParameter.get_ParameterName()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ParameterNameSetString">
+            <summary>Sets the shim of OracleParameter.set_ParameterName(String value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.PrecisionGet">
+            <summary>Sets the shim of OracleParameter.get_Precision()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.PrecisionSetByte">
+            <summary>Sets the shim of OracleParameter.set_Precision(Byte value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ResetDbType">
+            <summary>Sets the shim of OracleParameter.ResetDbType()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ResetOracleType">
+            <summary>Sets the shim of OracleParameter.ResetOracleType()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ScaleGet">
+            <summary>Sets the shim of OracleParameter.get_Scale()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ScaleSetByte">
+            <summary>Sets the shim of OracleParameter.set_Scale(Byte value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.SizeGet">
+            <summary>Sets the shim of OracleParameter.get_Size()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.SizeSetInt32">
+            <summary>Sets the shim of OracleParameter.set_Size(Int32 value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.SourceColumnGet">
+            <summary>Sets the shim of OracleParameter.get_SourceColumn()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.SourceColumnNullMappingGet">
+            <summary>Sets the shim of OracleParameter.get_SourceColumnNullMapping()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.SourceColumnNullMappingSetBoolean">
+            <summary>Sets the shim of OracleParameter.set_SourceColumnNullMapping(Boolean value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.SourceColumnSetString">
+            <summary>Sets the shim of OracleParameter.set_SourceColumn(String value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.SourceVersionGet">
+            <summary>Sets the shim of OracleParameter.get_SourceVersion()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.SourceVersionSetDataRowVersion">
+            <summary>Sets the shim of OracleParameter.set_SourceVersion(DataRowVersion value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.SystemICloneableClone">
+            <summary>Sets the shim of OracleParameter.System.ICloneable.Clone()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ToString">
+            <summary>Sets the shim of OracleParameter.ToString()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ValueGet">
+            <summary>Sets the shim of OracleParameter.get_Value()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameter.ValueSetObject">
+            <summary>Sets the shim of OracleParameter.set_Value(Object value)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleParameterCollection">
+            <summary>Shim type of System.Data.OracleClient.OracleParameterCollection</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.#ctor(System.Data.OracleClient.OracleParameterCollection)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AddObject">
+            <summary>Sets the shim of OracleParameterCollection.Add(Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AddOracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.Add(OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AddRangeArray">
+            <summary>Sets the shim of OracleParameterCollection.AddRange(Array values)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AddRangeOracleParameterArray">
+            <summary>Sets the shim of OracleParameterCollection.AddRange(OracleParameter[] values)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AddStringObject">
+            <summary>Sets the shim of OracleParameterCollection.Add(String parameterName, Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AddStringOracleType">
+            <summary>Sets the shim of OracleParameterCollection.Add(String parameterName, OracleType dataType)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AddStringOracleTypeInt32">
+            <summary>Sets the shim of OracleParameterCollection.Add(String parameterName, OracleType dataType, Int32 size)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AddStringOracleTypeInt32String">
+            <summary>Sets the shim of OracleParameterCollection.Add(String parameterName, OracleType dataType, Int32 size, String srcColumn)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AddWithValueStringObject">
+            <summary>Sets the shim of OracleParameterCollection.AddWithValue(String parameterName, Object value)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.AddObject">
+            <summary>Sets the shim of OracleParameterCollection.Add(Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.AddOracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.Add(OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.AddRangeArray">
+            <summary>Sets the shim of OracleParameterCollection.AddRange(Array values)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.AddRangeOracleParameterArray">
+            <summary>Sets the shim of OracleParameterCollection.AddRange(OracleParameter[] values)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.AddStringObject">
+            <summary>Sets the shim of OracleParameterCollection.Add(String parameterName, Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.AddStringOracleType">
+            <summary>Sets the shim of OracleParameterCollection.Add(String parameterName, OracleType dataType)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.AddStringOracleTypeInt32">
+            <summary>Sets the shim of OracleParameterCollection.Add(String parameterName, OracleType dataType, Int32 size)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.AddStringOracleTypeInt32String">
+            <summary>Sets the shim of OracleParameterCollection.Add(String parameterName, OracleType dataType, Int32 size, String srcColumn)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.AddWithValueStringObject">
+            <summary>Sets the shim of OracleParameterCollection.AddWithValue(String parameterName, Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.Clear">
+            <summary>Sets the shim of OracleParameterCollection.Clear()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.ContainsObject">
+            <summary>Sets the shim of OracleParameterCollection.Contains(Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.ContainsOracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.Contains(OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.ContainsString">
+            <summary>Sets the shim of OracleParameterCollection.Contains(String parameterName)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.CopyToArrayInt32">
+            <summary>Sets the shim of OracleParameterCollection.CopyTo(Array array, Int32 index)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.CopyToOracleParameterArrayInt32">
+            <summary>Sets the shim of OracleParameterCollection.CopyTo(OracleParameter[] array, Int32 index)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.CountGet">
+            <summary>Sets the shim of OracleParameterCollection.get_Count()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.GetEnumerator">
+            <summary>Sets the shim of OracleParameterCollection.GetEnumerator()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.GetParameterInt32">
+            <summary>Sets the shim of OracleParameterCollection.GetParameter(Int32 index)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.GetParameterString">
+            <summary>Sets the shim of OracleParameterCollection.GetParameter(String parameterName)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.IndexOfObject">
+            <summary>Sets the shim of OracleParameterCollection.IndexOf(Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.IndexOfOracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.IndexOf(OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.IndexOfString">
+            <summary>Sets the shim of OracleParameterCollection.IndexOf(String parameterName)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.InsertInt32Object">
+            <summary>Sets the shim of OracleParameterCollection.Insert(Int32 index, Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.InsertInt32OracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.Insert(Int32 index, OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.IsFixedSizeGet">
+            <summary>Sets the shim of OracleParameterCollection.get_IsFixedSize()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.IsReadOnlyGet">
+            <summary>Sets the shim of OracleParameterCollection.get_IsReadOnly()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.IsSynchronizedGet">
+            <summary>Sets the shim of OracleParameterCollection.get_IsSynchronized()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.ItemGetInt32">
+            <summary>Sets the shim of OracleParameterCollection.get_Item(Int32 index)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.ItemGetString">
+            <summary>Sets the shim of OracleParameterCollection.get_Item(String parameterName)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.ItemSetInt32OracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.set_Item(Int32 index, OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.ItemSetStringOracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.set_Item(String parameterName, OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.RemoveAtInt32">
+            <summary>Sets the shim of OracleParameterCollection.RemoveAt(Int32 index)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.RemoveAtString">
+            <summary>Sets the shim of OracleParameterCollection.RemoveAt(String parameterName)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.RemoveObject">
+            <summary>Sets the shim of OracleParameterCollection.Remove(Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.RemoveOracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.Remove(OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.SetParameterInt32DbParameter">
+            <summary>Sets the shim of OracleParameterCollection.SetParameter(Int32 index, DbParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.SetParameterStringDbParameter">
+            <summary>Sets the shim of OracleParameterCollection.SetParameter(String parameterName, DbParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.AllInstances.SyncRootGet">
+            <summary>Sets the shim of OracleParameterCollection.get_SyncRoot()</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.Bind(System.Data.IDataParameterCollection)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.Bind(System.Collections.ICollection)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.Bind(System.Collections.IEnumerable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.Bind(System.Collections.IList)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.Clear">
+            <summary>Sets the shim of OracleParameterCollection.Clear()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.Constructor">
+            <summary>Sets the shim of OracleParameterCollection.OracleParameterCollection()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.ContainsObject">
+            <summary>Sets the shim of OracleParameterCollection.Contains(Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.ContainsOracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.Contains(OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.ContainsString">
+            <summary>Sets the shim of OracleParameterCollection.Contains(String parameterName)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.CopyToArrayInt32">
+            <summary>Sets the shim of OracleParameterCollection.CopyTo(Array array, Int32 index)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.CopyToOracleParameterArrayInt32">
+            <summary>Sets the shim of OracleParameterCollection.CopyTo(OracleParameter[] array, Int32 index)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.CountGet">
+            <summary>Sets the shim of OracleParameterCollection.get_Count()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.GetEnumerator">
+            <summary>Sets the shim of OracleParameterCollection.GetEnumerator()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.GetParameterInt32">
+            <summary>Sets the shim of OracleParameterCollection.GetParameter(Int32 index)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.GetParameterString">
+            <summary>Sets the shim of OracleParameterCollection.GetParameter(String parameterName)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.IndexOfObject">
+            <summary>Sets the shim of OracleParameterCollection.IndexOf(Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.IndexOfOracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.IndexOf(OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.IndexOfString">
+            <summary>Sets the shim of OracleParameterCollection.IndexOf(String parameterName)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.InsertInt32Object">
+            <summary>Sets the shim of OracleParameterCollection.Insert(Int32 index, Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.InsertInt32OracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.Insert(Int32 index, OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.IsFixedSizeGet">
+            <summary>Sets the shim of OracleParameterCollection.get_IsFixedSize()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.IsReadOnlyGet">
+            <summary>Sets the shim of OracleParameterCollection.get_IsReadOnly()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.IsSynchronizedGet">
+            <summary>Sets the shim of OracleParameterCollection.get_IsSynchronized()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.ItemGetInt32">
+            <summary>Sets the shim of OracleParameterCollection.get_Item(Int32 index)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.ItemGetString">
+            <summary>Sets the shim of OracleParameterCollection.get_Item(String parameterName)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.ItemSetInt32OracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.set_Item(Int32 index, OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.ItemSetStringOracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.set_Item(String parameterName, OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.RemoveAtInt32">
+            <summary>Sets the shim of OracleParameterCollection.RemoveAt(Int32 index)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.RemoveAtString">
+            <summary>Sets the shim of OracleParameterCollection.RemoveAt(String parameterName)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.RemoveObject">
+            <summary>Sets the shim of OracleParameterCollection.Remove(Object value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.RemoveOracleParameter">
+            <summary>Sets the shim of OracleParameterCollection.Remove(OracleParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.SetParameterInt32DbParameter">
+            <summary>Sets the shim of OracleParameterCollection.SetParameter(Int32 index, DbParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.SetParameterStringDbParameter">
+            <summary>Sets the shim of OracleParameterCollection.SetParameter(String parameterName, DbParameter value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.StaticConstructor">
+            <summary>Sets the shim of OracleParameterCollection.OracleParameterCollection()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleParameterCollection.SyncRootGet">
+            <summary>Sets the shim of OracleParameterCollection.get_SyncRoot()</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleRowUpdatedEventArgs">
+            <summary>Shim type of System.Data.OracleClient.OracleRowUpdatedEventArgs</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleRowUpdatedEventArgs.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleRowUpdatedEventArgs.#ctor(System.Data.OracleClient.OracleRowUpdatedEventArgs)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleRowUpdatedEventArgs.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatedEventArgs.AllInstances.CommandGet">
+            <summary>Sets the shim of OracleRowUpdatedEventArgs.get_Command()</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleRowUpdatedEventArgs.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleRowUpdatedEventArgs.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatedEventArgs.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatedEventArgs.CommandGet">
+            <summary>Sets the shim of OracleRowUpdatedEventArgs.get_Command()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatedEventArgs.ConstructorDataRowIDbCommandStatementTypeDataTableMapping">
+            <summary>Sets the shim of OracleRowUpdatedEventArgs.OracleRowUpdatedEventArgs(DataRow row, IDbCommand command, StatementType statementType, DataTableMapping tableMapping)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs">
+            <summary>Shim type of System.Data.OracleClient.OracleRowUpdatingEventArgs</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.#ctor(System.Data.OracleClient.OracleRowUpdatingEventArgs)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.AllInstances.BaseCommandGet">
+            <summary>Sets the shim of OracleRowUpdatingEventArgs.get_BaseCommand()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.AllInstances.BaseCommandSetIDbCommand">
+            <summary>Sets the shim of OracleRowUpdatingEventArgs.set_BaseCommand(IDbCommand value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.AllInstances.CommandGet">
+            <summary>Sets the shim of OracleRowUpdatingEventArgs.get_Command()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.AllInstances.CommandSetOracleCommand">
+            <summary>Sets the shim of OracleRowUpdatingEventArgs.set_Command(OracleCommand value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.BaseCommandGet">
+            <summary>Sets the shim of OracleRowUpdatingEventArgs.get_BaseCommand()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.BaseCommandSetIDbCommand">
+            <summary>Sets the shim of OracleRowUpdatingEventArgs.set_BaseCommand(IDbCommand value)</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.CommandGet">
+            <summary>Sets the shim of OracleRowUpdatingEventArgs.get_Command()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.CommandSetOracleCommand">
+            <summary>Sets the shim of OracleRowUpdatingEventArgs.set_Command(OracleCommand value)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleRowUpdatingEventArgs.ConstructorDataRowIDbCommandStatementTypeDataTableMapping">
+            <summary>Sets the shim of OracleRowUpdatingEventArgs.OracleRowUpdatingEventArgs(DataRow row, IDbCommand command, StatementType statementType, DataTableMapping tableMapping)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleString">
+            <summary>Shim type of System.Data.OracleClient.OracleString</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleString.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.AdditionOpOracleStringOracleString">
+            <summary>Sets the shim of OracleString.op_Addition(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleString.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleString.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleString.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.ConcatOracleStringOracleString">
+            <summary>Sets the shim of OracleString.Concat(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.EqualityOpOracleStringOracleString">
+            <summary>Sets the shim of OracleString.op_Equality(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.EqualsOracleStringOracleString">
+            <summary>Sets the shim of OracleString.Equals(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.ExplicitOpOracleStringString">
+            <summary>Sets the shim of OracleString.op_Explicit(OracleString x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.GreaterThanOpOracleStringOracleString">
+            <summary>Sets the shim of OracleString.op_GreaterThan(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.GreaterThanOrEqualOpOracleStringOracleString">
+            <summary>Sets the shim of OracleString.op_GreaterThanOrEqual(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.GreaterThanOrEqualOracleStringOracleString">
+            <summary>Sets the shim of OracleString.GreaterThanOrEqual(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.GreaterThanOracleStringOracleString">
+            <summary>Sets the shim of OracleString.GreaterThan(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.ImplicitOpStringOracleString">
+            <summary>Sets the shim of OracleString.op_Implicit(String s)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.InequalityOpOracleStringOracleString">
+            <summary>Sets the shim of OracleString.op_Inequality(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.LessThanOpOracleStringOracleString">
+            <summary>Sets the shim of OracleString.op_LessThan(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.LessThanOrEqualOpOracleStringOracleString">
+            <summary>Sets the shim of OracleString.op_LessThanOrEqual(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.LessThanOrEqualOracleStringOracleString">
+            <summary>Sets the shim of OracleString.LessThanOrEqual(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.LessThanOracleStringOracleString">
+            <summary>Sets the shim of OracleString.LessThan(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.NotEqualsOracleStringOracleString">
+            <summary>Sets the shim of OracleString.NotEquals(OracleString x, OracleString y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleString.StaticConstructor">
+            <summary>Sets the shim of OracleString.OracleString()</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleTimeSpan">
+            <summary>Shim type of System.Data.OracleClient.OracleTimeSpan</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.EqualityOpOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.op_Equality(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.EqualsOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.Equals(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.ExplicitOpOracleTimeSpanTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.op_Explicit(OracleTimeSpan x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.ExplicitOpStringOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.op_Explicit(String x)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.GreaterThanOpOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.op_GreaterThan(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.GreaterThanOrEqualOpOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.op_GreaterThanOrEqual(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.GreaterThanOrEqualOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.GreaterThanOrEqual(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.GreaterThanOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.GreaterThan(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.InequalityOpOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.op_Inequality(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.LessThanOpOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.op_LessThan(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.LessThanOrEqualOpOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.op_LessThanOrEqual(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.LessThanOrEqualOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.LessThanOrEqual(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.LessThanOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.LessThan(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.NotEqualsOracleTimeSpanOracleTimeSpan">
+            <summary>Sets the shim of OracleTimeSpan.NotEquals(OracleTimeSpan x, OracleTimeSpan y)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.ParseString">
+            <summary>Sets the shim of OracleTimeSpan.Parse(String s)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTimeSpan.StaticConstructor">
+            <summary>Sets the shim of OracleTimeSpan.OracleTimeSpan()</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleTransaction">
+            <summary>Shim type of System.Data.OracleClient.OracleTransaction</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleTransaction.#ctor">
+            <summary>Initializes a new shim instance</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleTransaction.#ctor(System.Data.OracleClient.OracleTransaction)">
+            <summary>Initializes a new shim for the given instance</summary>
+        </member>
+        <member name="T:System.Data.OracleClient.Fakes.ShimOracleTransaction.AllInstances">
+            <summary>Define shims for all instances members</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.AllInstances.Commit">
+            <summary>Sets the shim of OracleTransaction.Commit()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.AllInstances.ConnectionGet">
+            <summary>Sets the shim of OracleTransaction.get_Connection()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.AllInstances.Constructor">
+            <summary>Sets the shim of OracleTransaction.OracleTransaction()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.AllInstances.DbConnectionGet">
+            <summary>Sets the shim of OracleTransaction.get_DbConnection()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.AllInstances.DisposeBoolean">
+            <summary>Sets the shim of OracleTransaction.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.AllInstances.IsolationLevelGet">
+            <summary>Sets the shim of OracleTransaction.get_IsolationLevel()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.AllInstances.Rollback">
+            <summary>Sets the shim of OracleTransaction.Rollback()</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleTransaction.BehaveAsCurrent">
+            <summary>Assigns the &apos;Current&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleTransaction.BehaveAsNotImplemented">
+            <summary>Assigns the &apos;NotImplemented&apos; behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.Behavior">
+            <summary>Assigns the behavior for all methods of the shimmed type</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleTransaction.Bind(System.Data.IDbTransaction)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="M:System.Data.OracleClient.Fakes.ShimOracleTransaction.Bind(System.IDisposable)">
+            <summary>Binds the members of the interface to the shim.</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.Commit">
+            <summary>Sets the shim of OracleTransaction.Commit()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.ConnectionGet">
+            <summary>Sets the shim of OracleTransaction.get_Connection()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.Constructor">
+            <summary>Sets the shim of OracleTransaction.OracleTransaction()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.DbConnectionGet">
+            <summary>Sets the shim of OracleTransaction.get_DbConnection()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.DisposeBoolean">
+            <summary>Sets the shim of OracleTransaction.Dispose(Boolean disposing)</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.IsolationLevelGet">
+            <summary>Sets the shim of OracleTransaction.get_IsolationLevel()</summary>
+        </member>
+        <member name="P:System.Data.OracleClient.Fakes.ShimOracleTransaction.Rollback">
+            <summary>Sets the shim of OracleTransaction.Rollback()</summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,30 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@using System.Web.Mvc.Html
+@using BI_Project.Models.UI;
+@using BI_Project.Models.BusinessModels;
+@{
+    //****************************************DECLARE BLOCK MODEL********************************************************/
+    object languageObject = ViewData["VIEWDATA_LANGUAGE"];
+    BlockLoginLangModel blockLoginLang = new BlockLoginLangModel();
+    BlockModel blockLoginModel = new BlockModel("block_login", languageObject, blockLoginLang);
+
+}
+
+<div class="content">
+    <div class="panel panel-default">
+        <div class="panel-body" style="margin-left: 5px; margin-right: 5px">
+            <form method="post" action="/ReportRequire/RequestBCGB">
+                <div class="">
+                    Yêu cầu báo cáo giao ban tháng
+                    <br />
+                    Hạn hoàn thành xác nhận:
+                </div>
+
+                <div class="text-right">
+                    Ghi chú
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

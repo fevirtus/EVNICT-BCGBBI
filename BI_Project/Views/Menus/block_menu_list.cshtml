@@ -1,0 +1,239 @@
+﻿@using BI_Project.Services.Menus;
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@using BI_Project.Helpers;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    /**/
+
+    BI_Project.Services.User.BlockDataMenuLeftModel menuData = (BI_Project.Services.User.BlockDataMenuLeftModel)ViewData["block_menu_left_data"];
+    IEnumerable<EntityMenuModel> menuDataUser = (IEnumerable<EntityMenuModel>)ViewData["MenuData"];
+    BlockMenuListLangModel blockLang = (BlockMenuListLangModel)Model.LanguageModel;
+    var curUserIsSuperAdmin = (bool)Session["IsSuperAdmin"];
+    List<EntityDepartmentModel> lstDepartments = (List<EntityDepartmentModel>)ViewData["departments"];
+    List<EntityDepartmentModel> lstDepartmentsAdmin = (List<EntityDepartmentModel>)ViewData["listdepartmentsadmin"];
+    EntityMenuModel blockData = (EntityMenuModel)Model.DataModel;
+    int hidden = Model.Hidden;
+    var currentOrgId = (int?)ViewData["CurrentOrgId"];
+}
+
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="panel-heading text-right">
+                <div class="col-md-offset-8">
+                    <div class="form-group row">
+                        <label for="Name" class="col-md-6" style="width:165px">Đơn vị</label>
+                        <div class="col-md-6" style="width:362px">
+
+                            <select class="select select2-hidden-accessible" id="organization-list-area" name="DeptID" data-live-search="true">
+                                @if (curUserIsSuperAdmin)
+                                {
+                                    <option value="" disabled selected hidden></option>
+                                    foreach (EntityDepartmentModel depart in lstDepartments)
+                                    {
+
+
+                                        if (currentOrgId == depart.DepartId)
+                                        {
+                                            <option value="@depart.DepartId" class="" selected>@Html.Raw(depart.Name)</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@depart.DepartId" class="">@Html.Raw(depart.Name)</option>
+                                        }
+
+
+                                    }
+                                }
+                                else
+                                {
+                                    <option value="" disabled selected hidden></option>
+                                    foreach (EntityDepartmentModel depart in lstDepartmentsAdmin)
+                                    {
+
+                                        if (currentOrgId == depart.DepartId)
+                                        {
+                                            <option value="@depart.DepartId" class="" selected>@Html.Raw(depart.Name)</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@depart.DepartId" class="">@Html.Raw(depart.Name)</option>
+                                        }
+                                    }
+                                    @*<option value="@Session["session_id_department"]" selected>@Session["session_filter01_department"]</option>*@
+                                }
+
+                            </select>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- /main charts -->
+            <div class="panel panel-flat">
+                @if (Session["msg_text"] != null)
+                {
+                    string class_panel = "panel-body";
+                    if (Session["msg_code"] != null)
+                    {
+                        int msgCode = (int)Session["msg_code"];
+                        if (msgCode >= 1) { class_panel = " panel-success "; }
+
+                        Session.Remove("msg_code");
+                    }
+                    <div class="panel  @class_panel">
+                        <div class="panel-heading">
+
+                            @Session["msg_text"]
+
+
+                        </div>
+                    </div>
+                    Session.Remove("msg_text");
+                }
+                <div class="panel-body">
+                    <div>
+                        @{
+                            UIMenuTreeHelper menuTree = new UIMenuTreeHelper(menuDataUser);
+                        }
+
+                        @*<div id="">
+                                <ul>
+                                    @Html.Raw(menuTree.BuildInItem(menuTree.RootId))
+                                </ul>
+                            </div>*@
+                    </div>
+                    <div>
+                        <table class="table table-bordered table-hover datatable-highlight" data-json-data='@menuTree.BuildMenuToJsonStr(menuTree.RootId)'>
+                        @*<table id="test-table-tree" class="table fancytree-container fancytree-ext-table fancytree-connectors" data-json-data='@menuTree.BuildMenuToJsonStr(menuTree.RootId)'>*@
+                            <thead>
+                                <tr>
+                                    <th hidden></th>
+                                    <th hidden></th>
+                                    <th hidden></th>
+                                    <th style="width:20px">@blockLang.LblNo</th>
+                                    <th>@blockLang.Lblname</th>
+                                    <th hidden>@blockLang.LblPriority</th>
+                                    <th style="width:150px">@blockLang.LblAction</th>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int index = 0;
+                                    string baseUrl = Url.Content("~");
+                                    foreach (EntityMenuModel menu in menuDataUser)
+                                    {
+                                        index++;
+                                        string[] lstLevel = Regex.Split(menu.LevelTree + "@@@abc", "@@@");
+
+                                        int level = lstLevel.Length - 1;
+
+                                        string textItem = menu.Name;
+                                        while (level > 1)
+                                        {
+                                            textItem = "---" + textItem;
+                                            level--;
+                                        }
+
+                                        <tr>
+                                            <td hidden></td>
+                                            <td hidden></td>
+                                            <td hidden></td>
+                                            <td>@index</td>
+                                            <td class="menu_item_@index">@textItem</td>
+                                            <td hidden>@menu.Priority</td>
+                                            <td>
+                                                <a href="@(baseUrl + "Menus/Create?menuid=" + menu.MenuId)">@blockLang.LblEdit</a>
+                                                <a href="@(baseUrl + "Menus/Delete?menuid=" + menu.MenuId)" onclick="return confirm('@blockLang.LBLConfirmDelete?');">@blockLang.LblDelete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#organization-list-area').change(function () {
+                window.location.href = "/Menus/List?DeptID=" + $(this).val();
+            })
+            $('.menu_detail_btn').click(function (evt) {
+                var data = $(evt.target).data("itemData");
+
+                if (data != undefined) {
+                    $('.menu-id').val(data.MenuId);
+                    $('.menu-name').val(data.Name);
+                    $('.menu-parent-item').val(data.ParentId);
+                    $('.menu-show-index').val(data.Priority);
+                    $('.menu-path').val(data.Path);
+                    $('.menu-siteroot').val(data.SiteRoot);
+                    $('.menu-tableau-path').val(data.PathTableau);
+                }
+                else {
+                    $('.menu-id').val("");
+                    $('.menu-name').val("");
+                    $('.menu-parent-item').val("");
+                    $('.menu-show-index').val("");
+                    $('.menu-path').val("");
+                    $('.menu-siteroot').val("");
+                    $('.menu-tableau-path').val("");
+                }
+                $('#menu_detail_modal').modal('show');
+            });
+
+            // test
+            $('#test-table-tree').fancytree({
+                extensions: ['table'],
+                table: {
+                    indentation: 20,
+                    nodeColumnIdx: 1
+                },
+                source: $('#test-table-tree').data("jsonData"),
+                renderColumns: function (e, data) {
+                    var node = data.node,
+                        $tdList = $(node.tr).find(">td");
+                    console.log(node.data);
+                    $tdList.eq(0).text(node.getIndexHier());
+                    $tdList.eq(2).html("<a class=\"\" href=\"/Menus/Create?menuid=" + node.key + "\">chi tiết</a> | <a class=\"menu-delete-btn\">xóa</a>");
+                }
+            });
+
+            $('#test-table-tree').on('click', '.menu-detail-btn', function (e) {
+                var node = $.ui.fancytree.getNode(e);
+
+                $('.menu-id').val(node.key);
+                $('.menu-name').val(node.title);
+                $('.menu-parent-item').val(node.data.parentId);
+                $('.menu-show-index').val(node.data.priority);
+                $('.menu-path').val(node.data.path);
+                $('.menu-siteroot').val(node.data.SiteRoot);
+                $('.menu-tableau-path').val(node.data.pathTableau);
+
+                $('#menu_detail_modal').modal('show');
+            });
+
+            $('#test-table-tree').on('click', '.menu-delete-btn', function (e) {
+                if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+                    var node = $.ui.fancytree.getNode(e);
+
+                    window.location.href = "/Menus/Delete?menuid=" + node.key;
+                }
+            });
+
+        });
+    </script>

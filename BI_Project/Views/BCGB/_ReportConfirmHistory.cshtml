@@ -1,0 +1,50 @@
+﻿
+@using BI_Project.Services.BCGB;
+@model BI_Project.Models.UI.BlockModel
+@using BI_Project.Models.EntityModels;
+@{
+    List<EntityReportConfirmHistoryModel> ListReportConfirmHistory = new List<EntityReportConfirmHistoryModel>();
+    if (ViewData["ListReportConfirmHistory"] != null)
+    {
+        ListReportConfirmHistory = (List<EntityReportConfirmHistoryModel>)ViewData["ListReportConfirmHistory"];
+    }
+}
+<table class="table table-bordered table-hover datatable-highlight">
+    <thead>
+        <tr>
+            <th style="width:20px">STT</th>
+            <th style="width:120px">Số liệu</th>
+            <th style="width:50px">Ý kiến</th>
+            <th style="width:150px">Thời gian XN</th>
+            <th style="width:10px">Người XN</th>
+            <th style="width:10px">Xem số liệu</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index2 = 0;
+            foreach (EntityReportConfirmHistoryModel item2 in ListReportConfirmHistory)
+            {
+                index2++;
+                <tr>
+                    <td>@index2</td>
+                    <td class="menu_item_@index2">
+                        @{ if (item2.DataStatus)
+                            { <span>Đúng</span> }
+                            else
+                            { <span>Chưa đúng</span> }}
+                    </td>
+                    <td class="menu_item_@index2">@item2.Description </td>
+                    <td class="menu_item_@index2">@item2.Created.ToString("dd/MM/yyyy")</td>
+                    <td class="menu_item_@index2">@item2.CreatorId</td>
+                    <td>
+                        <a href="@item2.ReportPathFile" target="_blank">Xem</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+
+</script>

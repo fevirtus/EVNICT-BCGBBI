@@ -1,0 +1,171 @@
+﻿@model BI_Project.Services.User.BlockDataMenuLeftModel
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@using BI_Project.Services.Menus;
+@{
+
+    var request = HttpContext.Current.Request;
+    string baseUrl = string.Format("{0}://{1}", request.Url.Scheme, request.Url.Authority);
+
+    Dictionary<string, string> dicExtraClass = new Dictionary<string, string>();
+    dicExtraClass["ul_class"] = " collapse ";
+
+    BlockMenuLeftLangModel blockLang = new BlockMenuLeftLangModel();
+    blockLang.SetLanguage((object)ViewData["VIEWDATA_LANGUAGE"]);
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+}
+
+<ul class="navigation navigation-main navigation-accordion">
+    <!-- Main -->
+    <li class="navigation-header" style="display:none"><i class="icon-menu" title="Main pages"></i></li>
+    @{
+
+        @*if ((null != Session["IsAdmin"]) && ((bool)Session["IsAdmin"] == true))
+            {
+                <li>
+                    <a href="~/Users/Create"><i class="icon-people"></i><span>@blockLang.ManagingUsers</span></a>
+                    <ul>
+                        <li><a href="~/Users/List"><i class="icon-people"></i><span>@blockLang.ListofUser</span></a></li>
+                        <li><a href="~/Users/Create"><i class="icon-people"></i><span>@blockLang.CreateNewUser</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="~/Roles/Create"><i class="icon-tree6"></i><span>@blockLang.ManagingRoles</span></a>
+                    <ul>
+                        <li><a href="~/Roles/List"><i class="icon-tree6"></i><span>@blockLang.ListofRole</span></a></li>
+                        <li><a href="~/Roles/Create"><i class="icon-tree6"></i><span>@blockLang.CreateNewRole</span></a></li>
+                    </ul>
+
+                </li>
+                <li>
+                    <a href="~/Menus/List"><i class="icon-stack"></i><span>@blockLang.ManagingMenus</span></a>
+
+                    <ul>
+                        <li><a href="~/Menus/List"><i class="icon-stack"></i><span>@blockLang.ListofMenu</span></a></li>
+                        <li><a href="~/Menus/Create"><i class="icon-stack"></i><span>@blockLang.CreateNewMenu</span></a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="~/Departments/Create"><i class="icon-inbox"></i><span>@blockLang.ManaginDepartments</span></a>
+                    <ul>
+                        <li><a href="~/Departments/List"><i class="icon-inbox"></i><span>@blockLang.ListofDepartments</span></a></li>
+                        <li><a href="~/Departments/Create"><i class="icon-inbox"></i><span>@blockLang.CreateNewDepartments</span></a></li>
+                    </ul>
+
+                </li>
+
+            }*@
+
+        if ((Session["IsAdmin"] != null) && ((bool)Session["IsAdmin"] == true))
+        {
+            <li>
+                <a href="~/Users/Create"><i class="icon-people"></i><span>@blockLang.ManagingUsers</span></a>
+                <ul>
+                    @{
+                        if (url == baseUrl + "/" + "Users/List")
+                        {
+                            <li class="currentactive"><a href="~/Users/List"><i class="icon-tree6" style="color: white !important"></i><span>@blockLang.ListofUser</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Users/List"><i class="icon-tree6"></i><span>@blockLang.ListofUser</span></a></li>
+                        }
+
+                        if (url == baseUrl + "/" + "Users/Create")
+                        {
+                            <li style="color: white !important" class="currentactive"><a href="~/Users/Create"><i style="color: white !important" class="icon-tree6"></i><span>@blockLang.CreateNewUser</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Users/Create"><i class="icon-tree6"></i><span>@blockLang.CreateNewUser</span></a></li>
+                        }
+                    }
+                </ul>
+            </li>
+            <li>
+                <a href="~/Roles/Create"><i class="icon-pencil"></i><span>@blockLang.ManagingRoles</span></a>
+                <ul>
+                    @{
+                        if (url == baseUrl + "/" + "Roles/List")
+                        {
+                            <li style="color: white !important" class="currentactive"><a href="~/Roles/List"><i style="color: white !important" class="icon-tree6"></i><span>@blockLang.ListofRole</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Roles/List"><i class="icon-tree6"></i><span>@blockLang.ListofRole</span></a></li>
+                        }
+
+                        if (url == baseUrl + "/" + "Roles/Create")
+                        {
+                            <li style="color: white !important" class="currentactive"><a href="~/Roles/Create"><i style="color: white !important" class="icon-tree6"></i><span>@blockLang.CreateNewRole</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Roles/Create"><i class="icon-tree6"></i><span>@blockLang.CreateNewRole</span></a></li>
+                        }
+                    }
+
+
+                </ul>
+
+            </li>
+            <li>
+                <a href="~/Menus/List"><i class="icon-tree6"></i><span>@blockLang.ManagingMenus</span></a>
+                <ul>
+                    @{
+                        string href = baseUrl + "/" + "Menus/List";
+                        if (url == baseUrl + "/" + "Menus/List")
+                        {
+                            <li class="currentactive"><a href="~/Menus/List"><i style="color: white !important" class="icon-tree6"></i><span>@blockLang.ListofMenu</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Menus/List"><i class="icon-tree6"></i><span>@blockLang.ListofMenu</span></a></li>
+                        }
+
+                        if (url == baseUrl + "/" + "Menus/Create")
+                        {
+                            <li class="currentactive"><a href="~/Menus/Create"><i style="color: white !important" class="icon-tree6"></i><span>@blockLang.CreateNewMenu</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Menus/Create"><i class="icon-tree6"></i><span>@blockLang.CreateNewMenu</span></a></li>
+                        }
+                    }
+                </ul>
+            </li>
+            <li>
+                <a href="~/Departments/Create"><i class="icon-pencil"></i><span>@blockLang.ManaginDepartments</span></a>
+                <ul>
+                    @{
+                        if (url == baseUrl + "/" + "Departments/List")
+                        {
+                            <li class="currentactive"><a href="~/Departments/List"><i style="color: white !important;" class="icon-tree6"></i><span>@blockLang.ListofDepartments</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Departments/List"><i class="icon-tree6"></i><span>@blockLang.ListofDepartments</span></a></li>
+                        }
+
+                        if (url == baseUrl + "/" + "Departments/Create")
+                        {
+                            <li class="currentactive"><a href="~/Departments/Create"><i style="color: white !important" class="icon-tree6"></i><span>@blockLang.CreateNewDepartments</span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="~/Departments/Create"><i class="icon-tree6"></i><span>@blockLang.CreateNewDepartments</span></a></li>
+                        }
+                    }
+                </ul>
+
+            </li>
+
+
+        }
+
+
+        @Html.Raw(BI_Project.Helpers.UIHelper.GeneralTreeFantacy(baseUrl, url, dicExtraClass, Model.LstAllOfMenus, new List<int>()))
+
+    }
+
+</ul>

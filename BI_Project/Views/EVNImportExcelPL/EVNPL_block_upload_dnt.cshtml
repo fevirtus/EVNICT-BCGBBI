@@ -1,0 +1,340 @@
+﻿@using bicen.Services.Importers;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    BlockLangRowUploadModel blockLang = (BlockLangRowUploadModel)Model.LanguageModel;
+    BlockDataRowUploadModel blockData = (BlockDataRowUploadModel)Model.DataModel;
+
+    var request = HttpContext.Current.Request;
+    string baseUrl = string.Format("{0}://{1}", request.Url.Scheme, request.Url.Authority);
+    string currentUrl = request.RawUrl;
+}
+
+@*<script src="~/assets/js/custom_js/CurrentMonth-Year.js"></script>*@
+
+<!-- /page header -->
+<div class="content">
+
+    @if (Session["msg_text"] != null)
+    {
+        string class_panel = "panel-body";
+        if (Session["msg_code"] != null)
+        {
+            int msgCode = (int)Session["msg_code"];
+            if (msgCode >= 1) { class_panel = " panel-success "; }
+
+            Session.Remove("msg_code");
+        }
+        <div id="msgCode" class="panel row @class_panel">
+            <div class="panel-heading">
+                @Session["msg_text"]
+            </div>
+        </div>
+        Session.Remove("msg_text");
+    }
+
+
+    <div class="row">
+        <div class="panel panel-flat">
+
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <select id="File" name="File" class="form-control">
+                            <option value="0">[@blockLang.File]</option>
+                            @{
+                                string selected = "  ";
+                                string val = "";
+                                for (int i = 1; i <= 6; i++)
+                                {
+                                    if (i == blockData.File) { selected = " selected  "; }
+                                    else { selected = "  "; }
+                                    switch (i)
+                                    {
+                                        case 1:
+                                            val = "Báo cáo tiếp nhận LĐHANT giai đoạn 2018-2020"; break;
+                                        case 2:
+                                            val = "Tổng hợp quy mô khối lượng tiếp nhận lưới điện từ các nguồn vốn khác"; break;
+                                        case 3:
+                                            val = "Phu luc huong dan TNLĐ theo QĐ41 giai đoạn 2018-2020"; break;
+                                        case 4:
+                                            val = "Phu luc huong dan TNLĐ theo QĐ 2081"; break;
+                                        case 5:
+                                            val = "Tình hình cấp điện tại xã, phường, thị trấn (PL 7.1)"; break;
+                                        case 6:
+                                            val = "Tình hình cấp điện tại hộ (PL 7.2)"; break;
+                                        default:
+                                            val = ""; break;
+                                    }
+                                    <option value="@i" @selected>@val</option>
+                                }
+                            }
+
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select id="Month" name="Month" class="form-control">
+                            <option value="0">[@blockLang.Month]</option>
+                            @{
+                                selected = "  ";
+
+                                for (int i = 1; i <= 12; i++)
+                                {
+                                    if (i == blockData.Month) { selected = " selected  "; }
+                                    else { selected = "  "; }
+                                    <option value="@i" @selected>@i</option>
+                                }
+                            }
+
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <select id="Year" name="Year" class="form-control">
+                            <option value="0">[@blockLang.Year]</option>
+                            @{
+                                selected = "   ";
+                                for (int i = 2010; i <= 2020; i++)
+                                {
+                                    if (i == blockData.Year) { selected = " selected "; }
+                                    else { selected = "  "; }
+                                    <option value="@i" @selected>@i</option>
+                                }
+
+                            }
+
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <input type="submit" value="@blockLang.Search" class="btn btn-primary btn-xlg btnSearch" />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div id="divTableData" class="row hide">
+        <div class="panel panel-flat">
+
+            <div id="divPanel" class="panel-body">
+                <br />
+                <table id="jqGrid" class="jqGrid"></table>
+                <div id="noData" class="hide">Không có dữ liệu!</div>
+                <div id="jqGridPager"></div>
+                <br />
+                <form id="frmSubmit" method="post" action="@baseUrl/EVNImportExcelPL/UploadTableData">
+                    <input type="hidden" id="uploadYear" name="Year" value="@blockData.Year" />
+                    <input type="hidden" id="uploadMonth" name="Month" value="@blockData.Month" />
+                    <input type="hidden" id="uploadFile" name="File" value="@blockData.File" />
+                    <input type="hidden" id="uploadData" name="DataString" value="@blockData.DataString" />
+                    <input type="hidden" id="uploadDNT" name="ListDNT" value="@blockData.DataString" />
+                    <button type="submit" id="btnSubmit" class="btn btn-primary">Submit</button>
+                    <button type="reset" id="btnReset" class="btn btn-danger">Reset</button>
+                </form>
+                <div id="dialog" title="edit view" style="overflow: hidden;"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+
+    setTimeout(function () {
+        var msgCode = $("#msgCode");
+        if (msgCode.length > 0) {
+            msgCode.hide();
+        }
+    }, 15000);
+
+    function loadDataToGrid() {
+
+    }
+
+    $(".btnSearch").off('click').on('click', function () {
+        var lastsel2 = 0;
+        var outLastSel = 0;
+        var dataTable = false;
+        var firstJqGridData = null;
+        var jqGridData = null;
+        var isSearching = false;
+        var month = $('#Month').find(":selected").val();
+        var year = $('#Year').find(":selected").val();
+        var file = $('#File').find(":selected").val();
+        var currentMonth = (new Date()).getMonth() + 1;
+        var currentYear = (new Date()).getFullYear();
+        $.ajax({
+            type: "GET",
+            contentType: "application/json; charset=utf-8",
+            url: "/EVNImportExcelPL/GetDataRows",
+            data: {
+                month: month,
+                year: year,
+                file: file
+            },
+            dataType: "json",
+            success: function (result) {
+                data = JSON.stringify(result);
+                colN = (result.rows) ? getColNames((result.rows)[0]) : [];
+                colM = (result.rows) ? getColModels(result.rows) : [];
+                dataTable = result.rows ? true : false;
+                firstJqGridData = result.rows ? result.rows : null;
+
+                $("#divTableData").removeClass("hide");
+                $("#jqGrid").jqGrid("GridUnload");
+                var myGrid = $('#jqGrid');
+                myGrid.jqGrid({
+                    datatype: "local",
+                    //datastr: result,
+                    jsonReader: { repeatitems: false, id: "MA_DVIQLY", root: function (obj) { return obj; } },
+                    data: result.rows ? result.rows : [],
+                    colNames: colN,
+                    colModel: colM,
+                    onSelectRow: function (id, status, e) {
+                        //var obj = null;
+                        //if (isSearching) {
+                        //    obj = jqGridData[id - 1];
+                        //    console.log(obj);
+                        //}
+                        //if (obj) {
+                        //    var idxObj = firstJqGridData.findIndex(x => x.MA_DVIQLY === obj.MA_DVIQLY && x.TEN_CTRINH === obj.TEN_CTRINH);
+                        //    console.log(idxObj);
+                        //    $(this).saveRow(idxObj + 1, true, 'clientArray');
+                        //    console.log($(this).jqGrid("getLocalRow", idxObj + 1));
+                        //}
+
+                        //var newId = idxObj + 1;
+                        ////var data = $(this).jqGrid("getLocalRow", id);
+                        //if (isSearching) outLastSel = newId;
+                        if (id && id !== lastsel2) {
+                            if (lastsel2) $(this).saveRow(lastsel2, true, 'clientArray');
+                            lastsel2 = id;
+                        }
+                        $(this).editRow(id, false);
+                    },
+                    loadComplete: function () {
+                        jqGridData = myGrid.jqGrid('getRowData');
+                        console.log(jqGridData);
+                        if (!dataTable) {
+                            $("#gbox_jqGrid").addClass("hide");
+                            $("#noData").removeClass("hide");
+                            $("#jqGridPager").addClass("hide");
+                            $("#frmSubmit").addClass("hide");
+                        } else {
+                            $("#noData").addClass("hide");
+                            $("#frmSubmit").removeClass("hide");
+                            $("#jqGridPager").removeClass("hide");
+                        }
+                    },
+                    pager: '#jqGridPager',
+                    gridview: true,
+                    rownumbers: true,
+                    autowidth: true,
+                    pagerpos: 'center',
+                    rowNum: result.rows ? 10 : 0,
+                    height: result.rows ? 250 : 0,
+                    rowList: [10, 50, 100, 200],
+                    shrinkToFit: false,
+                    ajaxGridOptions: { cache: false },
+                    loadonce: true
+                });
+                $('#jqGrid').jqGrid('filterToolbar', {
+                    stringResult: true,
+                    searchOnEnter: false,
+                    searchOperators: false,
+	                defaultSearch : "cn",
+	                beforeClear: function() {
+                        alert("1");
+                        $("#jqGrid").saveRow(lastsel2, true, 'clientArray');
+	                },
+	                beforeSearch: function() {
+                        isSearching = true;
+                        $("#jqGrid").saveRow(lastsel2, false, 'clientArray');
+                    },
+
+                });
+                //myGrid.jqGrid('filterToolbar', { stringResult: true, searchOnEnter: false, defaultSearch: "cn" });
+            },
+            error: function (x, e) {
+                alert(x.readyState + " " + x.status + " " + e.msg);
+            }
+        });
+
+        function getColNames(data) {
+            var keys = [];
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    keys.push(key);
+                }
+            }
+            return keys;
+        }
+
+        function getColModels(data) {
+            var colNames = getColNames(data[0]);
+            var colModelsArray = [];
+            var condition1 = false;
+            var condition2 = false;
+            if (parseInt(month) >= currentMonth & parseInt(year) >= currentYear) {
+                condition = (file === "5" || file === "6") ? true : false;
+                condition2 = true;
+            }
+            for (var i = 0; i < colNames.length; i++) {
+                var str;
+                if (i === 0) {
+                    str = {
+                        name: colNames[i],
+                        index: colNames[i],
+                        //key: true,
+                        editable: false,
+                        width: 75
+                    };
+                } else if (i <= 3) {
+                    str = {
+                        name: colNames[i],
+                        index: colNames[i],
+                        editable: condition1 & i == 3,
+                        width: 75
+                    };
+                } else {
+                    str = {
+                        name: colNames[i],
+                        index: colNames[i],
+                        editable: condition2,
+                        width: 75
+                    };
+                }
+                colModelsArray.push(str);
+            }
+
+            return colModelsArray;
+        }
+
+
+
+        if (parseInt(month) >= currentMonth & parseInt(year) >= currentYear) {
+            $("#uploadYear").val($('#Year').find(":selected").val());
+            $("#uploadMonth").val($('#Month').find(":selected").val());
+            $("#uploadFile").val($('#File').find(":selected").val());
+
+            $("#btnSubmit").show();
+            $("#btnReset").show();
+            $("#btnSubmit").click(function () {
+                $("#jqGrid").saveRow(lastsel2, true, 'clientArray');
+                var gridData = $('#jqGrid').jqGrid('getRowData');
+                var str = JSON.stringify(gridData);
+                $("#uploadData").val(str);
+                $("#uploadDNT").val(gridData);
+            });
+            $("#btnReset").click(function () {
+                $(".btnSearch" ).trigger( "click" );
+            });
+        } else {
+            $("#btnSubmit").hide();
+            $("#btnReset").hide();
+        }
+
+    });
+
+</script>

@@ -1,0 +1,132 @@
+﻿@model  List<EntityQuanLyMau>
+@using BI_Project.Models.EntityModels;
+
+@{
+    //List<EntityDangKyTramModel> _dsachTram = (List<EntityDangKyTramModel>)ViewData["dstram"];
+    EntityTimKiemModel _ttinTK = (EntityTimKiemModel)ViewData["timkiem"];
+    List<EntityDepartmentModel> lstDepartments = (List<EntityDepartmentModel>)ViewData["dsDonVi"];    
+}
+
+    <div class="content">
+        <div class="panel panel-default">
+            <div class="panel-body" style="margin-left: 5px; margin-right: 5px">
+                <form method="post" action="/DefaultPage/QuanLyMau">
+                    <div class="row">
+                        <label for="form-field-1" class="col-sm-1 control-label">Đơn vị</label>
+                        <div class="col-md-3">
+                            <select class="form-control selectpicker show-tick" id="MaDV" name="MaDV">
+                                @foreach (EntityDepartmentModel depart in lstDepartments)
+                                {
+                                    if (_ttinTK.MA_DVIQLY == depart.Code)
+                                    {
+                                        <option value="@depart.Code" class="" selected>@Html.Raw(depart.Name)</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@depart.Code" class="">@Html.Raw(depart.Name)</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+
+                        <label for="form-field-1" class="col-sm-1 control-label">Năm</label>
+                        <div class="col-md-2">
+                            <select name="iNam" id="iNam" class="form-control">
+                                <option value="2019" @(_ttinTK.NAM == 2019 ? "selected" : "")>2019</option>
+                                <option value="2020" @(_ttinTK.NAM == 2020 ? "selected" : "")>2020</option>
+                                <option value="2021" @(_ttinTK.NAM == 2021 ? "selected" : "")>2021</option>
+                                <option value="2022" @(_ttinTK.NAM == 2022 ? "selected" : "")>2022</option>
+                            </select>
+                        </div>
+
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary" formaction="/DefaultPage/QuanLyMau"><i class="glyphicon glyphicon-camera"></i> Tìm kiếm</button>
+                        </div>
+                    </div>                    
+                </form>
+
+                <div class="row">
+                    <div class="col-md-10">
+                        <label style="font-weight: bold">QUẢN LÝ MẪU NGHIÊN CỨU PHỤ TẢI </label><br />
+                    </div>
+
+                    @using (Html.BeginForm("UpdateQuanLyMau", "DefaultPage", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data"}))
+                    {
+                        <table id="dulieu" style="width:100%" border="1">
+                            <tr>
+                                <th style="font-weight: bold; text-align: center;">Mã đơn vị</th>
+                                <th style="font-weight: bold; text-align: center;">Mã NCPT</th>
+                                <th style="font-weight: bold; text-align: center;">Số khách hàng</th>
+                                <th style="font-weight: bold; text-align: center;">ĐNTT thực tế</th>
+                                <th style="font-weight: bold; text-align: center;">Số KH mẫu</th>
+                                <th style="font-weight: bold; text-align: center;">Ghi chú</th>
+                            </tr>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <tr>
+                                    <td style="text-align: center;">@Model[i].DEPARTMENTID</td>
+                                    <td style="text-align: center;">@Model[i].PROFILEID</td>
+                                    <td style="text-align: right;">@Html.TextBoxFor(m => Model[i].DESIGNPOPN, new { @style = "text-align: right;", @class = "form-control", @id = Model[i].DESIGNPOPN })</td>
+                                    <td style="text-align: right;">@Html.TextBoxFor(m => Model[i].DESIGNPOPENERGY, new { @style = "text-align: right;", @class = "form-control", @id = Model[i].DESIGNPOPENERGY })</td>
+                                    <td style="text-align: right;">@Html.TextBoxFor(m => Model[i].DESIGNNSAMPLE, new { @style = "text-align: right;", @class = "form-control", @id = Model[i].DESIGNNSAMPLE })</td>
+                                    <td style="text-align: right;">@Html.TextBoxFor(m => Model[i].USERCOMMENT, new { @style = "text-align: right;", @class = "form-control", @id = Model[i].USERCOMMENT })</td>
+                                    @Html.HiddenFor(m => Model[i].DEPARTMENTID)
+                                    @Html.HiddenFor(m => Model[i].PROFILEID)
+                                    @Html.HiddenFor(m => Model[i].STRATUMID)
+                                    @Html.HiddenFor(m => Model[i].YEAR_LRS)
+                                </tr>
+                            }
+                        </table>
+
+                        <table width="100%">
+                            <tr>
+                                <td width="100%" align="right"><input type="submit" class="btn btn-primary" value="Cập nhật" name="saveWork" style="width: 100px;" /></td>
+                            </tr>
+                        </table>
+
+                    }
+
+
+                    @*<div class="col-md-12">
+                            <br />
+                            @using (Html.BeginForm("UpdateDangKyCSThat", "DefaultPage", FormMethod.Get, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+                            {
+                                @Html.Partial("_MessagePartial")
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <i class="fa fa-external-link-square"></i><b>Thông tin sổ GCS</b>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <p>
+                                                <input value="Xuất Excel(.xlsx)" class="btn btn-teal" type="button" onclick="ExportExcel()" />
+                                                <input id="btnSearch" class="btn btn-teal" value="Lưu" type="button" onclick="SaveData()">
+                                            </p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Chọn file upload:</label> <input type="file" accept="xlsx" style="display:inline" id="fileUpload" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <div id="sheet"></div>
+                            <div id="loading">
+                                <img src="~/resources/images/logo.png" />
+                                Loading...
+                            </div>
+                        </div>*@
+
+
+
+
+
+
+
+                </div>
+
+                <br />
+            </div>
+        </div>
+    </div>
+
+

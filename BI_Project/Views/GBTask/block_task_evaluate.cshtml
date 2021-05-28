@@ -1,0 +1,106 @@
+﻿@using BI_Project.Services.GBTask;
+@using BI_Project.Helpers;
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@model BI_Project.Models.UI.BlockModel
+@{
+
+    EntityGBRPTEvaluateModel blockData = (EntityGBRPTEvaluateModel)Model.DataModel;
+    var currentDepartmentCode = "";
+    if (ViewData["CurrentDepartmentCode"]!=null)
+    {
+        currentDepartmentCode = ViewData["CurrentDepartmentCode"].ToString();
+    }
+
+    List<EntityDepartmentModel> lstDepartments = (List<EntityDepartmentModel>)ViewData["departments"];
+}
+<style>
+
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+<!-- /page header -->
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /main charts -->
+            <div class="panel panel-flat">
+                <div class="panel-body">
+                    <div class="panel panel-flat">
+                        @if (Session["msg_text"] != null)
+                        {
+                            string class_panel = "panel-danger ";
+                            if (Session["msg_code"] != null)
+                            {
+                                int msgCode = (int)Session["msg_code"];
+                                if (msgCode >= 1) { class_panel = " panel-success "; }
+
+                                Session.Remove("msg_code");
+                            }
+                            <div class="panel  @class_panel">
+                                <div class="panel-heading">
+                                    @Session["msg_text"]
+                                </div>
+                            </div>
+                            Session.Remove("msg_text");
+                        }
+                    <div class="panel-body">
+                        @using (Html.BeginForm("Evaluate", "GBTask", FormMethod.Post, new { data_toggle = "validator", role = "form" }))
+                        {
+                            <input type="hidden" name="Id" value="@blockData.Id" />
+                            <input type="hidden" name="ReportRequirementId" value="@blockData.ReportRequirementId" />
+                            <input type="hidden" name="Total" value="@blockData.Total" />
+                            <input type="hidden" name="TaskDoneNum" value="@blockData.TaskDoneNum" />
+                            <input type="hidden" name="TaskProcessNum" value="@blockData.TaskProcessNum" />
+                            <input type="hidden" name="DataCorrectNum" value="@blockData.DataCorrectNum" />
+                            <input type="hidden" name="DataInCorrectNum" value="@blockData.DataInCorrectNum" />
+                            <input type="hidden" name="ReportUnConfirmNum" value="@blockData.ReportUnConfirmNum" />
+                            <input type="hidden" name="DepartmentCode" value="@blockData.DepartmentCode" />
+
+
+
+                            <div class="form-group row">
+                                <label for="LstSelectedDepartment" class="col-md-1">Ban đánh giá</label>
+                                <div class="col-md-4" style="width :339px;">
+                                    <select class="select select2-hidden-accessible" id="DepartmentCode_Evaluate" name="DepartmentCode_Evaluate" data-live-search="true">
+                                        @{
+                                            <option value="" hidden selected disabled></option>
+                                            foreach (EntityDepartmentModel depart in lstDepartments)
+                                            {
+                                                if (currentDepartmentCode == depart.Code)
+                                                {
+                                                    <option value="@depart.Code" class="" selected>@Html.Raw(depart.Name)</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@depart.Code" class="">@Html.Raw(depart.Name)</option>
+                                                }
+
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Comment" class="col-md-1">Đánh giá<span class="required" style="color: red;">*</span></label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="Description" name="Description" value="@blockData.Description">
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row">
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success">Cập nhật</button>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+
+        </script>

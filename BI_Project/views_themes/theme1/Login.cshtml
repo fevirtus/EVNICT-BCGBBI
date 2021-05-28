@@ -1,0 +1,58 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@using System.Web.Mvc.Html
+@using BI_Project.Models.UI;
+@using BI_Project.Models.BusinessModels;
+@{
+    //****************************************DECLARE BLOCK MODEL********************************************************/
+    object languageObject = ViewData["VIEWDATA_LANGUAGE"];
+    BlockLoginLangModel blockLoginLang = new BlockLoginLangModel();
+    BlockModel blockLoginModel = new BlockModel("block_login", languageObject, blockLoginLang);
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @*@RenderPage("~/views/login-header.cshtml");*@
+    @{
+
+        BI_Project.Models.UI.PageModel pageModel = new BI_Project.Models.UI.PageModel("login");
+        pageModel.SetLanguage(ViewData["VIEWDATA_LANGUAGE"]);
+    }
+    @Html.Partial("~/views/login-header.cshtml", pageModel)
+</head>
+<body class="login-container" style="height:100%; overflow : hidden;">
+    <!-- Main navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="Login" style="color:white;text-align: left !important;"><img src="~/resources/images/logoLogin.png" alt="" style="    height: 236px; position: relative;top: -77px;left: -13px;"></a>
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            </ul>
+        </div>
+       
+    </div>
+    <!-- /main navbar -->
+    <!-- Page container -->
+    <div class="page-container" style="background-image: url('../../resources/images/backgrounds/BackgroundLogin.jpg'); background-repeat: no-repeat; background-position:center; background-size:cover; min-height:100%;">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Content area -->
+                <div class="content">
+                    @Html.Partial("~/views/block_login.cshtml", blockLoginModel)
+
+                    <!-- /simple login form -->
+                    <!-- Footer -->
+                    <!-- /footer -->
+                </div>
+                <!-- /content area -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+    <!-- /page container -->
+</body>
+</html>

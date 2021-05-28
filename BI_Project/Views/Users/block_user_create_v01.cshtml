@@ -1,0 +1,196 @@
+﻿@using BI_Project.Services.User;
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    BlockLangUserCreateModel blockLang = (BlockLangUserCreateModel)Model.LanguageModel;
+
+    BlockDataUserCreateModel blockData = (BlockDataUserCreateModel)Model.DataModel;
+
+    BI_Project.Services.User.BlockDataMenuLeftModel menuData = (BI_Project.Services.User.BlockDataMenuLeftModel)ViewData["block_menu_left_data"];
+
+    var listSelectedMenu = string.Join(",", blockData.LstSelectedMenu);
+
+    var lstSelectedRole = string.Join(",", blockData.LstSelectedRole);
+}
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+
+<!-- /page header -->
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /main charts -->
+            <div class="panel panel-flat">
+                <div class="panel-body">
+                    @if (ViewBag.Message != null)
+                    {
+                        <div class="panel panel-body">
+                            <div class="col-lg-10">
+                                <div class="form-horizontal">
+
+
+                                    @ViewBag.Message
+
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                    @using (Html.BeginForm("Create", "Users", FormMethod.Post, new { data_toggle = "validator", role = "form" }))
+                    {
+                        <input type="hidden" name="UserId" value="@blockData.UserId" />
+                        <div class="form-group">
+                            @{
+                                string blockTitle = blockLang.BlockTitle;
+                                if (blockData.UserId > 0)
+                                {
+                                    blockTitle = blockLang.title_edit;
+                                }
+                            }
+                            <h4>@blockTitle</h4>
+                        </div>
+                        <div class="form-group">
+                            <label for="UserName" class="col-md-2">@blockLang.UserName</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="UserName" name="UserName" value="@blockData.UserName">
+                            </div>
+                        </div>
+                        
+                            if (blockData.UserId == 0)
+                            {
+
+
+                        <div class="form-group">
+                            <label for="Name" class="col-md-2">@blockLang.Password</label>
+                            <div class="col-md-10">
+                                <input type="password" class="form-control" id="Password" name="Password" value="@blockData.Password">
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="Name" class="col-md-2">@blockLang.ConfirmPassword</label>
+                            <div class="col-md-10">
+                                <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" value="">
+                            </div>
+                        </div>
+                            }
+                         
+                        <div class="form-group">
+                            <label for="Name" class="control-label col-md-2">@blockLang.Email</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="Email" name="Email" value="@blockData.Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Name" class="control-label col-md-2">@blockLang.Phone</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control " id="Phone" name="Phone" value="@blockData.Phone">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="IsAdmin" class="control-label col-md-2">@blockLang.IsAdmin</label>
+                            <div class="col-md-10">
+                                <div class="checkbox">
+                                    @Html.CheckBox("IsAdmin", blockData.IsAdmin);
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="Name" class="col-md-2">@blockLang.Menus</label>
+
+                            <div class="col-md-10 multi-select-full">
+                                <select id="LstSelectedMenu" data-placeholder="-- Please select Menu --" multiple="multiple" class="select" name="LstSelectedMenu">
+
+
+                                    @{
+
+                                        foreach (EntityMenuModel menu in menuData.LstAllOfMenus)
+                                        {
+                                            string[] lstLevel = Regex.Split(menu.LevelTree + "@@@abc", "@@@");
+
+                                            int level = lstLevel.Length - 1;
+
+
+                                            string textItem = menu.Name;
+                                            while (level > 1)
+                                            {
+                                                textItem = "&nbsp&nbsp&nbsp" + textItem;
+                                                level--;
+                                            }
+                                            <option value="@menu.MenuId" class="menu_level_@level">@Html.Raw(textItem)</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <label for="LstSelectedRole" class="col-md-2">@blockLang.Roles</label>
+
+                            <div class="col-md-10 multi-select-full">
+                                <select id="LstSelectedRole" data-placeholder="-- Please select Role --" multiple="multiple" class="select" name="LstSelectedRole">
+
+
+                                    @{
+
+                                        foreach (EntityRoleModel role in blockData.ListAllRoles)
+                                        {
+
+                                            <option value="@role.RoleId" class="">@Html.Raw(role.Name)</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+
+                            <div class="col-md-offset-2 col-md-10 ">
+                                <button type="submit" class="btn btn-success">@blockLang.BtnSubmit</button>
+                            </div>
+
+
+                        </div>
+                        @*<div class="form-group">
+                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                    <button type="submit" class="btn btn-success">@blockLang.BtnSubmit</button>
+                                </div>
+                            </div>*@
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+    $(document).ready(function () {
+
+        $('#LstSelectedMenu').val([@listSelectedMenu]);
+        $('#LstSelectedMenu').trigger('change');
+        $('#LstSelectedRole').val([@lstSelectedRole]);
+        $('#LstSelectedRole').trigger('change');
+    });
+
+    //function getSelectedVal() {
+    //    var listMenu = $("#LstSelectedMenu").select2('data');
+    //    //var listRole = $("#LstSelectedRole").select2('data');
+    //    //alert(listMenu.length);;
+    //    //var i = 0;
+    //    //var listMenuId = new Array();
+    //    //for (i = 0; i < listMenu.length; i++) {
+    //    //    alert(listMenu[i].id);
+    //    //    listMenuId.push(listMenu[i].id);
+    //    //}
+
+    //}
+</script>

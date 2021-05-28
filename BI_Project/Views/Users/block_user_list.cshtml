@@ -1,0 +1,94 @@
+﻿@using BI_Project.Services.User;
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+
+    BlockLangUserListModel blockLang = (BlockLangUserListModel)Model.LanguageModel;
+    //List<EntityUserRoleModel> userRoles = (List<EntityUserRoleModel>)ViewData["user_role"];
+
+    List<EntityUserModel> blockData = (List<EntityUserModel>)Model.DataModel;
+}
+
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /main charts -->
+            <div class="panel panel-flat">
+                <div class="panel-body">
+
+                    @if (Session["msg_text"] != null)
+                    {
+                        string class_panel = "panel-body";
+                        if (Session["msg_code"] != null)
+                        {
+                            int msgCode = (int)Session["msg_code"];
+                            if (msgCode >= 1) { class_panel = " panel-success "; }
+
+                            Session.Remove("msg_code");
+                        }
+                        <div class="panel  @class_panel">
+                            <div class="panel-heading">
+
+                                @Session["msg_text"]
+
+
+                            </div>
+                        </div>
+                        Session.Remove("msg_text");
+                    }
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover datatable-highlight">
+                            <thead>
+                                <tr>
+                                    <th style="width:20px" >@blockLang.LblNo</th>
+                                    <th style="width:120px" >@blockLang.Lblname</th>
+                                    <th style="width:120px">@blockLang.FullName</th>
+                                    <th style="width:150px" >@blockLang.Email</th>
+                                    <th style="width:100px" >@blockLang.Phone</th>
+                                    <th style="width:200px">@blockLang.DepartName</th>
+                                    <th style="width:10px" >@blockLang.LblAction</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    int index = 0;
+                                    string baseUrl = Url.Content("~");
+                                    foreach (EntityUserModel item in blockData)
+                                    {
+                                        index++;
+                                        <tr>
+                                            <td>@index</td>
+                                            <td class="menu_item_@index">@item.UserName </td>
+                                            <td class="menu_item_@index">@item.FullName </td>
+                                            <td class="menu_item_@index">@item.Email</td>
+                                            <td class="menu_item_@index">@item.Phone</td>
+                                            <td class="menu_item_@index">@item.DepartName</td>
+                                            <td>
+                                                <a href="@(baseUrl+"Users/Create?id="+item.UserId)">@blockLang.LblEdit</a>
+                                                <a href="@(baseUrl+"Users/Delete?id="+item.UserId)" onclick="return confirm('@blockLang.LBLConfirmDelete?');">@blockLang.LblDelete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+

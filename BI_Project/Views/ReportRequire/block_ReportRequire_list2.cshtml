@@ -1,0 +1,80 @@
+﻿@using BI_Project.Services.Menus;
+@using BI_Project.Models.EntityModels;
+@using System.Text.RegularExpressions;
+@using BI_Project.Helpers;
+@using BI_Project.Services.ReportRequire;
+@using System.Web.Mvc.Html;
+@model BI_Project.Models.UI.BlockModel
+
+@{
+    BI_Project.Services.User.BlockDataMenuLeftModel menuData = (BI_Project.Services.User.BlockDataMenuLeftModel)ViewData["block_menu_left_data"];
+    IEnumerable<EntityMenuModel> menuDataUser = (IEnumerable<EntityMenuModel>)ViewData["MenuData"];
+    BlockMenuListLangModel blockLang = (BlockMenuListLangModel)Model.LanguageModel;
+    var curUserIsSuperAdmin = (bool)Session["IsSuperAdmin"];
+    List<EntityDepartmentModel> lstDepartments = (List<EntityDepartmentModel>)ViewData["departments"];
+    List<EntityDepartmentModel> lstDepartmentsAdmin = (List<EntityDepartmentModel>)ViewData["listdepartmentsadmin"];
+    EntityMenuModel blockData = (EntityMenuModel)Model.DataModel;
+    //int hidden = Model.Hidden;
+    var currentOrgId = (int?)ViewData["CurrentOrgId"];
+
+    List<ReportRequireModel> lstReport = (List<ReportRequireModel>)ViewData["reportList"];
+}
+
+<style>
+    .form-horizontal .radio, .form-horizontal .checkbox, .form-horizontal .radio-inline, .form-horizontal .checkbox-inline {
+        padding-top: 0px;
+    }
+</style>
+<div class="content">
+    <div class="panel panel-flat">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel-heading text-right">
+                        <table class="table table-bordered table-hover datatable-highlight">
+                            <thead>
+                                <tr>
+                                    <th class="text-center" width="50px">Stt</th>
+                                    <th class="text-center">Yêu cầu xác nhận báo cáo</th>
+                                    <th class="text-center" width="150px">Thời gian hoàn thành xác nhận</th>
+                                    <th class="text-center" width="150px">Trạng thái</th>
+                                    <th class="text-center" width="150px">Thời gian tạo</th>
+                                    <th class="text-center" width="150px">Người tạo</th>
+                                    <th class="text-center" width="150px">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{
+                                    foreach (ReportRequireModel item in lstReport)
+                                    {
+                                        <tr>
+                                            <td align="center">@item.Stt</td>
+                                            <td align="left">@item.Title</td>
+                                            <td align="center">@item.ConfirmExpired.ToShortDateString()</td>
+                                            <td align="center">@item.TrangThai</td>
+                                            <td align="center">@item.Created</td>
+                                            <td align="center">@item.FullName</td>
+                                            <td align="center">
+                                                <a href="/BCGB/ViewDetail/140?ReportRequirementId=@item.Id" class='btn btn-link'><span class='glyphicon glyphicon-share-alt'></span></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+
+
+
+</script>
