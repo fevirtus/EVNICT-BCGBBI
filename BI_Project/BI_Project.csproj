@@ -3461,6 +3461,13 @@
     <Content Include="Views\ReportRequire\block_ReportRequire_list2.cshtml" />
     <Content Include="Views\ReportRequire\_ListRequire.cshtml" />
     <Content Include="Views\BCGB\ViewDetail.cshtml" />
+    <Content Include="Views\BCGB\_ConfirmHistory.cshtml" />
+    <Content Include="Views\BCGB\_Reload.cshtml" />
+    <Content Include="Views\BCGB\_ReportConfirmHistory.cshtml" />
+    <Content Include="Views\BCGB\_TableauView.cshtml" />
+    <Content Include="Views\BCGB\_Task.cshtml" />
+    <Content Include="Views\BCGB\_ConfirmTask.cshtml" />
+    <Content Include="Views\GBTask\_Task.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

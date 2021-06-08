@@ -6,6 +6,7 @@
 
 @{
     BI_Project.Services.User.BlockDataMenuLeftModel menuData = (BI_Project.Services.User.BlockDataMenuLeftModel)ViewData["block_menu_left_data"];
+    IEnumerable<EntityMenuModel> menuDataUser = (IEnumerable<EntityMenuModel>)ViewData["MenuData"];
 
     List<EntityCycleModel> listcycle = (List<EntityCycleModel>)ViewData["listcycle"];
     List<EntityAreaModel> listarea = (List<EntityAreaModel>)ViewData["listarea"];

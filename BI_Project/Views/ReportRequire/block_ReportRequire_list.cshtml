@@ -4,20 +4,36 @@
 @using BI_Project.Helpers;
 @using BI_Project.Services.ReportRequire;
 @using System.Web.Mvc.Html;
+@using BI_Project.Services.Roles;
 @model BI_Project.Models.UI.BlockModel
 
+
 @{
+    BlockMenuListLangModel blockLang = (BlockMenuListLangModel)Model.LanguageModel;
+    BlockDataRoleCreateModel blockData = (BlockDataRoleCreateModel)Model.DataModel;
+
     BI_Project.Services.User.BlockDataMenuLeftModel menuData = (BI_Project.Services.User.BlockDataMenuLeftModel)ViewData["block_menu_left_data"];
     IEnumerable<EntityMenuModel> menuDataUser = (IEnumerable<EntityMenuModel>)ViewData["MenuData"];
-    BlockMenuListLangModel blockLang = (BlockMenuListLangModel)Model.LanguageModel;
+
     var curUserIsSuperAdmin = (bool)Session["IsSuperAdmin"];
     List<EntityDepartmentModel> lstDepartments = (List<EntityDepartmentModel>)ViewData["departments"];
     List<EntityDepartmentModel> lstDepartmentsAdmin = (List<EntityDepartmentModel>)ViewData["listdepartmentsadmin"];
-    EntityMenuModel blockData = (EntityMenuModel)Model.DataModel;
+    //EntityMenuModel blockData = (EntityMenuModel)Model.DataModel;
+
+
     //int hidden = Model.Hidden;
     var currentOrgId = (int?)ViewData["CurrentOrgId"];
 
-    List<ReportRequireModel> lstReport = (List<ReportRequireModel>)ViewData["reportList"];
+    List<ReportRequireModel> reportList = (List<ReportRequireModel>)ViewData["reportList"];
+
+
+
+    List<EntityReportBIModel> lstReportBI = (List<EntityReportBIModel>)ViewData["reportbis"];
+    string listReport = null;
+    string fancyReportTreeHtml = null;
+    Dictionary<string, string> dicExtraClass = new Dictionary<string, string>();
+    dicExtraClass["ul_class"] = "";
+
 }
 
 <style>
@@ -31,13 +47,15 @@
     <div class="panel panel-flat">
         <div class="panel-body">
             <div class="row">
-                <button class="btn btn-primary" onclick="AddNewReport(0)">Tạo yêu cầu xác nhận báo cáo</button>
+                <div class="col-lg-12">
+                    <button class="btn btn-primary" onclick="AddNewReport(0)">Tạo yêu cầu xác nhận báo cáo</button>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel-heading text-right" id="reportView">
-                        @{Html.RenderPartial("_ListRequire", new ViewDataDictionary { { "reportList", lstReport } });
-                        }                        
+                        @{Html.RenderPartial("_ListRequire", new ViewDataDictionary { { "reportList", reportList } });
+                        }
                     </div>
                 </div>
             </div>
@@ -46,31 +64,39 @@
 </div>
 
 <!--popup add/edit-->
-<div class="modal" id="myModal">
+<div class="modal" id="dlgAddRequire">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <a href="#" class="close" data-dismiss="modal">&times;</a>
             </div>
             <div class="modal-body">
-                <form id="form">
-                    <fieldset id="submitForm">
-                        <input type="hidden" id="Id" />
-                        <div class="form-group">
-                            <label for="Title">Yêu cầu báo cáo<span class="required" style="color: red;">*</span></label>
-                            <input id="Title" name="Title" type="text" class="form-control" required />
+                @*<form id="form">*@
+                <fieldset id="submitForm">
+                    <input type="hidden" id="RequireId" value="0" />
+                    <div class="form-group">
+                        <label for="Title">Yêu cầu báo cáo<span class="required" style="color: red;">*</span></label>
+                        <input id="Title" name="Title" type="text" class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="datepicker">Thời gian xác nhận<span class="required" style="color: red;">*</span></label>
+                        <input id="datepicker" name="datepicker" type="text" data-date-format="dd/mm/yy" class="form-control" placeholder="ngày/tháng/năm" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Mô tả</label>
+                        <textarea id="Description" class="form-control" rows="3" style="resize: none;"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="StrAllowedReportBI" id="StrAllowedReportBI" value="@listReport" />
+
+                        <div class="tree-checkbox-hierarchical well border-left-danger border-left-lg" id="treeReportBI">
+                            <ul></ul>
                         </div>
-                        <div class="form-group">
-                            <label for="datepicker">Thời gian xác nhận<span class="required" style="color: red;">*</span></label>
-                            <input id="datepicker" name="datepicker" type="text" data-date-format="dd/mm/yy" class="form-control" placeholder="ngày/tháng/năm" />
-                        </div>
-                        <div class="form-group">
-                            <label for="Description">Mô tả</label>
-                            <textarea id="Description" class="form-control" rows="3"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="btnSave"> Gửi </button>
-                    </fieldset>
-                </form>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" id="btnSave"> Gửi </button>
+                </fieldset>
+                @*</form>*@
 
             </div>
         </div>
@@ -103,32 +129,138 @@
 
     // popup cửa sổ thêm mới yêu cầu báo cáo
     function AddNewReport() {
-        $("#form")[0].reset();
-        $("#Id").val(0);
+        //$("#form")[0].reset();
+        $("#RequireId").val(0);
         $("#Title").val('');
-        $("#myModal").modal();
+        $("#StrAllowedReportBI").val('');
+        $("#dlgAddRequire").modal();
+
+        // load lại cây báo cáo với những báo cáo đã được chọn theo RequireId
+        $('#treeReportBI').fancytree({
+            checkbox: true,
+            selectMode: 3,
+            source: {
+                url: '/ReportRequire/ReportList?RequireId=null',
+                cache: false
+            },
+            select: function (evt, data) {
+                getSelectedReportBINodes();
+            },
+            init: function () {
+                getSelectedReportBINodes();
+            },
+            loadError: function (e, data) {
+                data.message = "Danh sách trống!";
+            },
+            filter: {
+                mode: "show",
+                autoApply: true
+            }
+        });
+
+        function getSelectedNodes() {
+            selectedNodes = $("#readdyTree").fancytree("getTree").getSelectedNodes();
+            selectedArr = selectedNodes.map(x => x.key);
+            selectedNodes.forEach(e => {
+                var p = e.parent;
+                while (p.parent != null) {
+                    if (selectedArr.indexOf(p.key) == -1) selectedArr.push(p.key);
+                    p = p.parent;
+                }
+            });
+
+            $('#StrAllowedMenus').val(selectedArr.toString());
+        }
+
+        function getSelectedReportBINodes() {
+            selectedNodes = $("#treeReportBI").fancytree("getTree").getSelectedNodes();
+            selectedArr = selectedNodes.map(x => x.key);
+            selectedNodes.forEach(e => {
+                var p = e.parent;
+                while (p.parent != null) {
+                    if (selectedArr.indexOf(p.key) == -1 && p.key > 0) selectedArr.push(p.key);
+                    p = p.parent;
+                }
+            });
+
+            $('#StrAllowedReportBI').val(selectedArr.toString());
+            console.log(selectedArr.toString());
+        }
     };
 
     // popup cửa sổ sửa yêu cầu báo cáo
     function EditReport(reportId) {
         var url = "/ReportRequire/GetReportById?reportId=" + reportId;
-        $("#myModal").modal();
+        $("#dlgAddRequire").modal();
         $.ajax({
             type: "GET",
             url: url,
             success: function (data) {
                 //alert("edit: " + data);
                 var obj = JSON.parse(data);
-
                 var arrDMY = obj.ConfirmExpired.substring(0, 10).split("-");
                 var dateDDMMYYYY = arrDMY[2] + '/' + arrDMY[1] + '/' + arrDMY[0];
 
-                $("#Id").val(obj.Id);
+                $("#RequireId").val(obj.Id);
                 $("#Title").val(obj.Title);
                 $("#datepicker").datepicker({ dateFormat: "dd-mm-yy" }).val(dateDDMMYYYY);
                 $("#Description").val(obj.Description);
+                $("#StrAllowedReportBI").val(obj.strReportId);
+                //alert(obj.strReportId);
             }
         })
+
+        // load lại cây báo cáo với những báo cáo đã được chọn theo RequireId
+        $('#treeReportBI').fancytree({
+            checkbox: true,
+            selectMode: 3,
+            source: {
+                url: '/ReportRequire/ReportList?RequireId=' + reportId,
+                cache: false
+            },
+            select: function (evt, data) {
+                getSelectedReportBINodes();
+            },
+            init: function () {
+                getSelectedReportBINodes();
+            },
+            loadError: function (e, data) {
+                data.message = "Danh sách trống!";
+            },
+            filter: {
+                mode: "show",
+                autoApply: true
+            }
+        });
+
+        function getSelectedNodes() {
+            selectedNodes = $("#readdyTree").fancytree("getTree").getSelectedNodes();
+            selectedArr = selectedNodes.map(x => x.key);
+            selectedNodes.forEach(e => {
+                var p = e.parent;
+                while (p.parent != null) {
+                    if (selectedArr.indexOf(p.key) == -1) selectedArr.push(p.key);
+                    p = p.parent;
+                }
+            });
+
+            $('#StrAllowedMenus').val(selectedArr.toString());
+        }
+
+        function getSelectedReportBINodes() {
+            selectedNodes = $("#treeReportBI").fancytree("getTree").getSelectedNodes();
+            selectedArr = selectedNodes.map(x => x.key);
+            selectedNodes.forEach(e => {
+                var p = e.parent;
+                while (p.parent != null) {
+                    if (selectedArr.indexOf(p.key) == -1 && p.key > 0) selectedArr.push(p.key);
+                    p = p.parent;
+                }
+            });
+
+            $('#StrAllowedReportBI').val(selectedArr.toString());
+            console.log(selectedArr.toString());
+        }
     }
 
     $(document).ready(function () {
@@ -142,17 +274,72 @@
                 "datepicker": { required: "<span class='required' style='color: red;'>Đề nghị nhập ngày xác nhận</span>" }
             }
         });
+
+
+        $('#treeReportBI').fancytree({
+            checkbox: true,
+            selectMode: 3,
+            source: {
+                url: '/ReportRequire/ReportList?RequireId=0',
+                cache: false
+            },
+            select: function (evt, data) {
+                getSelectedReportBINodes();
+            },
+            init: function () {
+                getSelectedReportBINodes();
+            },
+            loadError: function (e, data) {
+                data.message = "Danh sách trống!";
+            },
+            filter: {
+                mode: "show",
+                autoApply: true
+            }
+        });
+
+        function getSelectedNodes() {
+            selectedNodes = $("#readdyTree").fancytree("getTree").getSelectedNodes();
+            selectedArr = selectedNodes.map(x => x.key);
+            selectedNodes.forEach(e => {
+                var p = e.parent;
+                while (p.parent != null) {
+                    if (selectedArr.indexOf(p.key) == -1) selectedArr.push(p.key);
+                    p = p.parent;
+                }
+            });
+
+            $('#StrAllowedMenus').val(selectedArr.toString());
+        }
+
+        function getSelectedReportBINodes() {
+            selectedNodes = $("#treeReportBI").fancytree("getTree").getSelectedNodes();
+            selectedArr = selectedNodes.map(x => x.key);
+            selectedNodes.forEach(e => {
+                var p = e.parent;
+                while (p.parent != null) {
+                    if (selectedArr.indexOf(p.key) == -1 && p.key > 0) selectedArr.push(p.key);
+                    p = p.parent;
+                }
+            });
+
+            $('#StrAllowedReportBI').val(selectedArr.toString());
+            console.log(selectedArr.toString());
+        }
+
+
     });
 
     // user click vào nút submit trên popup Add/edit
     $("#btnSave").click(function () {
         var data1 = $("#submitForm").serialize();
-        var id = document.getElementById("Id").value;
+        debugger;
+        var id = document.getElementById("RequireId").value;
         var title = document.getElementById("Title").value;
         var confirmExpired = document.getElementById("datepicker").value;
         var description = document.getElementById("Description").value;
-        var dataform = { 'Id': id, 'Title': title, 'ConfirmExpired': confirmExpired, 'Description': description };
-
+        var dataform = { 'Id': id, 'Title': title, 'ConfirmExpired': confirmExpired, 'Description': description, 'strReportId': $("#StrAllowedReportBI").val() };
+        console.log(dataform);
         if (title == '') {
             return;
         }
@@ -161,29 +348,35 @@
             return;
         }
 
-
         $.ajax({
-            type: "Post",
+            type: "POST",
             url: "/ReportRequire/Save2",
-            data: dataform,
-            dataType: "json",
-            success: function (result) {                                
-                $("#MyModal").modal("hide");                
+            contentType: "application/json; charset=utf-8",
+            data: JSON.stringify(dataform),
+            datatype: "html",
+            success: function (result) {
+                $("#dlgAddRequire").modal('hide');
                 $("#reportView").html(result);
+                //var table = $('.table').DataTable();
+                //table.reload();
+            },
+            error: function (er) {
+                alert("Có lỗi xảy ra.");
+                console.log(er);
             }
         })
     })
 
     //Show The Popup Modal For DeleteComfirmation
     function DeleteReport(reportId, title) {
-        $("#Id").val(reportId);
+        $("#RequireId").val(reportId);
         document.getElementById('lblTitle').innerHTML = title;
 
         $("#DeleteConfirmation").modal("show");
     }
 
     var ConfirmDelete = function () {
-        var id = $("#Id").val();
+        var id = $("#RequireId").val();
         $.ajax({
             type: "POST",
             url: "/ReportRequire/Delete?reportId=" + id,
@@ -199,4 +392,4 @@
     });
 
 
- </script>
+</script>

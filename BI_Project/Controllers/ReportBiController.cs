@@ -126,8 +126,7 @@ namespace BI_Project.Controllers
             return View("~/" + this.THEME_FOLDER + "/" + this.THEME_ACTIVE + "/index.cshtml");
         }
 
-        [HttpPost]
-        [CheckUserMenus]
+        [HttpPost]        
         public ActionResult Create(EntityReportBIModel model)
         {
            /* if (null == Session[this.SESSION_NAME_USERID])

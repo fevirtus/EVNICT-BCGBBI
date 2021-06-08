@@ -1,0 +1,169 @@
+<div class="row">
+        <div class="col-lg-12">
+
+            <div>
+
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#task" aria-controls="home" role="tab" data-toggle="tab">Công việc</a></li>
+                    <li role="presentation"><a href="#confirm" aria-controls="profile" role="tab" data-toggle="tab">Tình hình xác nhận số liệu báo cáo</a></li>
+                    <li role="presentation"><a href="#evalue" aria-controls="messages" role="tab" data-toggle="tab">Đánh giá</a></li>                    
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="task">
+                        <div class="table-responsive">
+                            <div class="row">
+                                <button class="btn btn-primary" onclick="onAddNewTask(@ReportRequirementId)">Thêm mới công việc</button>
+                                <input type="hidden" name="ReportRequirementId" value="@ReportRequirementId" />
+                            </div>
+                            <table class="table table-bordered table-hover datatable-highlight">
+
+                                <thead>
+                                    <tr>
+                                        <th style="width:20px">Stt</th>
+                                        <th style="width:120px">Nội dung</th>
+                                        <th style="width:50px">Ban thực hiện</th>
+                                        <th style="width:150px">Hạn hoàn thành</th>
+                                        <th style="width:150px">Tình trạng</th>
+                                        <th style="width:150px">Kết quả thực hiện</th>
+                                        <th style="width:10px">Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        index = 0;
+                                        baseUrl = Url.Content("~");
+                                        if (GBTaskBlockData != null)
+                                        {
+                                            foreach (EntityGBTaskModel item in GBTaskBlockData)
+                                            {
+                                                index++;
+                                                <tr>
+                                                    <td>@index</td>
+                                                    <td class="menu_item_@index">@item.Title </td>
+                                                    <td class="menu_item_@index">@item.DepartmentCode </td>
+                                                    <td class="menu_item_@index">@item.Deadline.ToString("dd/MM/yyyy") </td>
+                                                    <td class="menu_item_@index">
+                                                        @{
+                                                            @(item.Status == 1 ? "Hoàn thành" : "Chưa hoàn thành");
+                                                        }
+
+                                                    </td>
+                                                    <td class="menu_item_@index">@item.Comment</td>
+                                                    <td>
+                                                        <button class="btn btn-primary" onclick="onEditTask(@item.Id)">Sửa</button>
+                                                        <a href="@(baseUrl + "GBTask/Delete?id=" + item.Id + "&ReportRequirementId=" + item.ReportRequirementId)" onclick="return confirm('Bạn có muốn xóa hay không?');">Xóa</a>
+                                                        <button class="btn btn-primary" onclick="onConfirmTask(@item.Id)">Cập nhật</button>
+
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="confirm">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover datatable-highlight">
+                                <thead>
+                                    <tr>
+                                        <th style="width:20px">STT</th>
+                                        <th style="width:120px">Tên báo cáo</th>
+                                        <th style="width:50px">Ban phụ trách</th>
+                                        <th style="width:150px">Chu kì báo cáo</th>
+                                        <th style="width:10px">Trạng thái</th>
+                                        <th style="width:10px">Số liệu</th>
+                                        <th style="width:10px">T.Gian XN</th>
+                                        <th style="width:10px">Xem BC</th>
+                                        <th style="width:10px">Xác nhận</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        index = 0;
+                                        baseUrl = Url.Content("~");
+                                        foreach (EntityReportRequirementModel item in lstReporConfirmtBI)
+                                        {
+                                            index++;
+                                            <tr>
+                                                <td>@index</td>
+                                                <td class="menu_item_@index">@item.ReportName </td>
+                                                <td class="menu_item_@index">@item.DepartmentCode </td>
+                                                <td>Tháng</td>
+                                                <td class="menu_item_@index">@item.ConfirmStatus</td>
+                                                <td class="menu_item_@index">@item.DataStatus</td>
+                                                <td class="menu_item_@index">@item.ConfirmExpired.ToString("dd/MM/yyyy")</td>
+                                                <td>
+                                                    <button class="btn btn-primary" onclick="onDetail(@item.Id)">Xem</button>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-primary" onclick="onConfirm(@ReportRequirementId, @item.Id)">Xác nhận</button>
+                                                    <button class="btn btn-primary" onclick="onHistory(@item.Id)">Lịch sử</button>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="evalue">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover datatable-highlight">
+                                <thead>
+                                    <tr>
+                                        <th style="width:20px" rowspan="2">Stt</th>
+                                        <th style="width:100px" rowspan="2">Ban thực hiện</th>
+                                        <th style="width:50px" rowspan="2">Tổng</th>
+                                        <th style="width:50px" colspan="2">Công việc</th>
+                                        <th style="width:50px" colspan="2">Báo cáo đã xác nhận</th>
+                                        <th style="width:50px" rowspan="2">Báo cáo chưa xác nhận</th>
+                                        <th style="width:100px" rowspan="2">Ban đánh giá</th>
+                                        <th style="width:10px" rowspan="2">Ghi chú</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width:50px">Hoàn thành</th>
+                                        <th style="width:50px">Chưa hoàn thành</th>
+                                        <th style="width:50px">Đúng</th>
+                                        <th style="width:50px">Sai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        index = 0;
+                                        baseUrl = Url.Content("~");
+                                        if (lstEvaluate != null)
+                                        {
+                                            foreach (EntityGBRPTEvaluateModel item in lstEvaluate)
+                                            {
+                                                index++;
+                                                <tr>
+                                                    <td>@index</td>
+                                                    <td class="menu_item_@index">@item.DepartmentCode </td>
+                                                    <td class="menu_item_@index">@item.Total</td>
+                                                    <td class="menu_item_@index">@item.TaskDoneNum</td>
+                                                    <td class="menu_item_@index">@item.TaskProcessNum</td>
+                                                    <td class="menu_item_@index">@item.DataCorrectNum</td>
+                                                    <td class="menu_item_@index">@item.DataInCorrectNum</td>
+                                                    <td class="menu_item_@index">@item.ReportUnConfirmNum</td>
+                                                    <td class="menu_item_@index">@item.DepartmentCode_Evaluate </td>
+                                                    <td class="menu_item_@index">@item.Description</td>
+                                                    <td>
+                                                        <button class="btn btn-primary" onclick="onEvaluateTask('@item.DepartmentCode',@item.ReportRequirementId)">Cập nhật</button>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>                    
+                </div>
+            </div>            
+        </div>
+    </div>

@@ -16,9 +16,9 @@ namespace BI_Project.Services.BCGB
 
         }
 
-        public List<EntityReportRequirementModel> GetList(string DeptID, int? ReportRequirementId = null)
+        public List<EntityReportBIModel> GetList(string DeptID, int? ReportRequirementId = null)
         {
-            List<EntityReportRequirementModel> output = new List<EntityReportRequirementModel>();
+            List<EntityReportBIModel> output = new List<EntityReportBIModel>();
 
             this.DBConnection.OpenDBConnect();
             //Write log
@@ -37,7 +37,7 @@ namespace BI_Project.Services.BCGB
                     {
                         while (reader.Read())
                         {
-                            EntityReportRequirementModel entity = new EntityReportRequirementModel();
+                            EntityReportBIModel entity = new EntityReportBIModel();
                             if (!reader.IsDBNull(reader.GetOrdinal("Id")))
                                 entity.Id = reader.GetInt32(reader.GetOrdinal("Id"));
                             if (!reader.IsDBNull(reader.GetOrdinal("ReportName")))
@@ -48,10 +48,16 @@ namespace BI_Project.Services.BCGB
                                 entity.ConfirmStatus = reader.GetBoolean(reader.GetOrdinal("ConfirmStatus"));
                             if (!reader.IsDBNull(reader.GetOrdinal("DataStatus")))
                                 entity.DataStatus = reader.GetBoolean(reader.GetOrdinal("DataStatus"));
-                            if (!reader.IsDBNull(reader.GetOrdinal("ConfirmExpired")))
-                                entity.ConfirmExpired = reader.GetDateTime(reader.GetOrdinal("ConfirmExpired"));
-                            if (!reader.IsDBNull(reader.GetOrdinal("ReportBIId")))
-                                entity.ReportBIId = reader.GetInt32(reader.GetOrdinal("ReportBIId"));
+                            if (!reader.IsDBNull(reader.GetOrdinal("ReportRequirementId")))
+                                entity.ReportRequirementId = reader.GetInt32(reader.GetOrdinal("ReportRequirementId"));
+                            if (!reader.IsDBNull(reader.GetOrdinal("Description")))
+                                entity.Description = reader.GetString(reader.GetOrdinal("Description"));
+                            if (!reader.IsDBNull(reader.GetOrdinal("ConfirmDate")))
+                                entity.ConfirmDate = reader.GetDateTime(reader.GetOrdinal("ConfirmDate"));
+                            if (!reader.IsDBNull(reader.GetOrdinal("ReportPathFile")))
+                                entity.ReportPathFile = reader.GetString(reader.GetOrdinal("ReportPathFile"));
+                            if (!reader.IsDBNull(reader.GetOrdinal("Created")))
+                                entity.Created = reader.GetDateTime(reader.GetOrdinal("Created"));
 
                             output.Add(entity);
                         }
@@ -356,6 +362,7 @@ namespace BI_Project.Services.BCGB
                     dicParas.Add("ReportPathFile", Model.ReportPathFile);
                     dicParas.Add("DepartmentId", Model.DepartmentId);
                     dicParas.Add("ReportId", Model.ReportId);
+                    dicParas.Add("ConfirmDate", Model.ConfirmDate);
                     output = DBConnection.ExecSPNonQuery("SP_GB_ReportConfirm_Update", dicParas, ref dicParaOuts, true);                    
                 }
             }

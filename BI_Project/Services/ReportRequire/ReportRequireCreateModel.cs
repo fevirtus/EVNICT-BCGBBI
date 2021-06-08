@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using static BI_Project.Helpers.UIMenuTreeHelper;
 
 namespace BI_Project.Services.ReportRequire
 {
@@ -9,7 +10,7 @@ namespace BI_Project.Services.ReportRequire
     {
 
         public ReportRequireCreateModel() { }
-                
+
 
         public int Id { get; set; }
 
@@ -20,6 +21,10 @@ namespace BI_Project.Services.ReportRequire
         public String Description { get; set; }
 
         public int CreatorId { get; set; }
+
+        public String strReportId { get; set; }
+
+        
 
     }
 }

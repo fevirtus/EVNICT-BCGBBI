@@ -28,9 +28,7 @@ namespace BI_Project.Controllers
 
 
         public ActionResult List()
-        {
-
-           
+        {          
             this.SetCommonData();
             ViewData["pagename"] = m_pagename;
             ViewData["action_block"] = m_action_block;//"GBTask/block_user_list";
@@ -69,7 +67,7 @@ namespace BI_Project.Controllers
 
             ViewData["pagename"] = "task_create";
             ViewData["action_block"] = "GBTask/block_task_create";
-            ViewData["data_form"] = TempData["data"];
+            ViewData["data_form1"] = TempData["data"];
 
             string id = (Request.QueryString["id"] == null ? "0" : Request.QueryString["id"].ToString());
             string RptId = (Request.QueryString["ReportRequirementId"] == null ? "0" : Request.QueryString["ReportRequirementId"].ToString());
@@ -80,7 +78,7 @@ namespace BI_Project.Controllers
             EntityCreateTaskModel model = new EntityCreateTaskModel();
             if (TempData["data"] != null)
             {
-                model = (EntityCreateTaskModel)ViewData["data_form"];
+                model = (EntityCreateTaskModel)ViewData["data_form1"];
             }
             else
             {
@@ -118,7 +116,7 @@ namespace BI_Project.Controllers
             BI_Project.Models.UI.BlockModel blockModel = new Models.UI.BlockModel("block_task_create");
             blockModel.DataModel = model;
             ViewData["BlockData"] = blockModel;
-            ViewData["data_form"] = model;
+            ViewData["data_form1"] = model;
 
             this.GetLanguage();
             if (services.ERROR != null) FileHelper.SaveFile(services.ERROR, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + BI_Project.Helpers.Utility.APIStringHelper.GenerateFileId() + ".txt");
@@ -173,7 +171,6 @@ namespace BI_Project.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-
         public JsonResult GetEvaluateByDept(string DepartmentCode,int ReportRequirementId)
         {   
             this.SetConnectionDB();
@@ -186,7 +183,7 @@ namespace BI_Project.Controllers
             blockModel.DataModel = model;
             ViewData["BlockData"] = blockModel;
 
-            ViewData["data_form"] = model;
+            ViewData["data_form1"] = model;
             Services.Departments.DepartmentServices departmentServices = new Services.Departments.DepartmentServices(this.DBConnection);
             ViewData["departments"] = departmentServices.GetList();
             if (model != null)
@@ -202,6 +199,7 @@ namespace BI_Project.Controllers
             });
             return Json(value, JsonRequestBehavior.AllowGet);
         }
+
         public ActionResult Evaluate()
         {
 
@@ -211,7 +209,7 @@ namespace BI_Project.Controllers
 
             ViewData["pagename"] = "task_evaluate";
             ViewData["action_block"] = "GBTask/block_task_evaluate";
-            ViewData["data_form"] = TempData["data"];
+            ViewData["data_form1"] = TempData["data"];
 
             string DepartmentCode = (Request.QueryString["DepartmentCode"] == null ? "0" : Request.QueryString["DepartmentCode"].ToString());
             this.SetConnectionDB();
@@ -225,7 +223,7 @@ namespace BI_Project.Controllers
             blockModel.DataModel = model;
             ViewData["BlockData"] = blockModel;
 
-            ViewData["data_form"] = model;
+            ViewData["data_form1"] = model;
             Services.Departments.DepartmentServices departmentServices = new Services.Departments.DepartmentServices(this.DBConnection);
             ViewData["departments"] = departmentServices.GetList();
             if (model != null)
@@ -240,15 +238,13 @@ namespace BI_Project.Controllers
         }
 
         public ActionResult Confirm()
-        {
-
-         
+        {         
             this.SetCommonData();
 
 
             ViewData["pagename"] = "task_confirm";
             ViewData["action_block"] = "GBTask/block_task_confirm";
-            ViewData["data_form"] = TempData["data"];
+            ViewData["data_form1"] = TempData["data"];
 
             string id = (Request.QueryString["id"] == null ? "0" : Request.QueryString["id"].ToString());
             this.SetConnectionDB();
@@ -256,7 +252,7 @@ namespace BI_Project.Controllers
             BlockDataGBTaskCreateModel model = new BlockDataGBTaskCreateModel();
             if (TempData["data"] != null)
             {
-                model = (BlockDataGBTaskCreateModel)ViewData["data_form"];
+                model = (BlockDataGBTaskCreateModel)ViewData["data_form1"];
             }
             else
             {
@@ -266,7 +262,7 @@ namespace BI_Project.Controllers
             BI_Project.Models.UI.BlockModel blockModel = new Models.UI.BlockModel("block_task_confirm");
             blockModel.DataModel = model;
             ViewData["BlockData"] = blockModel;
-            ViewData["data_form"] = model;
+            ViewData["data_form1"] = model;
 
 
 
@@ -280,9 +276,6 @@ namespace BI_Project.Controllers
 
             return View("~/" + this.THEME_FOLDER + "/" + this.THEME_ACTIVE + "/index.cshtml");
         }
-
-
-
 
         [HttpPost]
         //Hàm lưu
@@ -304,13 +297,9 @@ namespace BI_Project.Controllers
             task.ReportRequirementId = model.ReportRequirementId;
 
             Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
-           
-            ViewData["data_form"] = TempData["data"];
-            // get language
-            this.GetLanguage();
-            //string id = (Request.QueryString["ReportRequirementId"] == null ? "0" : Request.QueryString["ReportRequirementId"].ToString());
-            //int ReportRequirementId = Convert.ToInt32(id);
 
+            ViewData["data_form1"] = TempData["data"];
+            this.GetLanguage();
             //**************** DATABASE PROCESS*******************************************************
             this.SetConnectionDB();
 
@@ -321,7 +310,6 @@ namespace BI_Project.Controllers
             int result = 0;
             if (checkData != null)
             {
-                //model.CreatorId = Session[this.SESSION_NAME_USERID];
                 result = services.CreateTask(task);
             }
             else
@@ -329,22 +317,14 @@ namespace BI_Project.Controllers
                 model.Id = 0;
                 result = services.CreateTask(task);
             }
-
             if (services.ERROR != null) FileHelper.SaveFile(new { data = model, ERROR = services.ERROR }, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
-
-
             //***********************INSERT OR EDIT SUCCESSFULLY * *************************************************
-            if (result > 0)
-            {
-                //return RedirectToAction("List?ReportRequirementId=" + model.ReportRequirementId);
-                //return RedirectToAction("List", "ReportRequirementId", model.ReportRequirementId);
-                //return RedirectToAction("BCGB/List", new { ReportRequirementId = model.ReportRequirementId });
-                return RedirectToAction("List", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
-            }
-            TempData["data"] = model;
-            return RedirectToAction("List", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
-
-
+            List<EntityGBTaskModel> LISTTASK = services.GetList(model.ReportRequirementId);
+            ViewData["LISTTASK"] = LISTTASK;
+            return PartialView("_Task", new ViewDataDictionary {
+                { "LISTTASK", LISTTASK },
+                { "ReportRequirementId", model.ReportRequirementId}
+            });
         }
 
         [HttpPost]
@@ -354,7 +334,7 @@ namespace BI_Project.Controllers
 
             Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
            
-            ViewData["data_form"] = TempData["data"];
+            ViewData["data_form1"] = TempData["data"];
 
             //**************** DATABASE PROCESS*******************************************************
             this.SetConnectionDB();
@@ -379,6 +359,7 @@ namespace BI_Project.Controllers
 
             //***********************INSERT OR EDIT SUCCESSFULLY * *************************************************            
         }
+
         [HttpPost]
         //Hàm lưu
         public ActionResult Confirm(BlockDataGBTaskCreateModel model)
@@ -387,7 +368,7 @@ namespace BI_Project.Controllers
             Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
            
 
-            ViewData["data_form"] = TempData["data"];
+            ViewData["data_form1"] = TempData["data"];
             // get language
             this.GetLanguage();
             if (string.IsNullOrEmpty(model.Comment))
@@ -444,6 +425,7 @@ namespace BI_Project.Controllers
             return RedirectToAction("List", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
 
         }
+
         [HttpPost]
         //Hàm lưu
         public ActionResult DepartConfirm(BlockDataGBTaskCreateModel model)
@@ -452,7 +434,7 @@ namespace BI_Project.Controllers
             Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
 
 
-            ViewData["data_form"] = TempData["data"];
+            ViewData["data_form1"] = TempData["data"];
             // get language
             this.GetLanguage();
             if (string.IsNullOrEmpty(model.Comment))
@@ -462,10 +444,11 @@ namespace BI_Project.Controllers
 
             //**************** DATABASE PROCESS*******************************************************
             this.SetConnectionDB();
-
             GBTaskServices services = new GBTaskServices(this.DBConnection);
+            List<EntityGBTaskModel> LISTTASK = services.GetList(model.ReportRequirementId);
+            ViewData["LISTTASK"] = LISTTASK;           
+                        
             // check tài khoản đã tồn tại trong hệ thống hay chưa
-
             var checkData = services.FindById(model.Id);
             int result = 0;
             if (checkData != null)
@@ -492,7 +475,10 @@ namespace BI_Project.Controllers
             }
             else
             {
-                return RedirectToAction("ViewDetail", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
+                return PartialView("_Task", new ViewDataDictionary {
+                { "LISTTASK", LISTTASK },
+                { "ReportRequirementId", model.ReportRequirementId}
+            });
             }
 
             if (services.ERROR != null) FileHelper.SaveFile(new { data = model, ERROR = services.ERROR }, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
@@ -502,12 +488,19 @@ namespace BI_Project.Controllers
             if (result > 0)
             {
                 //                return RedirectToAction("List");
-                return RedirectToAction("ViewDetail", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
+                return PartialView("_Task", new ViewDataDictionary {
+                { "LISTTASK", LISTTASK },
+                { "ReportRequirementId", model.ReportRequirementId}
+            });
             }
-            TempData["data"] = model;
-            //return RedirectToAction("Confirm");
-            return RedirectToAction("ViewDetail", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
-
+            //TempData["data"] = model;
+            ////return RedirectToAction("Confirm");
+            //return RedirectToAction("ViewDetail", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
+            
+            return PartialView("_Task", new ViewDataDictionary {
+                { "LISTTASK", LISTTASK },
+                { "ReportRequirementId", model.ReportRequirementId}
+            });
         }
         
         [HttpPost]
@@ -518,20 +511,12 @@ namespace BI_Project.Controllers
             Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
            
 
-            ViewData["data_form"] = TempData["data"];
+            ViewData["data_form1"] = TempData["data"];
             //**************** DATABASE PROCESS*******************************************************
             this.SetConnectionDB();
             GBTaskServices services = new GBTaskServices(this.DBConnection);
+
             // check tài khoản đã tồn tại trong hệ thống hay chưa
-
-
-
-
-
-            //List<EntityGBRPTEvaluateModel> lstEvaluate = services.GetListEvaluate(ReportRequirementId);
-            //EntityGBRPTEvaluateModel modelData = lstEvaluate.Find(x => x.DepartmentCode.Equals(DepartmentCode));
-            //modelData.DepartmentCode_Evaluate = model.DepartmentCode_Evaluate;
-            //modelData.Description = model.Description;
             int result = 0;
             model.CreatorId = (int)Session[this.SESSION_NAME_USERID];
             result = services.CreateEvaluate(model);
@@ -546,22 +531,19 @@ namespace BI_Project.Controllers
             //return RedirectToAction("List");
             return RedirectToAction("List", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
         }
-
-        
+                
         [HttpGet]
         [CheckUserMenus]
         public ActionResult Delete()
-        {
-
-          
+        {         
             string id = this.HttpContext.Request["id"];
             string rptId = this.HttpContext.Request["ReportRequirementId"];
             Logging.WriteToLog(this.GetType().ToString() + "-delete(), id=" + id, LogType.Access);
             int output = 0;
+            this.SetConnectionDB();
+            GBTaskServices services = new GBTaskServices(this.DBConnection);
             try
             {
-                this.SetConnectionDB();
-                GBTaskServices services = new GBTaskServices(this.DBConnection);
                 output = services.Delete(Int32.Parse(id));
                 if (services.ERROR != null) throw new Exception(services.ERROR);
             }
@@ -582,10 +564,13 @@ namespace BI_Project.Controllers
                 Session["msg_text"] = BlockLanguageModel.GetElementLang(this.LANGUAGE_OBJECT, "commons.messages.ServerError");
             }
             Session["msg_code"] = output;
-            //return RedirectToAction("List");
-            //return RedirectToAction("/BCGB/List", new { ReportRequirementId = rptId });
-            return RedirectToAction("List", "BCGB", new { ReportRequirementId = rptId });
 
+            List<EntityGBTaskModel> LISTTASK = services.GetList(Int32.Parse(rptId));
+            ViewData["LISTTASK"] = services.GetList(Int32.Parse(rptId));
+            return PartialView("_Task", new ViewDataDictionary {
+                { "LISTTASK", LISTTASK },
+                { "ReportRequirementId", Int32.Parse(rptId)}
+            });
         }
 
     }

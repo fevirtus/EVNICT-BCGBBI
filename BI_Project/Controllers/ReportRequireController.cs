@@ -11,6 +11,9 @@ using BI_Project.Helpers;
 using System.Web.Script.Serialization;
 using BI_Project.Services.ReportRequire;
 using Newtonsoft.Json;
+using BI_Project.Services.Roles;
+using BI_Project.Services.ReportBi;
+using static BI_Project.Helpers.UIMenuTreeHelper;
 
 namespace BI_Project.Controllers
 {
@@ -33,15 +36,21 @@ namespace BI_Project.Controllers
 
         public JsonResult GetReportById(int reportId)
         {
-            this.SetConnectionDB();
-            ReportRequireService reportService = new ReportRequireService(this.DBConnection);
-            ReportRequireModel reportSelected = reportService.GetReportById(reportId);
-
             string value = string.Empty;
-            value = JsonConvert.SerializeObject(reportSelected, Formatting.Indented, new JsonSerializerSettings
+            if (reportId > 0)
             {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
+                this.SetConnectionDB();
+                ReportRequireService reportService = new ReportRequireService(this.DBConnection);
+                ReportRequireModel reportSelected = reportService.GetReportById(reportId);
+
+
+                value = JsonConvert.SerializeObject(reportSelected, Formatting.Indented, new JsonSerializerSettings
+                {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
+
+            }
+
             return Json(value, JsonRequestBehavior.AllowGet);
 
         }
@@ -74,11 +83,11 @@ namespace BI_Project.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
-
+        [HttpPost]
         public ActionResult Save2(ReportRequireCreateModel model)
         {
             int userId = (int)Session[this.SESSION_NAME_USERID];
-            if (userId != null)
+            if (userId > 0)
             {
                 model.CreatorId = userId;
             }
@@ -257,6 +266,28 @@ namespace BI_Project.Controllers
             ReportRequireService reportService = new ReportRequireService(this.DBConnection);
             ViewData["reportList"] = reportService.GetList();
 
+
+            ViewData["data-form"] = TempData["data"];
+
+            string roleid = (Request.QueryString["roleid"] == null ? "0" : Request.QueryString["roleid"].ToString());
+            this.SetConnectionDB();
+            RoleServices services = new RoleServices(this.DBConnection);
+
+            //BlockDataRoleCreateModel model = new BlockDataRoleCreateModel();
+
+            //if (ViewData["data-form"] != null)
+            //{
+            //    model = (BlockDataRoleCreateModel)ViewData["data-form"];
+            //}
+            //else
+            //{
+            //    model = services.GetEntityById(Int32.Parse(roleid));
+            //}
+            ViewData["reportbis"] = new Services.ReportBi.ReportBIServices(this.DBConnection).GetList();
+            //BlockLangRoleCreateModel blockLang = new BlockLangRoleCreateModel();
+            //BI_Project.Models.UI.BlockModel blockModel = new Models.UI.BlockModel("block_role_create", this.LANGUAGE_OBJECT, blockLang);
+            //blockModel.DataModel = model;
+            //ViewData["BlockData"] = blockModel;
             //================================================================================================================
 
             //if ((bool)Session["IsAdmin"] == false)
@@ -305,7 +336,7 @@ namespace BI_Project.Controllers
                 ViewData["listdepartmentsadmin"] = departmentServices.GetListAdminLogin((string)Session["CodeIsAdmin"]);
 
 
-
+                //blockModel.DataModel = model;
                 ViewData["BlockData"] = blockModel;
 
                 SetConnectionDB();
@@ -344,6 +375,67 @@ namespace BI_Project.Controllers
                 var uiMenuDataJson = uiMenuTreeHelper.BuildMenuToJsonStr(uiMenuTreeHelper.RootId);
                 return Json((new JavaScriptSerializer()).Deserialize(uiMenuDataJson, typeof(object)), JsonRequestBehavior.AllowGet);
             }
+        }
+
+
+        public ActionResult ReportList(int? RequireId = null)
+        {
+            SetConnectionDB();
+            Services.ReportBi.ReportBIServices service = new Services.ReportBi.ReportBIServices(DBConnection);
+            Services.BCGB.BCGBServices serviceBCGB = new Services.BCGB.BCGBServices(DBConnection);
+            List<EntityReportBIModel> list = service.GetList();
+            RoleServices roleServices = new RoleServices(DBConnection);
+            List<EntityReportBIModel> listRole = new List<EntityReportBIModel>();
+            if (RequireId != null && RequireId > 0)
+                listRole = serviceBCGB.GetList("", RequireId);
+
+            AreaServices areaServices = new AreaServices(DBConnection);
+            List<EntityAreaModel> listArea = new List<EntityAreaModel>();
+            List<MenuFancyTreeItem> listFan = new List<MenuFancyTreeItem>();
+            listArea = areaServices.GetList();
+            if (listArea != null && listArea.Count > 0)
+            {
+                foreach (EntityAreaModel area in listArea)
+                {
+                    MenuFancyTreeItem objFolder = new MenuFancyTreeItem()
+                    {
+                        title = area.AreaName,
+                        key = 0,
+                        folder = true,
+                        hideCheckbox = true
+                        //parentId= area.ParentId
+                    };
+
+                    var lstResultReport = list.FindAll(o => o.AreaId == area.Id);
+                    if (lstResultReport != null && lstResultReport.Count > 0)
+                    {
+                        List<MenuFancyTreeItem> listchildren = new List<MenuFancyTreeItem>();
+                        foreach (EntityReportBIModel reporBI in lstResultReport)
+                        {
+                            bool blReportSelect = false;
+                            if (listRole != null && listRole.Count > 0)
+                            {
+                                var blResult = listRole.FindAll(o => o.Id == reporBI.Id);
+                                if (blResult != null && blResult.Count() > 0)
+                                    blReportSelect = true;
+                            }
+                            MenuFancyTreeItem obj = new MenuFancyTreeItem()
+                            {
+                                title = reporBI.ReportName,
+                                key = reporBI.Id,
+                                selected = blReportSelect,
+                                parentId = area.Id,
+                                hideCheckbox = false
+                            };
+                            listchildren.Add(obj);
+                        }
+                        objFolder.children = listchildren;
+                    }
+                    listFan.Add(objFolder);
+
+                }
+            }
+            return Json(listFan, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult List2(int? DeptID = null, int? userId = null, int? roleId = null)

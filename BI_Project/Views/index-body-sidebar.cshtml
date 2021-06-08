@@ -15,9 +15,12 @@
                             }
                             else
                             {
-                                @Html.Raw(Session["UserName"].ToString())
+                                if (Session["UserName"] != null)
+                                {
+                                    @Html.Raw(Session["UserName"].ToString())
+                                }
                             }
-                        </span>
+                            </span>
                         <div class="text-size-mini text-muted">
                             <i class="icon-pin text-size-small"></i> EVN
                         </div>

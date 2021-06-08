@@ -1,0 +1,60 @@
+﻿@using BI_Project.Models.EntityModels;
+@using BI_Project.Services.BCGB;
+@using BI_Project.Services.GBTask;
+
+@{
+    List<EntityGBTaskModel> GBTaskBlockData = (List<EntityGBTaskModel>)ViewData["LISTTASK"];
+    var ReportRequirementId = "";
+    if (ViewData["ReportRequirementId"] != null)
+    {
+        ReportRequirementId = ViewData["ReportRequirementId"].ToString();
+    }
+}
+
+<div class="table-responsive">   
+    <table class="table table-bordered table-hover datatable-highlight" id="taskTable">
+        <thead>
+            <tr>
+                <th style="width:20px">Stt</th>
+                <th style="width:120px">Nội dung</th>
+                <th style="width:50px">Ban thực hiện</th>
+                <th style="width:100px">Hạn hoàn thành</th>
+                <th style="width:100px">Tình trạng</th>
+                <th style="width:100px">Kết quả thực hiện</th>
+                <th style="width:10px">Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var index = 0;
+                var baseUrl = Url.Content("~");
+                if (GBTaskBlockData != null)
+                {
+                    foreach (EntityGBTaskModel item in GBTaskBlockData)
+                    {
+                        index++;
+                        <tr>
+                            <td>@index</td>
+                            <td class="menu_item_@index">@item.Title </td>
+                            <td class="menu_item_@index">@item.DepartmentCode </td>
+                            <td class="menu_item_@index">@item.Deadline.ToString("dd/MM/yyyy") </td>
+                            <td class="menu_item_@index">
+                                @{
+                                    @(item.Status == 1 ? "Hoàn thành" : "Chưa hoàn thành");
+                                }
+
+                            </td>
+                            <td class="menu_item_@index">@item.Comment</td>
+                            <td>
+                                <a href="#" onclick="onEditTask(@item.Id)"><span class="glyphicon glyphicon-edit"></span></a>
+                                <a href="@(baseUrl + "GBTask/Delete?id=" + item.Id + "&ReportRequirementId=" + item.ReportRequirementId)" onclick="return confirm('Bạn có muốn xóa hay không?');"><span class="glyphicon glyphicon-trash"></span></a>
+                                <a onclick="onConfirmTask(@item.Id)"><span class="glyphicon glyphicon-repeat"></span></a>
+                                <a href="@item.ResultFile" target="_blank"><span class="glyphicon glyphicon-link"></span></a>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

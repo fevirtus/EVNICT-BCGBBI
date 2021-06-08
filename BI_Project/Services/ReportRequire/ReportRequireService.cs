@@ -29,6 +29,7 @@ namespace BI_Project.Services.ReportRequire
                 dicParas.Add("ConfirmExpired", model.ConfirmExpired);
                 dicParas.Add("Description", model.Description);
                 dicParas.Add("CreatorId", model.CreatorId);
+                dicParas.Add("StrReportId", model.strReportId);
 
 
                 output = DBConnection.ExecSPNonQuery("SP_REQUIREMENT_INSERT", dicParas, ref dicParaOuts, true);
@@ -67,6 +68,7 @@ namespace BI_Project.Services.ReportRequire
                 dicParas.Add("ConfirmExpired", model.ConfirmExpired);
                 dicParas.Add("Description", model.Description);
                 dicParas.Add("CreatorId", model.CreatorId);
+                dicParas.Add("StrReportId", model.strReportId);
 
                 output = DBConnection.ExecSPNonQuery("SP_REQUIREMENT_UPDATE", dicParas, ref dicParaOuts, true);
 
@@ -305,7 +307,16 @@ namespace BI_Project.Services.ReportRequire
 
             try
             {
-                string sqlSelectDepart = "Select * from GB_ReportRequirement where id = " + reportId.ToString();
+                string sqlSelectDepart = "Select " +
+                                         "       sub.Id, sub.Title, sub.ConfirmExpired, sub.Description, sub.Status, sub.Created, sub.CreatorId, sub.LastUpdated, sub.Modifier, Replace(Replace(sub.ReportId, '<ReportId>', ''), '</ReportId>', ',') as strReportId " +
+                                         "   FROM                                                " +
+                                         "      (  " +
+                                         "       Select " +
+                                         "           Id, Title, ConfirmExpired, Description, Status, Created, CreatorId, LastUpdated, Modifier, " +
+                                         "           (Select ReportId from GB_ReportConfirm where ReportRequirementId = " + reportId.ToString() + " FOR XML PATH('')) as ReportId " +
+                                         "       From " +
+                                         "           GB_ReportRequirement  where id = " + reportId.ToString() +
+                                         "       )sub" ;
                 this.DBConnection.command.Parameters.Clear();
                 this.DBConnection.command.CommandText = sqlSelectDepart;
 
@@ -353,7 +364,11 @@ namespace BI_Project.Services.ReportRequire
                             {
                                 report.Modifier = reader.GetInt32(reader.GetOrdinal("Modifier"));
                             }
-                            //report.Modifier = reader.IsDBNull(reader.GetOrdinal("Modifier")) ? null : reader.GetInt32(reader.GetOrdinal("Modifier"));
+                            if (!reader.IsDBNull(reader.GetOrdinal("strReportId")))
+                            {
+                                report.strReportId = reader.GetString(reader.GetOrdinal("strReportId"));
+                                report.strReportId = report.strReportId.Substring(0, report.strReportId.Length - 1);
+                            }
 
                             output = report;
                         }
@@ -374,6 +389,8 @@ namespace BI_Project.Services.ReportRequire
 
             return output;
         }
+
+
 
     }
 }

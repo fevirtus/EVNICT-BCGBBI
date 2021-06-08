@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using static BI_Project.Helpers.UIMenuTreeHelper;
 
 namespace BI_Project.Services.ReportRequire
 {
@@ -34,6 +35,7 @@ namespace BI_Project.Services.ReportRequire
 
         public String TrangThai { get; set; }
 
+        public String strReportId { get; set; }
 
     }
 }

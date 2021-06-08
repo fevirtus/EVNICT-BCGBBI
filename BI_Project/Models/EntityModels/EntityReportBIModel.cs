@@ -22,5 +22,15 @@ namespace BI_Project.Models.EntityModels
         public string CycleName { get; set; }
 
         public string AreaName { get; set; }
+
+        //adding attribute
+        public bool ConfirmStatus { get; set; }
+        public bool DataStatus { get; set; }
+        public int ReportRequirementId { get; set; }
+        public DateTime ConfirmDate { get; set; }
+        public string ReportPathFile { get; set; }
+        public DateTime Created { get; set; }
+
+
     }
 }
