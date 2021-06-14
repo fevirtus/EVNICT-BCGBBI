@@ -27,11 +27,11 @@
                 <th>STT</th>
                 <th>Tên báo cáo</th>
                 <th>Ban phụ trách</th>
-                <th>Phương thức TT</th>
+                <th>Dự liệu</th>
                 <th>Trạng thái</th>
                 <th>Số liệu</th>
                 <th>T.Gian XN</th>
-                <th>Phương thức TTDL</th>
+                @*<th>Phương thức TTDL</th>*@
                 <th>Xem BC</th>
                 <th>Xác nhận</th>
             </tr>
@@ -73,12 +73,12 @@
                                 { <span></span> }
                             }
                         </td>
-                        <td class="menu_item_@index">
+                        @*<td class="menu_item_@index">
                             @{ if (item.DataAuto)
                                 { <span>Dữ liệu tự động</span> }
                                 else
                                 { <span>Dữ liệu thủ công</span> } }
-                        </td>
+                        </td>*@
                         <td>
                             <a href="#" onclick="onDetail(@item.Id)"><span class="glyphicon glyphicon-eye-open"></span></a>
                         </td>

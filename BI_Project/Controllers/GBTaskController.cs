@@ -439,8 +439,7 @@ namespace BI_Project.Controllers
             //**************** DATABASE PROCESS*******************************************************
             this.SetConnectionDB();
             GBTaskServices services = new GBTaskServices(this.DBConnection);
-            List<EntityGBTaskModel> LISTTASK = services.GetList(model.ReportRequirementId);
-            ViewData["LISTTASK"] = LISTTASK;           
+                      
                         
             // check tài khoản đã tồn tại trong hệ thống hay chưa
             var checkData = services.FindById(model.Id);
@@ -469,6 +468,8 @@ namespace BI_Project.Controllers
             }
             else
             {
+                List<EntityGBTaskModel> LISTTASK = services.GetList(model.ReportRequirementId);
+                ViewData["LISTTASK"] = LISTTASK;
                 return PartialView("_Task", new ViewDataDictionary {
                 { "LISTTASK", LISTTASK },
                 { "ReportRequirementId", model.ReportRequirementId}

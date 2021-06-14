@@ -45,7 +45,8 @@ namespace BI_Project.Services.ReportBi
                             entityRole.DepartmentId = reader.IsDBNull(reader.GetOrdinal("DepartmentId")) ? 0 : reader.GetInt32(reader.GetOrdinal("DepartmentId"));
                             entityRole.DepartmentCode = reader.IsDBNull(reader.GetOrdinal("DepartmentCode")) ? null : reader.GetString(reader.GetOrdinal("DepartmentCode"));
                             entityRole.Cycle = reader.IsDBNull(reader.GetOrdinal("Cycle")) ? null : reader.GetString(reader.GetOrdinal("Cycle"));
-                            if(!reader.IsDBNull(reader.GetOrdinal("Cycle")))
+                            entityRole.DataAuto = reader.IsDBNull(reader.GetOrdinal("DataAuto")) ? false : reader.GetBoolean(reader.GetOrdinal("DataAuto"));
+                            if (!reader.IsDBNull(reader.GetOrdinal("Cycle")))
                             {
                                 switch (entityRole.Cycle)
                                 {

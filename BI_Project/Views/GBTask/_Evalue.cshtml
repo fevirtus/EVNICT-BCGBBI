@@ -25,7 +25,7 @@
                 <th style="width:50px" colspan="2">Công việc</th>
                 <th style="width:50px" colspan="2">Báo cáo đã xác nhận</th>
                 <th style="width:50px" rowspan="2">Báo cáo chưa xác nhận</th>
-                <th style="width:100px" rowspan="2">Ban đánh giá</th>
+                @*<th style="width:100px" rowspan="2">Ban đánh giá</th>*@
                 <th style="width:10px" rowspan="2">Ghi chú</th>
                 <th style="width:10px" rowspan="2">Thao tác</th>
             </tr>
@@ -54,7 +54,7 @@
                             <td class="menu_item_@index">@item.DataCorrectNum</td>
                             <td class="menu_item_@index">@item.DataInCorrectNum</td>
                             <td class="menu_item_@index">@item.ReportUnConfirmNum</td>
-                            <td class="menu_item_@index">@item.DepartmentCode_Evaluate </td>
+                            @*<td class="menu_item_@index">@item.DepartmentCode_Evaluate </td>*@
                             <td class="menu_item_@index">@item.Description</td>
                             <td>
                                 <button class="btn btn-primary" onclick="onEvaluateTask('@item.DepartmentCode',@item.ReportRequirementId)">Đánh giá</button>

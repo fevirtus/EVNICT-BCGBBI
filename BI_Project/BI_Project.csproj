@@ -3465,10 +3465,8 @@
     <Content Include="Views\BCGB\_Reload.cshtml" />
     <Content Include="Views\BCGB\_ReportConfirmHistory.cshtml" />
     <Content Include="Views\BCGB\_TableauView.cshtml" />
-    <Content Include="Views\BCGB\_Task.cshtml" />
-    <Content Include="Views\GBTask\_Task.cshtml" />
     <Content Include="Views\GBTask\_Evalue.cshtml" />
-    <Content Include="Views\BCGB\_Evalue.cshtml" />
+    <Content Include="Views\GBTask\_Task.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

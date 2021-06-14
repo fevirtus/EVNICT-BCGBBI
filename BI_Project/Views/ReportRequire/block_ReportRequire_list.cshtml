@@ -139,7 +139,6 @@
     </div>
 </div>
 
-
 <script>
 
     // popup cửa sổ thêm mới yêu cầu báo cáo
@@ -311,6 +310,7 @@
         }
     }
 
+    // user click vào nút 'Chọn hết' trên popup Add/edit
     $("#checkButton").click(function () {
         $("#treeReportBI").fancytree("getTree").visit(function(node){
 				node.setSelected(true);
@@ -318,6 +318,7 @@
 			return false;
     });
 
+    // user click vào nút 'Bỏ chọn hết' trên popup Add/edit
     $("#uncheckButton").click(function () {
         $("#treeReportBI").fancytree("getTree").visit(function (node) {
             node.setSelected(false);

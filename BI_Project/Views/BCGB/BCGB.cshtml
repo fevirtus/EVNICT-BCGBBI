@@ -8,7 +8,7 @@
     int index = 0;
     string baseUrl = Url.Content("~");
     EntityCreateTaskModel GBTaskDetail = new EntityCreateTaskModel();
-    List<EntityGBTaskModel> GBTaskBlockData = (List<EntityGBTaskModel>)ViewData["LISTTASK"];
+    List<EntityGBTaskModel> LISTTASK = (List<EntityGBTaskModel>)ViewData["LISTTASK"];
 
     List<EntityGBRPTEvaluateModel> lstEvaluate = new List<EntityGBRPTEvaluateModel>();
     if (ViewData["Evaluates"] != null)
@@ -88,7 +88,9 @@
         right: 0;
         margin: auto;
         z-index: 9999;
+        overflow-y: auto;
     }
+
 </style>
 
 <div class="content">
@@ -130,11 +132,11 @@
                                 <button class="btn btn-primary" onclick="onAddNewTask(@ReportRequirementId)">Thêm mới công việc</button>
                                 <input type="hidden" name="ReportRequirementId" value="@ReportRequirementId" />
                             </div>
-                            @{Html.RenderPartial("_Task", new ViewDataDictionary { { "LISTTASK", GBTaskBlockData }, { "ReportRequirementId", ReportRequirementId } });}
+                            @{Html.RenderPartial("~/Views/GBTask/_Task.cshtml", new ViewDataDictionary { { "LISTTASK", LISTTASK }, { "ReportRequirementId", ReportRequirementId } });}
                         </div>
                         @*Tab 3*@
                         <div role="tabpanel" class="tab-pane" id="tabEvalue">
-                            @{Html.RenderPartial("_Evalue", new ViewDataDictionary { { "Evaluates", lstEvaluate } }); }
+                            @{Html.RenderPartial("~/Views/GBTask/_Evalue.cshtml", new ViewDataDictionary { { "Evaluates", lstEvaluate } }); }
                         </div>
                     </div>
                 </div>
@@ -143,15 +145,14 @@
 
         @*hanv*@
         <!--dialog thêm/sửa công việc-->
-        <div id="taskdetailmodal" class="modal fade" role="dialog">
+        <div id="taskdetailmodal" class="modal fade">
             <div class="modal-dialog">
-                <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <a href="#" class="close" data-dismiss="modal">&times;</a>
                         <h4 class="modal-title">Thông tin công việc</h4>
                     </div>
-                    <div class="panel-body">
+                    <div class="modal-body">
                         <fieldset id="submitForm">
                             <input type="hidden" id="Task_Id" name="Id" />
                             <input type="hidden" id="Task_ReportRequirementId" name="ReportRequirementId" />

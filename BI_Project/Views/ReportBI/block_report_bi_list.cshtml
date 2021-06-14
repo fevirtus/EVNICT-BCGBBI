@@ -35,14 +35,12 @@
                                     <td hidden></td>
                                     <td hidden></td>
                                     <th style="width:20px">STT</th>
-                                    <th style="width:80px">Mã báo cáo</th>
-                                    <th style="width:120px">Tên báo cáo</th>
-                                    <th style="width:120px">Mô tả</th>
-                                    <th style="width:120px">URL Link</th>
-                                    <th style="width:100px">Cycle</th>
+                                    <th style="width:auto; min-width:100px">Tên báo cáo</th>
+                                    @*<th style="width:120px">Mô tả</th>*@
+
                                     <th style="width:20px">Phòng ban</th>
-                                    <th style="width:100px">Lĩnh vực</th>
-                                    <th style="width:100px">Thao tác</th>
+                                    <th style="width:120px">URL Link</th>
+                                    <th style="width:50px">Thao tác</th>
                             </thead>
                             <tbody>
 
@@ -58,13 +56,22 @@
                                             <td hidden></td>
                                             <td hidden></td>
                                             <td>@index</td>
-                                            <td class="menu_item_@index">@item.ReportCode</td>
-                                            <td class="menu_item_@index">@item.ReportName</td>
-                                            <td class="menu_item_@index">@item.Description</td>
-                                            <td class="menu_item_@index">@item.UrlLink</td>
-                                            <td class="menu_item_@index">@item.CycleName</td>
+                                            @*<td class="menu_item_@index">@item.ReportCode</td>*@
+                                            <td class="menu_item_@index">
+                                                [@item.CycleName] @item.ReportName
+
+                                                (@{
+                                                    if (item.DataAuto)
+                                                    {<i><span>Attach File</span></i>}
+                                                    else
+                                                    {<i><span>Tự động</span></i>}
+                                                })
+                                                <br /><i>Lĩnh vực: @item.AreaName</i>
+                                            </td>
+                                            @*<td class="menu_item_@index">@item.Description</td>*@
                                             <td class="menu_item_@index">@item.DepartmentCode</td>
-                                            <td class="menu_item_@index">@item.AreaName</td>
+                                            <td class="menu_item_@index">@item.UrlLink</td>
+
                                             <td>
                                                 <a href="@(baseUrl+"ReportBi/Create?id="+item.Id)"><span class='glyphicon glyphicon-edit'></span></a>
                                                 <a href="#" onclick="DeleteReport(@item.Id, '@item.ReportName')"><span class='glyphicon glyphicon-trash'></span></a>

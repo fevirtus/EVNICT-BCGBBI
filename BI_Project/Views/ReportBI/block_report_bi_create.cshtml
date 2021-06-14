@@ -35,7 +35,7 @@
 
                         <form id="form">
                             <input type="hidden" name="Id" value="@blockData.Id" />
-                            <input type="hidden" id="DataAuto" name="DataAuto" />
+                            <input type="hidden" id="DataAuto" name="DataAuto" value="@blockData.DataAuto" />
 
                             <label for="Name">Mã báo cáo <span class="required" style="color: red;">*</span></label>
                             <input type="text" class="form-control" id="ReportCode" name="ReportCode" value="@blockData.ReportCode" required>
@@ -90,10 +90,11 @@
                             <label for="Name">Mô tả <span class="required"></span></label>
                             <input type="text" class="form-control" id="Description" name="Description" value="@blockData.Description">
                             <div class="row" style="display:flex; align-items: baseline;">
-                                <label for="DataAuto" style="margin-left: 10px;">Số liệu thủ công</label>
-                                <input type="checkbox" id="dts" name="dts" class="col-sm-1" value="@blockData.DataAuto" style=" width: auto; margin-left: 10px; ">
-                            </div>
-                            <button type="submit" class="btn btn-success">Ghi</button>
+                                <label for="DataAuto" style="margin-left: 10px;">Số liệu tự động</label>
+                                <input type="checkbox" id="dts" name="dts" class="col-sm-1" checked="@blockData.DataAuto" style=" width: auto; margin-left: 10px; ">
+</div>
+
+<button type="submit" class="btn btn-success">Ghi</button>
                             <input type="button" class="btn btn-default" value="Hủy" onclick="window.location.href='/Home'">
                         </form>
                     }
@@ -108,26 +109,14 @@
     $(document).ready(function () {
         $("#form").validate({
             rules: {
-                "ReportCode": {
-                    required=true
-                },
+                ReportCode: "required",
                @* "ReportName": {
                     required=true
                 },*@
-                ReportName: "required",
-                "UrlLink": {
-                    required=true
-                },
-                "Cycle": {
-                    required=true
-                }
-                ,
-                "DepartmentId": {
-                    required=true
-                },
-                "AreaId": {
-                    required=true
-                }
+                UrlLink: "required",
+                Cycle: "required",
+                DepartmentId: "required",
+                AreaId: "required"            
             },
             messages: {
                 "ReportCode": {
@@ -151,13 +140,16 @@
         });
     });
 
-    $("input[type=checkbox]").change(function () {
+    $("#dts").change(function () {
+      
         if ($(this).prop("checked")) {
-            $(this).val(true);
-            $("#dts").val(true);
+            //$(this).val(true);            
+            $("#DataAuto").val(true);
+            console.log($("#DataAuto").val());
         } else {
-            $(this).val(false);
-            $("#dts").val(false);
+            $(this).val(false);           
+            $("#DataAuto").val(false);
+            console.log($("#DataAuto").val());
         }
     });
 
