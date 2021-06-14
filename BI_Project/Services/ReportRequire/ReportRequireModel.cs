@@ -37,5 +37,6 @@ namespace BI_Project.Services.ReportRequire
 
         public String strReportId { get; set; }
 
+        public String Cycle { get; set; }
     }
 }

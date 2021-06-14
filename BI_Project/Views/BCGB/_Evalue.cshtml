@@ -1,0 +1,67 @@
+﻿
+
+
+@using BI_Project.Models.EntityModels;
+@using BI_Project.Services.BCGB;
+@using BI_Project.Services.GBTask;
+
+@{
+
+    List<EntityGBRPTEvaluateModel> lstEvaluate = new List<EntityGBRPTEvaluateModel>();
+    if (ViewData["Evaluates"] != null)
+    {
+        lstEvaluate = (List<EntityGBRPTEvaluateModel>)ViewData["Evaluates"];
+    }
+
+}
+
+<div class="table-responsive">
+    <table class="table table-bordered table-hover datatable-highlight">
+        <thead>
+            <tr style="font-weight:bold">
+                <th style="width:20px" rowspan="2">Stt</th>
+                <th style="width:100px" rowspan="2">Ban thực hiện</th>
+                <th style="width:50px" rowspan="2">Tổng</th>
+                <th style="width:50px" colspan="2">Công việc</th>
+                <th style="width:50px" colspan="2">Báo cáo đã xác nhận</th>
+                <th style="width:50px" rowspan="2">Báo cáo chưa xác nhận</th>
+                <th style="width:10px" rowspan="2">Ghi chú</th>
+                <th style="width:10px" rowspan="2">Thao tác</th>
+            </tr>
+            <tr>
+                <th style="width:50px">Hoàn thành</th>
+                <th style="width:50px">Chưa hoàn thành</th>
+                <th style="width:50px">Đúng</th>
+                <th style="width:50px">Sai</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var index = 0;
+                var baseUrl = Url.Content("~");
+                if (lstEvaluate != null)
+                {
+                    foreach (EntityGBRPTEvaluateModel item in lstEvaluate)
+                    {
+                        index++;
+                        <tr>
+                            <td>@index</td>
+                            <td class="menu_item_@index">@item.DepartmentCode </td>
+                            <td class="menu_item_@index">@item.Total</td>
+                            <td class="menu_item_@index">@item.TaskDoneNum</td>
+                            <td class="menu_item_@index">@item.TaskProcessNum</td>
+                            <td class="menu_item_@index">@item.DataCorrectNum</td>
+                            <td class="menu_item_@index">@item.DataInCorrectNum</td>
+                            <td class="menu_item_@index">@item.ReportUnConfirmNum</td>
+                            @*<td class="menu_item_@index">@item.DepartmentCode_Evaluate </td>*@
+                            <td class="menu_item_@index">@item.Description</td>
+                            <td>
+                                <button class="btn btn-primary" onclick="onEvaluateTask('@item.DepartmentCode',@item.ReportRequirementId)">Đánh giá</button>
+                            </td>
+                        </tr>
+                    }
+                }
+            }
+        </tbody>
+    </table>
+</div>

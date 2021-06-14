@@ -87,9 +87,6 @@ namespace BI_Project.Controllers
             ViewData["ReportRequirementId"] = ReportRequirementId;
             blockModelGBTask.DataModel = GBTaskservices.GetList(ReportRequirementId);
 
-            List<EntityGBRPTEvaluateModel> lstEvaluate = GBTaskservices.GetListEvaluate(ReportRequirementId);
-            ViewData["Evaluates"] = lstEvaluate;
-
             DepartmentServices departmentServices = new DepartmentServices(this.DBConnection);
             ViewData["departments"] = departmentServices.GetList();
             string DepartCode = "";
@@ -98,23 +95,18 @@ namespace BI_Project.Controllers
             string DepartId = "";
             if (Session["DepartIdUserLogin"] != null)
                 DepartId = Session["DepartIdUserLogin"].ToString();
-            ViewData["LISTTASK"] = GBTaskservices.GetList(ReportRequirementId, DepartCode);
+            ViewData["LISTTASK"] = GBTaskservices.GetList(ReportRequirementId);
             //end
 
-            //BlockModel blockModel = new BlockModel("ViewDetail");
-            //blockModel.DataModel = services.GetList("", ReportRequirementId);
-            List<EntityReportBIModel> listReportConfirm = services.GetList(DepartId, ReportRequirementId);
+            List<EntityReportBIModel> listReportConfirm = services.GetList("", ReportRequirementId);
             BI_Project.Services.ReportRequire.ReportRequireModel objtRequirementSelected = new Services.ReportRequire.ReportRequireService(this.DBConnection).GetReportById(ReportRequirementId);
 
             if (services.ERROR != null) FileHelper.SaveFile(services.ERROR, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
             Logging.WriteToLog(this.GetType().ToString() + "-List()", LogType.Access);
 
-            //ViewData["BlockData"] = blockModel;
             ViewData["reportList"] = listReportConfirm;
             ViewData["ReportRequirementSelected"] = objtRequirementSelected;
-            //ViewData["ListReportConfirmBI"] = listReportConfirm;
-
-
+            
             return View("~/" + this.THEME_FOLDER + "/" + this.THEME_ACTIVE + "/index.cshtml");
         }
 
@@ -250,8 +242,8 @@ namespace BI_Project.Controllers
 
             EntityDepartmentModel _entityDepartmentModel = new EntityDepartmentModel();
 
-            //param.Site_Root = _entityMenuModel.Site_Root;
-            param.Ticket = BI_Core.Helpers.TableauHelper.GetTicket("");
+            param.Site_Root = _report.ReportCode;
+            param.Ticket = BI_Core.Helpers.TableauHelper.GetTicket(_report.ReportCode);
 
             param.TableauUrl = _report.UrlLink;
             //param.TableauUrl = "BCPTNPTD_1/Dashboard1?:iid=2";
@@ -456,7 +448,6 @@ namespace BI_Project.Controllers
                 { "reportList", reportList },
                 { "ReportRequirementId", model.ReportRequirementId}
             });
-
         }
 
         [HttpPost]
@@ -492,19 +483,13 @@ namespace BI_Project.Controllers
             result = services.UpdateReport(model);
             if (services.ERROR != null) FileHelper.SaveFile(new { data = model, ERROR = services.ERROR }, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
             //***********************INSERT OR EDIT SUCCESSFULLY * *************************************************
-            string DepartId = "";
-            if (Session["DepartIdUserLogin"] != null)
-                DepartId = Session["DepartIdUserLogin"].ToString();
-           
-            //BlockModel blockModel = new BlockModel("ViewDetail");
-            //blockModel.DataModel = services.GetList("", ReportRequirementId);
-            List<EntityReportBIModel> listReportConfirm = services.GetList(DepartId, model.ReportRequirementId);
-            ViewData["reportList"] = listReportConfirm;
+            TempData["data"] = model;
+            List<EntityReportBIModel> reportList = services.GetList("", model.ReportRequirementId);
+            ViewData["reportList"] = reportList;
             return PartialView("_Reload", new ViewDataDictionary {
-                { "reportList", listReportConfirm },
+                { "reportList", reportList },
                 { "ReportRequirementId", model.ReportRequirementId}
             });
-
         }
     }
 }

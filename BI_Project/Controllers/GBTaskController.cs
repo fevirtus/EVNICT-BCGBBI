@@ -61,9 +61,7 @@ namespace BI_Project.Controllers
 
         public ActionResult Create()
         {
-
             this.SetCommonData();
-
 
             ViewData["pagename"] = "task_create";
             ViewData["action_block"] = "GBTask/block_task_create";
@@ -176,7 +174,6 @@ namespace BI_Project.Controllers
             this.SetConnectionDB();
             GBTaskServices services = new GBTaskServices(this.DBConnection);
             
-
             List<EntityGBRPTEvaluateModel> lstEvaluate = services.GetListEvaluate(ReportRequirementId);
             EntityGBRPTEvaluateModel model = lstEvaluate.Find(x => x.DepartmentCode.Equals(DepartmentCode));
             BI_Project.Models.UI.BlockModel blockModel = new Models.UI.BlockModel("block_task_evaluate");
@@ -201,11 +198,8 @@ namespace BI_Project.Controllers
         }
 
         public ActionResult Evaluate()
-        {
-
-           
+        {           
             this.SetCommonData();
-
 
             ViewData["pagename"] = "task_evaluate";
             ViewData["action_block"] = "GBTask/block_task_evaluate";
@@ -321,7 +315,7 @@ namespace BI_Project.Controllers
             //***********************INSERT OR EDIT SUCCESSFULLY * *************************************************
             List<EntityGBTaskModel> LISTTASK = services.GetList(model.ReportRequirementId);
             ViewData["LISTTASK"] = LISTTASK;
-            return PartialView("_Task", new ViewDataDictionary {
+            return PartialView("~/Views/BCGB/_Task.cshtml", new ViewDataDictionary {
                 { "LISTTASK", LISTTASK },
                 { "ReportRequirementId", model.ReportRequirementId}
             });
@@ -437,10 +431,10 @@ namespace BI_Project.Controllers
             ViewData["data_form1"] = TempData["data"];
             // get language
             this.GetLanguage();
-            if (string.IsNullOrEmpty(model.Comment))
-            {
-                return RedirectToAction("ViewDetail");
-            }
+            //if (string.IsNullOrEmpty(model.Comment))
+            //{
+            //    return RedirectToAction("ViewDetail");
+            //}
 
             //**************** DATABASE PROCESS*******************************************************
             this.SetConnectionDB();
@@ -507,14 +501,12 @@ namespace BI_Project.Controllers
         //Hàm lưu
         public ActionResult Evaluate(EntityGBRPTEvaluateModel model)
         {
-
             Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
-           
 
             ViewData["data_form1"] = TempData["data"];
             //**************** DATABASE PROCESS*******************************************************
             this.SetConnectionDB();
-            GBTaskServices services = new GBTaskServices(this.DBConnection);
+            GBTaskServices services = new GBTaskServices(this.DBConnection);           
 
             // check tài khoản đã tồn tại trong hệ thống hay chưa
             int result = 0;
@@ -522,29 +514,28 @@ namespace BI_Project.Controllers
             result = services.CreateEvaluate(model);
             if (services.ERROR != null) FileHelper.SaveFile(new { data = model, ERROR = services.ERROR }, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
             //***********************INSERT OR EDIT SUCCESSFULLY * *************************************************
-            if (result > 0)
-            {
-                //return RedirectToAction("List");
-                return RedirectToAction("List", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
-            }
+            List<EntityGBRPTEvaluateModel> lstEvaluate = services.GetListEvaluate(model.ReportRequirementId);
+            ViewData["Evaluates"] = lstEvaluate;
             TempData["data"] = model;
-            //return RedirectToAction("List");
-            return RedirectToAction("List", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
+            //return RedirectToAction("List");            
+            return PartialView("_Evalue", new ViewDataDictionary {
+                { "Evaluates", lstEvaluate }
+            });
         }
                 
-        [HttpGet]
-        [CheckUserMenus]
-        public ActionResult Delete()
-        {         
-            string id = this.HttpContext.Request["id"];
-            string rptId = this.HttpContext.Request["ReportRequirementId"];
-            Logging.WriteToLog(this.GetType().ToString() + "-delete(), id=" + id, LogType.Access);
+        [HttpPost]
+        public ActionResult Delete(string TaskId)
+        {
+            string id = (Request.QueryString["ReportRequirementId"] == null ? "0" : Request.QueryString["ReportRequirementId"].ToString());
+            int ReportRequirementId = Convert.ToInt32(id);
+            //string rptId = this.HttpContext.Request["ReportRequirementId"];
+            Logging.WriteToLog(this.GetType().ToString() + "-delete(), id=" + TaskId, LogType.Access);
             int output = 0;
             this.SetConnectionDB();
             GBTaskServices services = new GBTaskServices(this.DBConnection);
             try
             {
-                output = services.Delete(Int32.Parse(id));
+                output = services.Delete(Int32.Parse(TaskId));
                 if (services.ERROR != null) throw new Exception(services.ERROR);
             }
             catch (Exception ex)
@@ -565,11 +556,11 @@ namespace BI_Project.Controllers
             }
             Session["msg_code"] = output;
 
-            List<EntityGBTaskModel> LISTTASK = services.GetList(Int32.Parse(rptId));
-            ViewData["LISTTASK"] = services.GetList(Int32.Parse(rptId));
+            List<EntityGBTaskModel> LISTTASK = services.GetList(Int32.Parse(id));
+            ViewData["LISTTASK"] = services.GetList(Int32.Parse(id));
             return PartialView("_Task", new ViewDataDictionary {
                 { "LISTTASK", LISTTASK },
-                { "ReportRequirementId", Int32.Parse(rptId)}
+                { "ReportRequirementId", Int32.Parse(id)}
             });
         }
 

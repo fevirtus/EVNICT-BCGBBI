@@ -61,17 +61,7 @@ namespace BI_Project.Controllers
         public ActionResult Create()
         {
             this.SaveAccessLog("create");
-           /* if (null == Session[this.SESSION_NAME_USERID])
-            {
-                return RedirectToAction("Login", "Home");
-            }
-            if ((bool)Session["IsAdmin"] == false)
-            {
-                return RedirectToAction("Logout", "Home");
-            }*/
             this.SetCommonData();
-
-       
 
             ViewData["pagename"] = "report_bi_create";
             ViewData["action_block"] = "ReportBI/block_report_bi_create";
@@ -129,15 +119,6 @@ namespace BI_Project.Controllers
         [HttpPost]        
         public ActionResult Create(EntityReportBIModel model)
         {
-           /* if (null == Session[this.SESSION_NAME_USERID])
-            {
-                return RedirectToAction("Login", "Home");
-            }
-
-            if ((bool)Session["IsAdmin"] == false)
-            {
-                return RedirectToAction("Logout", "Home");
-            }*/
             this.SetConnectionDB();
 
             this.GetLanguage();
@@ -261,6 +242,7 @@ namespace BI_Project.Controllers
            
             return listkq;
         }
+
         public JsonResult Delete(int id)
         {
             Boolean result = false;
@@ -272,6 +254,7 @@ namespace BI_Project.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
 
         }
+
         public JsonResult GetReportById(int reportId)
         {
             this.SetConnectionDB();
@@ -308,6 +291,7 @@ namespace BI_Project.Controllers
             }
             return listReport;
         }
+
         private string getAreaName(EntityReportBIModel report, List<EntityAreaModel> listArea)
         {
             string areaName="";

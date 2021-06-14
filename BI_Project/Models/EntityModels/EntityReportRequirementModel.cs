@@ -27,5 +27,7 @@ namespace BI_Project.Models.EntityModels
         public bool DataStatus { get; set; }
 
         public int ReportBIId { get; set; }
+
+        public string Cycle { get; set; }
     }
 }

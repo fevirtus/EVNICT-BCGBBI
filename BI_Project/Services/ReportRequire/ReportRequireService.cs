@@ -30,7 +30,8 @@ namespace BI_Project.Services.ReportRequire
                 dicParas.Add("Description", model.Description);
                 dicParas.Add("CreatorId", model.CreatorId);
                 dicParas.Add("StrReportId", model.strReportId);
-
+				dicParas.Add("Status", model.Status);
+                dicParas.Add("Cycle", model.Cycle);
 
                 output = DBConnection.ExecSPNonQuery("SP_REQUIREMENT_INSERT", dicParas, ref dicParaOuts, true);
 
@@ -69,6 +70,9 @@ namespace BI_Project.Services.ReportRequire
                 dicParas.Add("Description", model.Description);
                 dicParas.Add("CreatorId", model.CreatorId);
                 dicParas.Add("StrReportId", model.strReportId);
+				dicParas.Add("Status", model.Status);
+                dicParas.Add("Cycle", model.Cycle);
+
 
                 output = DBConnection.ExecSPNonQuery("SP_REQUIREMENT_UPDATE", dicParas, ref dicParaOuts, true);
 
@@ -308,11 +312,11 @@ namespace BI_Project.Services.ReportRequire
             try
             {
                 string sqlSelectDepart = "Select " +
-                                         "       sub.Id, sub.Title, sub.ConfirmExpired, sub.Description, sub.Status, sub.Created, sub.CreatorId, sub.LastUpdated, sub.Modifier, Replace(Replace(sub.ReportId, '<ReportId>', ''), '</ReportId>', ',') as strReportId " +
+                                         "       sub.Id, sub.Cycle, sub.Title, sub.ConfirmExpired, sub.Description, sub.Status, sub.Created, sub.CreatorId, sub.LastUpdated, sub.Modifier, Replace(Replace(sub.ReportId, '<ReportId>', ''), '</ReportId>', ',') as strReportId " +
                                          "   FROM                                                " +
                                          "      (  " +
                                          "       Select " +
-                                         "           Id, Title, ConfirmExpired, Description, Status, Created, CreatorId, LastUpdated, Modifier, " +
+                                         "           Id, Cycle, Title, ConfirmExpired, Description, Status, Created, CreatorId, LastUpdated, Modifier, " +
                                          "           (Select ReportId from GB_ReportConfirm where ReportRequirementId = " + reportId.ToString() + " FOR XML PATH('')) as ReportId " +
                                          "       From " +
                                          "           GB_ReportRequirement  where id = " + reportId.ToString() +
@@ -345,7 +349,11 @@ namespace BI_Project.Services.ReportRequire
                             }
                             if (!reader.IsDBNull(reader.GetOrdinal("Status")))
                             {
-                                report.Status = reader.GetInt32(reader.GetOrdinal("Status"));
+                                report.Status = reader.GetInt32(reader.GetOrdinal("Status")); 
+                            }
+                            if (!reader.IsDBNull(reader.GetOrdinal("Cycle")))
+                            {
+                                report.Cycle = reader.GetString(reader.GetOrdinal("Cycle"));
                             }
                             if (!reader.IsDBNull(reader.GetOrdinal("Created")))
                             {
@@ -359,7 +367,6 @@ namespace BI_Project.Services.ReportRequire
                             {
                                 report.LastUpdated = reader.GetDateTime(reader.GetOrdinal("LastUpdated"));
                             }
-
                             if (!reader.IsDBNull(reader.GetOrdinal("Modifier")))
                             {
                                 report.Modifier = reader.GetInt32(reader.GetOrdinal("Modifier"));
@@ -367,9 +374,11 @@ namespace BI_Project.Services.ReportRequire
                             if (!reader.IsDBNull(reader.GetOrdinal("strReportId")))
                             {
                                 report.strReportId = reader.GetString(reader.GetOrdinal("strReportId"));
-                                report.strReportId = report.strReportId.Substring(0, report.strReportId.Length - 1);
+                                if (report.strReportId != "")
+                                {
+                                    report.strReportId = report.strReportId.Substring(0, report.strReportId.Length - 1);
+                                }                                
                             }
-
                             output = report;
                         }
                     }
@@ -385,12 +394,7 @@ namespace BI_Project.Services.ReportRequire
             {
                 this.DBConnection.CloseDBConnect();
             }
-
-
             return output;
         }
-
-
-
     }
 }

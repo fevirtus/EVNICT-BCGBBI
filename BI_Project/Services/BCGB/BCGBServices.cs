@@ -58,7 +58,10 @@ namespace BI_Project.Services.BCGB
                                 entity.ReportPathFile = reader.GetString(reader.GetOrdinal("ReportPathFile"));
                             if (!reader.IsDBNull(reader.GetOrdinal("Created")))
                                 entity.Created = reader.GetDateTime(reader.GetOrdinal("Created"));
-
+                            if (!reader.IsDBNull(reader.GetOrdinal("DataAuto")))
+                                entity.DataStatus = reader.GetBoolean(reader.GetOrdinal("DataAuto"));
+                            if (!reader.IsDBNull(reader.GetOrdinal("Cycle")))
+                                entity.Cycle = reader.GetString(reader.GetOrdinal("Cycle"));
                             output.Add(entity);
                         }
                     }

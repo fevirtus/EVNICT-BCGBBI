@@ -27,10 +27,11 @@
                 <th>STT</th>
                 <th>Tên báo cáo</th>
                 <th>Ban phụ trách</th>
-                <th>Chu kì báo cáo</th>
+                <th>Phương thức TT</th>
                 <th>Trạng thái</th>
                 <th>Số liệu</th>
                 <th>T.Gian XN</th>
+                <th>Phương thức TTDL</th>
                 <th>Xem BC</th>
                 <th>Xác nhận</th>
             </tr>
@@ -46,7 +47,12 @@
                         <td>@index</td>
                         <td class="menu_item_@index">@item.ReportName </td>
                         <td class="menu_item_@index">@item.DepartmentCode </td>
-                        <td>Tháng</td>
+                        <td class="menu_item_@index">
+                            @{ if (item.DataAuto)
+                                { <span>Attach File</span> }
+                                else
+                                { <span>Tự động</span> } }
+                        </td>
                         <td class="menu_item_@index">
                             @{ if (item.ConfirmStatus)
                                 { <span>Đã XN</span> }
@@ -66,6 +72,12 @@
                                 else
                                 { <span></span> }
                             }
+                        </td>
+                        <td class="menu_item_@index">
+                            @{ if (item.DataAuto)
+                                { <span>Dữ liệu tự động</span> }
+                                else
+                                { <span>Dữ liệu thủ công</span> } }
                         </td>
                         <td>
                             <a href="#" onclick="onDetail(@item.Id)"><span class="glyphicon glyphicon-eye-open"></span></a>

@@ -19,15 +19,11 @@ namespace BI_Project.Controllers
 {
     public class ReportRequireController : BaseController
     {
-
-        //private string x = SESSION_NAME_USERID;
-
         public void SetConnectionDB()
         {
             this.DBConnection = new Services.DBConnection(this.CONNECTION_STRING);
             this.LrsConnection = new Services.DBConnection(this.CONNECTION_STRING);
         }
-
 
         public ActionResult Index()
         {
@@ -83,6 +79,7 @@ namespace BI_Project.Controllers
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+
         [HttpPost]
         public ActionResult Save2(ReportRequireCreateModel model)
         {
@@ -178,6 +175,7 @@ namespace BI_Project.Controllers
             if (menuServices.ERROR != null) BI_Project.Helpers.FileHelper.SaveFile(menuServices.ERROR, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + BI_Project.Helpers.Utility.APIStringHelper.GenerateFileId() + ".txt");
             return View("~/" + this.THEME_FOLDER + "/" + this.THEME_ACTIVE + "/index.cshtml");
         }
+
         [HttpPost]
         [CheckUserMenus]
         public ActionResult Create(EntityMenuModel menu)
@@ -230,36 +228,6 @@ namespace BI_Project.Controllers
 
         }
 
-        //public ActionResult List()
-        //{
-        //    if (null == Session[this.SESSION_NAME_USERID])
-        //    {
-        //        return RedirectToAction("Login", "Home");
-        //    }
-        //    if ((bool)Session["IsAdmin"] == false)
-        //    {
-        //        return RedirectToAction("Logout", "Home");
-        //    }
-        //    this.SetCommonData();
-        //    ViewData["pagename"] = "menu_list";
-        //    ViewData["action_block"] = "Menus/block_menu_list";
-
-
-        //    this.GetLanguage();
-        //    ViewData["VIEWDATA_LANGUAGE"] = this.LANGUAGE_OBJECT;
-
-
-        //    BlockMenuListLangModel blockLang = new BlockMenuListLangModel();
-        //    BI_Project.Models.UI.BlockModel blockModel = new Models.UI.BlockModel("block_menu_list", this.LANGUAGE_OBJECT, blockLang);
-        //    //blockModel.DataModel = ViewData["block_menu_left_data"];
-        //    blockModel.Hidden = 0;
-        //    ViewData["BlockData"] = blockModel;
-        //    return View("~/" + this.THEME_FOLDER + "/" + this.THEME_ACTIVE + "/index.cshtml");
-        //}
-
-        //lIST
-
-
         public ActionResult List(int? DeptID = null, int? userId = null, int? roleId = null)
         {
             this.SetConnectionDB();
@@ -273,27 +241,7 @@ namespace BI_Project.Controllers
             this.SetConnectionDB();
             RoleServices services = new RoleServices(this.DBConnection);
 
-            //BlockDataRoleCreateModel model = new BlockDataRoleCreateModel();
-
-            //if (ViewData["data-form"] != null)
-            //{
-            //    model = (BlockDataRoleCreateModel)ViewData["data-form"];
-            //}
-            //else
-            //{
-            //    model = services.GetEntityById(Int32.Parse(roleid));
-            //}
             ViewData["reportbis"] = new Services.ReportBi.ReportBIServices(this.DBConnection).GetList();
-            //BlockLangRoleCreateModel blockLang = new BlockLangRoleCreateModel();
-            //BI_Project.Models.UI.BlockModel blockModel = new Models.UI.BlockModel("block_role_create", this.LANGUAGE_OBJECT, blockLang);
-            //blockModel.DataModel = model;
-            //ViewData["BlockData"] = blockModel;
-            //================================================================================================================
-
-            //if ((bool)Session["IsAdmin"] == false)
-            //{
-            //    return RedirectToAction("Logout", "Home");
-            //}
 
             var _deptID = 0;
             if (Session["DepartIdUserLogin"] != null)
@@ -344,6 +292,7 @@ namespace BI_Project.Controllers
                 var menuData = menuServices.GetMenusByDepId((int)Session[SESSION_NAME_USERID], DeptID);
                 ViewData["CurrentOrgId"] = DeptID;
                 ViewData["MenuData"] = menuData;
+                ViewData["listcycle"] = setListCycle();
 
                 return View("~/" + THEME_FOLDER + "/" + THEME_ACTIVE + "/index.cshtml");
             }
@@ -376,7 +325,6 @@ namespace BI_Project.Controllers
                 return Json((new JavaScriptSerializer()).Deserialize(uiMenuDataJson, typeof(object)), JsonRequestBehavior.AllowGet);
             }
         }
-
 
         public ActionResult ReportList(int? RequireId = null)
         {
@@ -413,6 +361,18 @@ namespace BI_Project.Controllers
                         foreach (EntityReportBIModel reporBI in lstResultReport)
                         {
                             bool blReportSelect = false;
+
+                            string depCode = reporBI.DepartmentCode;
+                            string preTitle = "";
+                            if (reporBI.DataAuto)
+                            {
+                                preTitle = "[" + depCode + new string(' ', 10 - depCode.Length) + "] [TĐ]";
+                            }
+                            else
+                            {
+                                preTitle = "[" + depCode + new string(' ', 10 - depCode.Length) + "] [KTĐ]";
+                            }
+
                             if (listRole != null && listRole.Count > 0)
                             {
                                 var blResult = listRole.FindAll(o => o.Id == reporBI.Id);
@@ -421,7 +381,8 @@ namespace BI_Project.Controllers
                             }
                             MenuFancyTreeItem obj = new MenuFancyTreeItem()
                             {
-                                title = reporBI.ReportName,
+
+                                title = preTitle + reporBI.ReportName,
                                 key = reporBI.Id,
                                 selected = blReportSelect,
                                 parentId = area.Id,
@@ -544,6 +505,37 @@ namespace BI_Project.Controllers
 
 
             return RedirectToAction("List");
+        }
+
+        private List<EntityCycleModel> setListCycle()
+        {
+            List<EntityCycleModel> listkq = new List<EntityCycleModel>();
+            EntityCycleModel cycle;
+
+            cycle = new EntityCycleModel();
+            listkq.Add(cycle);
+
+            cycle = new EntityCycleModel();
+            cycle.Id = "WEEKLY";
+            cycle.Name = "TUẦN";
+            listkq.Add(cycle);
+
+            cycle = new EntityCycleModel();
+            cycle.Id = "MONTH";
+            cycle.Name = "THÁNG";
+            listkq.Add(cycle);
+
+            cycle = new EntityCycleModel();
+            cycle.Id = "QUARTER";
+            cycle.Name = "QUÝ";
+            listkq.Add(cycle);
+
+            cycle = new EntityCycleModel();
+            cycle.Id = "YEAR";
+            cycle.Name = "NĂM";
+            listkq.Add(cycle);
+
+            return listkq;
         }
     }
 }

@@ -30,6 +30,7 @@ namespace BI_Project.Models.EntityModels
         public DateTime ConfirmDate { get; set; }
         public string ReportPathFile { get; set; }
         public DateTime Created { get; set; }
+        public bool DataAuto { get; set; }
 
 
     }

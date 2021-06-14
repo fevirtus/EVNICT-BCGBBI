@@ -9,6 +9,7 @@
 @{
     //List<ReportRequireModel> lstReport = (List<ReportRequireModel>)ViewData["RequireReportList"];
     List<ReportRequireModel> lstReport = (List<ReportRequireModel>)ViewData["reportList"];
+
 }
 
 <table class="table table-bordered table-hover datatable-highlight">
@@ -34,7 +35,7 @@
                     <td align="center">
                         @{
                             if (item.Status == 0)
-                            {<span> Chưa gửi</span> }
+                            {<span> Dự thảo</span> }
                             else
                             {
                                 if (item.Status == 1)
@@ -42,9 +43,7 @@
                                     <span>Đã gửi</span>
                                 }
                                 else
-                                { <span>
-                                        Hoàn thành
-                                    </span>
+                                { <span>Đã hoàn thành</span>
                                 }
                             }
                         }
@@ -52,7 +51,7 @@
                     <td align="center">@item.Created.ToString("dd/MM/yyyy hh:MM")</td>
                     <td align="center">@item.FullName</td>
                     <td align="center">
-                        <a href="#" style="" onclick="EditReport(@item.Id)"><span class='glyphicon glyphicon-edit'></span></a>
+                        <a href="#" id="btnEditReportxyz" onclick="EditReport(@item.Id, @item.Status)"><span class='glyphicon glyphicon-edit'></span></a>
                         <a href="#" onclick="DeleteReport(@item.Id, '@item.Title')"><span style="color:red" class='glyphicon glyphicon-trash'></span></a>
                         <a href="/BCGB/List/140?ReportRequirementId=@item.Id"><span class='glyphicon glyphicon-share-alt'></span></a>
                     </td>
@@ -64,19 +63,5 @@
 
 
 <script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 </script>

@@ -24,6 +24,9 @@ namespace BI_Project.Services.ReportRequire
 
         public String strReportId { get; set; }
 
+        public int Status { get; set; }
+
+        public String Cycle { get; set; }
         
 
     }

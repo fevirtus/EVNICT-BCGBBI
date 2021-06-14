@@ -22,12 +22,6 @@ namespace BI_Project.Services.GBTask
 
         }
 
-
-
-
-
-
-
         public List<EntityGBTaskModel> GetList(int? ReportRequirementId = null)
         {
             List<EntityGBTaskModel> output = new List<EntityGBTaskModel>();
@@ -289,15 +283,15 @@ namespace BI_Project.Services.GBTask
                 Dictionary<string, object> dicParas = new Dictionary<string, object>();
                 Dictionary<string, object> dicParaOuts = new Dictionary<string, object>();
 
-                if (Model.Comment != null)
-                {
+                //if (Model.Comment != null)
+                //{
 
                     dicParas.Add("Status", Model.Status);
                     dicParas.Add("ResultFile", Model.ResultFile);
                     dicParas.Add("Comment", Model.Comment);
                     dicParas.Add("ID", Model.Id);
                     output = DBConnection.ExecSPNonQuery("SP_GB_TASK_CONFIRM", dicParas, ref dicParaOuts, true);
-                }
+                //}
 
             }
             catch (Exception ex)
@@ -310,7 +304,6 @@ namespace BI_Project.Services.GBTask
             }
             return output;
         }
-
 
         public BlockDataGBTaskCreateModel GetEntityById(int id)
         {
@@ -386,6 +379,7 @@ namespace BI_Project.Services.GBTask
 
             return output;
         }
+
         public EntityGBTaskModel FindById(int id)
         {
             EntityGBTaskModel output = new EntityGBTaskModel();

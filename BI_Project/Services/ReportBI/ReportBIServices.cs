@@ -112,7 +112,8 @@ namespace BI_Project.Services.ReportBi
                     output.DepartmentId = row.IsNull("DepartmentId") ? 0: Int32.Parse(row["DepartmentId"].ToString());
                     output.DepartmentCode = row.IsNull("DepartmentCode") ?null: row["DepartmentCode"].ToString();
                     output.Cycle = row.IsNull("Cycle") ? null:row["Cycle"].ToString();
-                  
+                    output.DataAuto = row.IsNull("DataAuto") ? false : Boolean.Parse(row["DataAuto"].ToString());
+
                     if (!row.IsNull("Cycle"))
                     {
                         switch (output.Cycle)
@@ -175,6 +176,7 @@ namespace BI_Project.Services.ReportBi
                     dicParas.Add("DepartmentCode", requirementModel.DepartmentCode);
                     dicParas.Add("DepartmentId", requirementModel.DepartmentId);
                     dicParas.Add("Cycle", requirementModel.Cycle);
+                    dicParas.Add("DataAuto", requirementModel.DataAuto);
 
                     if (requirementModel.Id == 0)
                         //dicParas.Add("")

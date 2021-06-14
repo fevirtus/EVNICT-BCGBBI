@@ -10,11 +10,6 @@
     EntityCreateTaskModel GBTaskDetail = new EntityCreateTaskModel();
     List<EntityGBTaskModel> GBTaskBlockData = (List<EntityGBTaskModel>)ViewData["LISTTASK"];
 
-    List<EntityGBRPTEvaluateModel> lstEvaluate = new List<EntityGBRPTEvaluateModel>();
-    if (ViewData["Evaluates"] != null)
-    {
-        lstEvaluate = (List<EntityGBRPTEvaluateModel>)ViewData["Evaluates"];
-    }
 
     List<EntityDepartmentModel> lstDepartments = new List<EntityDepartmentModel>();
     if (ViewData["departments"] != null)
@@ -90,133 +85,38 @@
             <h4 class="modal-title">Ghi chú</h4>
             <p>@ReportRequirementSelected.Description</p>
 
+
+            <h4 class="modal-title">Chu kì</h4>
+            <p>
+                @{ if (@ReportRequirementSelected.Cycle == "MONTH")
+                    { <span>Tháng</span> }
+                    else if (@ReportRequirementSelected.Cycle == "YEAR")
+                    { <span>Năm</span> } }
+            </p>
+
             <div class="row">
                 <div class="col-lg-12">
 
                     <div>
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li role="presentation" class="active"><a href="#tabReportConfirm" aria-controls="profile" role="tab" data-toggle="tab">Xác nhận số liệu báo cáo BI</a></li>
-                            <li role="presentation"> <a href="#tabTask" aria-controls="home" role="tab" data-toggle="tab">Cập nhật tình hình thực hiện công việc</a></li>
-
-                            @*<li role="presentation"><a href="#evalue" aria-controls="messages" role="tab" data-toggle="tab">Đánh giá</a></li>*@
+                            <li role="presentation" class="active"><a href="#tabReportConfirm" aria-controls="profile" role="tab" data-toggle="tab">Tình hình xác nhận số liệu báo cáo</a></li>
+                            <li role="presentation"><a href="#task" aria-controls="home" role="tab" data-toggle="tab">Công việc</a></li>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content">
                             @*Tab 1*@
-                            <div role="tabpanel" class="tab-pane" id="tabTask">
-                                <div class="table-responsive">
-                                    <div class="row">
-                                        <input type="hidden" name="ReportRequirementId" value="@ReportRequirementId" />
-                                    </div>
-                                    <table class="table table-bordered table-hover datatable-highlight">
-
-                                        <thead>
-                                            <tr>
-                                                <th style="width:20px">Stt</th>
-                                                <th style="width:120px">Nội dung</th>
-                                                <th style="width:50px">Ban thực hiện</th>
-                                                <th style="width:150px">Hạn hoàn thành</th>
-                                                <th style="width:150px">Tình trạng</th>
-                                                <th style="width:150px">Kết quả thực hiện</th>
-                                                <th style="width:10px">Thao tác</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @{
-                                                index = 0;
-                                                baseUrl = Url.Content("~");
-                                                if (GBTaskBlockData != null)
-                                                {
-                                                    foreach (EntityGBTaskModel item in GBTaskBlockData)
-                                                    {
-                                                        index++;
-                                                        <tr>
-                                                            <td>@index</td>
-                                                            <td class="menu_item_@index">@item.Title </td>
-                                                            <td class="menu_item_@index">@item.DepartmentCode </td>
-                                                            <td class="menu_item_@index">@item.Deadline.ToString("dd/MM/yyyy") </td>
-                                                            <td class="menu_item_@index">
-                                                                @{
-                                                                    @(item.Status == 1 ? "Hoàn thành" : "Chưa hoàn thành");
-                                                                }
-
-                                                            </td>
-                                                            <td class="menu_item_@index">@item.Comment</td>
-                                                            <td>
-                                                                <a href="#" onclick="onConfirmTask(@item.Id)"><span class="glyphicon glyphicon-ok"></span></a>
-
-                                                            </td>
-                                                        </tr>
-                                                    }
-                                                }
-                                            }
-                                        </tbody>
-                                    </table>
-                                </div>
+                            <div role="tabpanel" class="tab-pane active" id="tabReportConfirm">
+                                @{Html.RenderPartial("_Reload", new ViewDataDictionary { { "reportList", lstReporConfirmtBI }, { "ReportRequirementId", ReportRequirementId } });}
                             </div>
                             @*Tab 2*@
-                            <div role="tabpanel" class="tab-pane active" id="tabReportConfirm">
-                                @{Html.RenderPartial("_Reload", new ViewDataDictionary {
-                                                                              { "reportList", lstReporConfirmtBI },
-                                                                              { "ReportRequirementId", ReportRequirementId }
-                                                                          });
-                                }
-                            </div>
-                            @*Tab 3*@
-                            <div role="tabpanel" class="tab-pane" id="tabEvalue" style="display:none">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover datatable-highlight">
-                                        <thead>
-                                            <tr style="font-weight:bold">
-                                                <th style="width:20px" rowspan="2">Stt</th>
-                                                <th style="width:100px" rowspan="2">Ban thực hiện</th>
-                                                <th style="width:50px" rowspan="2">Tổng</th>
-                                                <th style="width:50px" colspan="2">Công việc</th>
-                                                <th style="width:50px" colspan="2">Báo cáo đã xác nhận</th>
-                                                <th style="width:50px" rowspan="2">Báo cáo chưa xác nhận</th>
-                                                <th style="width:100px" rowspan="2">Ban đánh giá</th>
-                                                <th style="width:10px" rowspan="2">Ghi chú</th>
-                                                <th style="width:10px" rowspan="2">Thao tác</th>
-                                            </tr>
-                                            <tr>
-                                                <th style="width:50px">Hoàn thành</th>
-                                                <th style="width:50px">Chưa hoàn thành</th>
-                                                <th style="width:50px">Đúng</th>
-                                                <th style="width:50px">Sai</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @{
-                                                index = 0;
-                                                baseUrl = Url.Content("~");
-                                                if (lstEvaluate != null)
-                                                {
-                                                    foreach (EntityGBRPTEvaluateModel item in lstEvaluate)
-                                                    {
-                                                        index++;
-                                                        <tr>
-                                                            <td>@index</td>
-                                                            <td class="menu_item_@index">@item.DepartmentCode </td>
-                                                            <td class="menu_item_@index">@item.Total</td>
-                                                            <td class="menu_item_@index">@item.TaskDoneNum</td>
-                                                            <td class="menu_item_@index">@item.TaskProcessNum</td>
-                                                            <td class="menu_item_@index">@item.DataCorrectNum</td>
-                                                            <td class="menu_item_@index">@item.DataInCorrectNum</td>
-                                                            <td class="menu_item_@index">@item.ReportUnConfirmNum</td>
-                                                            <td class="menu_item_@index">@item.DepartmentCode_Evaluate </td>
-                                                            <td class="menu_item_@index">@item.Description</td>
-                                                            <td>
-                                                                <button class="btn btn-primary" onclick="onEvaluateTask('@item.DepartmentCode',@item.ReportRequirementId)">Đánh giá</button>
-                                                            </td>
-                                                        </tr>
-                                                    }
-                                                }
-                                            }
-                                        </tbody>
-                                    </table>
+                            <div role="tabpanel" class="tab-pane" id="task">
+                                <div class="row" style="margin: 0 1px 0 1px;">
+                                    <button class="btn btn-primary" onclick="onAddNewTask(@ReportRequirementId)">Thêm mới công việc</button>
+                                    <input type="hidden" name="ReportRequirementId" value="@ReportRequirementId" />
                                 </div>
+                                @{Html.RenderPartial("_Task", new ViewDataDictionary { { "LISTTASK", GBTaskBlockData }, { "ReportRequirementId", ReportRequirementId } });}
                             </div>
                         </div>
                     </div>
@@ -469,6 +369,7 @@
     </div>
 </div>
 
+<!--dialog cập nhật kết quả đánh giá công việc-->
 <div class="modal fade" id="dlgReportConfirm" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -544,7 +445,7 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Lịch sử xác nhận số liệu báo cáo</h4>
             </div>
-            <div class="panel-body"  style="height: 600px; overflow-y:auto">
+            <div class="panel-body" style="height: 600px; overflow-y:auto">
                 <div class="row">
                     <div class="panel-heading" id="listHistoryView">
 
@@ -588,6 +489,32 @@
         </div>
     </div>
 </div>
+
+<!--popup confirm delete-->
+<div class="modal fade" id="DeleteConfirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <fieldset id="formDelete">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4>Xóa yêu cầu báo cáo</h4>
+                </div>
+                <div class="modal-body">
+
+                    <input type="hidden" id="TaskId" name="TaskId" />
+                    <h4>
+                        Bạn có chắc chắn muốn xóa <label id="lblTitle"></label>?
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary" data-dismiss="modal" id="r">Cancel</a>
+                    <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirm</a>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+
 <style>
     .modal-dialog {
         position: fixed;
@@ -749,17 +676,34 @@
         })
     };
 
-    function onDeleteTask(id) {
-
-        var url = "/GBTask/GetTaskById?id=" + id;
-        var obj;
+    //Show The Popup Modal For DeleteComfirmation
+    function DeleteTask(TaskId) {
+        $("#DeleteConfirmation").modal("show");
         $.ajax({
-            type: "GET",
-            url: url,
-            success: function (data) {
+            success: function () {
+                $("#TaskId").val(TaskId);
             }
         })
-    };
+    }
+
+    var ConfirmDelete = function () {
+        var data1 = $("#formDelete").serialize();
+        var TaskId = $("#TaskId").val();
+        var dataform = {
+            'TaskId': TaskId,
+        };
+        $.ajax({
+            type: "POST",
+            url: "/GBTask/Delete",
+            data: JSON.stringify(dataform),
+            dataType: "html",
+            contentType: 'application/json; charset=utf-8',
+            success: function (result) {
+                $("#DeleteConfirmation").modal("hide");
+                $("#taskTable").html(result);
+            }
+        })
+    }
 
     function onEditTask(id) {
         var url = "/GBTask/GetTaskById?id=" + id;
