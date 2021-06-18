@@ -4,12 +4,11 @@
 @using BI_Project.Services.GBTask;
 
 @{
-    //hadv
-    int index = 0;
     string baseUrl = Url.Content("~");
     EntityCreateTaskModel GBTaskDetail = new EntityCreateTaskModel();
     List<EntityGBTaskModel> LISTTASK = (List<EntityGBTaskModel>)ViewData["LISTTASK"];
-
+    BlockDataBCGBDetailModel BCGBDetail = new BlockDataBCGBDetailModel();
+    
     List<EntityGBRPTEvaluateModel> lstEvaluate = new List<EntityGBRPTEvaluateModel>();
     if (ViewData["Evaluates"] != null)
     {
@@ -31,12 +30,6 @@
     var currentStatus = "";
     if (ViewData["currentStatus"] != null)
     { currentStatus = ViewData["currentStatus"].ToString(); }
-
-
-    //thinhnd
-    BlockDataBCGBDetailModel BCGBDetail = new BlockDataBCGBDetailModel();
-    List<EntityReportBIModel> BCGBBlockData = (List<EntityReportBIModel>)Model.DataModel;
-
 
     List<EntityReportBIModel> lstReporConfirmtBI = new List<EntityReportBIModel>();
     if (ViewData["reportList"] != null)
@@ -61,8 +54,6 @@
     {
         ListReportConfirmHistory = (List<EntityReportConfirmHistoryModel>)ViewData["ListReportConfirmHistory"];
     }
-
-
 }
 
 <style>
@@ -90,7 +81,6 @@
         z-index: 9999;
         overflow-y: auto;
     }
-
 </style>
 
 <div class="content">
@@ -116,7 +106,6 @@
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a href="#tabReportConfirm" aria-controls="profile" role="tab" data-toggle="tab">Tình hình xác nhận số liệu báo cáo</a></li>
                         <li role="presentation"><a href="#task" aria-controls="home" role="tab" data-toggle="tab">Công việc</a></li>
-
                         <li role="presentation"><a href="#tabEvalue" aria-controls="messages" role="tab" data-toggle="tab">Đánh giá</a></li>
                     </ul>
 
@@ -143,7 +132,6 @@
             </div>
         </div>
 
-        @*hanv*@
         <!--dialog thêm/sửa công việc-->
         <div id="taskdetailmodal" class="modal fade">
             <div class="modal-dialog">
@@ -159,46 +147,39 @@
 
                             <div class="form-group">
                                 <label for="Task_Title" class="col-md-10">Nội dung công việc<span class="required" style="color: red;">*</span></label>
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control" id="Task_Title" name="Title">
-                                </div>
-                                <label for="Task_Deadline" class="col-md-10">Hạn hoàn thành<span class="required" style="color: red;">*</span></label>
-                                <div class="col-md-12">
-                                    <input type="text" class="form-control" id="Task_Deadline" name="Deadline" placeholder="ngày/tháng/năm">
-                                </div>
+                                <input type="text" class="form-control" id="Task_Title" name="Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="Task_Deadline">Hạn hoàn thành<span class="required" style="color: red;">*</span></label>
+                                <input id="Task_Deadline" name="Task_Deadline" type="text" data-date-format="dd/mm/yy"
+                                       class="form-control" placeholder="ngày/tháng/năm" />
+                            </div>
+                            <div class="form-group">
                                 <label for="LstSelectedDepartment" class="col-md-10">Ban thực hiện</label>
-                                <div class="col-md-12">
-                                    <select class="select select2-hidden-accessible" id="Task_DepartmentCode" name="DepartmentCode" data-live-search="true">
-                                        @{
-                                            <option value="" hidden selected disabled></option>
-                                            foreach (EntityDepartmentModel depart in lstDepartments)
+                                <select class="select select2-hidden-accessible" id="Task_DepartmentCode" name="DepartmentCode" data-live-search="true">
+                                    @{
+                                        <option value="" hidden selected disabled></option>
+                                        foreach (EntityDepartmentModel depart in lstDepartments)
+                                        {
+                                            if (currentDepartmentCode == depart.Code)
                                             {
-                                                if (currentDepartmentCode == depart.Code)
-                                                {
-                                                    <option value="@depart.Code" class="" selected>@Html.Raw(depart.Name)</option>
-                                                }
-                                                else
-                                                {
-                                                    <option value="@depart.Code" class="">@Html.Raw(depart.Name)</option>
-                                                }
+                                                <option value="@depart.Code" class="" selected>@Html.Raw(depart.Name)</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@depart.Code" class="">@Html.Raw(depart.Name)</option>
+                                            }
 
-                                            } }
-                                    </select>
-                                </div>
+                                        } }
+                                </select>
                             </div>
                             <div class="form-group">
                                 <label for="Comment" class="col-md-10">Mô tả công việc<span class="required" style="color: red;">*</span></label>
-                                <div class="col-md-12">
-                                    <textarea type="text" class="form-control" id="Description_2" name="Description" rows="2" style="resize:none" value="@GBTaskDetail.Description"></textarea>
-                                </div>
+                                <textarea type="text" class="form-control" id="Description_2" name="Description" rows="2" style="resize:none" value="@GBTaskDetail.Description"></textarea>
                             </div>
-
                             <div class="form-group">
-                                <div class="col-md-12">
-                                    <button type="submit" id="btnSend" class="btn btn-success" style="margin-top: 8px;">Gửi</button>
-                                </div>
+                                <button type="submit" id="btnSend" class="btn btn-success" style="margin-top: 8px;">Gửi</button>
                             </div>
-
                         </fieldset>
                     </div>
                 </div>
@@ -300,7 +281,6 @@
         <!--dialog cập nhật kết quả đánh giá công việc-->
         <div id="taskEvaluatemodal" class="modal fade" role="dialog">
             <div class="modal-dialog">
-                <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -333,7 +313,6 @@
                                                 {
                                                     <option value="@depart.Code" class="">@Html.Raw(depart.Name)</option>
                                                 }
-
                                             }
                                         }
                                     </select>
@@ -357,7 +336,6 @@
             </div>
         </div>
 
-        @*thinhnd*@
         <!--dialog xác nhận số liệu báo cáo-->
         <div class="modal fade" id="dlgReportConfirm" role="dialog">
             <div class="modal-dialog">
@@ -392,7 +370,7 @@
 
                             <div class="row" style="display:flex; align-items: baseline;">
                                 <input type="checkbox" id="dts" name="dts" class="col-sm-1">
-                                <label for="T_DataStatus" style="margin-left: 10px;">Số liệu đúng</label>
+                                <label for="L_DataStatus" style="margin-left: 10px;">Số liệu đúng</label>
                             </div>
 
                             <div class="row">
@@ -466,74 +444,48 @@
 
         <!--dialog nhúng chi tiết báo cáo-->
         <div class="modal fade" id="dlgViewReportTableau" role="dialog">
-            <div class="modal-dialog" style="width:90% !important">
+            <div class="modal-dialog" style="width:95% !important">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Chi tiết báo cáo</h4>
                     </div>
                     <div class="panel-body">
-
-                        <div class="row">
-                            <div class="col-md-10"> <div id="dlgViewReportTableauContent"></div></div>
-                            <div class="col-md-2">
-                                <fieldset id="formConfirmReport">
+                        <div class="">
+                            <div class="col-md-9"> <div id="dlgViewReportTableauContent"></div></div>
+                            <div class="">
+                                <fieldset id="formConfirmReport_auto">
                                     <input type="hidden" id="T_ReportRequireId" name="ReportRequirementId" value="@ReportRequirementId" />
                                     <input type="hidden" id="T_ReporBI_Id" name="ReportId" />
-                                    <input type="hidden" id="T_DataStatus" name="DataStatus" />
-
-                                    <div class="row" style="display:none">
-                                        <label for="form-field-1" class="col-sm-1 control-label" style="width: 30%">
-                                            Yêu cầu XN BC
-                                        </label>
-                                        <div class="col-md-3" style="width: 70%">
-                                            <input type="text" disabled value="@ReportRequirementSelected.Title" style="width: 100%; border: none; margin: 8px 0 8px 0;">
-                                        </div>
-                                    </div>
-
-                                    <div class="mt-2" style="display:none">
-                                        <label for="form-field-1" class="col-md-12 control-label">
-                                            Báo cáo xác nhận
-                                        </label>
-                                        <div class="col-md-12" style="width: 70%">
-                                            <input type="text" disabled id="T_reportBIName" name="ReportBIName" style="width: 100%; border: none; margin: 8px 0 8px 0;">
-                                        </div>
-                                    </div>
-
+                                    <input type="hidden" id="L_DataStatus" name="DataStatus" />
                                     <div class="" style="display:flex; align-items: baseline;">
-                                        <input type="checkbox" id="dts" name="dts" class="col-sm-1">
-                                        <label for="T_DataStatus" style="margin-left: 10px;">Số liệu đúng</label>
+                                        <input type="checkbox" id="dts_auto" name="dts_auto" class="col-sm-1">
+                                        <label for="L_DataStatus" style="margin-left: 10px;">Số liệu đúng</label>
                                     </div>
 
-                                    <div class="">
-                                        <label for="Description" class="col-md-12">
-                                            Ý kiến (nếu số liệu chưa đúng)
-                                            <span class="required" style="color: red;">*</span>
-                                        </label>
-                                        <div class="col-md-10" style="width: 100%">
-                                            <textarea type="text" class="form-control" id="T_Description" name="Description" style="resize: none;"></textarea>
-                                        </div>
+                                    <label for="Description" class="col-md-12">
+                                        Ý kiến (nếu số liệu chưa đúng)
+                                        <span class="required" style="color: red;">*</span>
+                                    </label>
+                                    <div class="col-md-10" style="width: 100%">
+                                        <textarea type="text" class="form-control" id="T_Description_auto" name="Description" style="resize: none;"></textarea>
                                     </div>
-                                    <div class="input-group-file mt-2">
-                                        <label class="col-md-12">
-                                            File số liệu báo cáo
-                                        </label>
-                                        <input type="file" name="ImageFile" />
-                                        <div class="col-md-12" style="width: 100%">
-                                            <input type="text" readonly="readonly" class="form-control" id="T_ReportPathFile" name="ReportPathFile">
-                                        </div>
+
+                                    <label class="col-md-12">
+                                        File số liệu báo cáo
+                                    </label>
+                                    <div class="col-md-12"><input type="file" name="ImageFile" /></div>
+
+                                    <div class="col-md-12">
+                                        <input type="text" readonly="readonly" class="form-control" id="T_ReportPathFile_auto" name="ReportPathFile">
                                     </div>
-                                    <br />
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <button type="submit" id="btnSave" class="btn btn-success">Xác nhận</button>
-                                        </div>
+
+                                    <div class="col-md-2 mt-5">
+                                        <button type="submit" id="btnSave_auto" class="btn btn-success">Xác nhận</button>
                                     </div>
                                 </fieldset>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -582,8 +534,10 @@
                         $("#T_DataStatus").val(obj.DataStatus);
                         $("#T_reportBIName").val(obj.ReportBIName);
                         $("#T_Description").val(obj.Description);
+                        /*$("#T_Description_auto").val(obj.Description);*/
                         $("#T_ReportPathFile").val(obj.ReportPathFile);
-                        $('#dts').attr('checked', obj.DataStatus);
+                       /* $("#T_ReportPathFile_auto").val(obj.ReportPathFile);*/
+                        $('#dts').prop('checked', obj.DataStatus);
                     }
                 })
             };
@@ -606,8 +560,24 @@
                         alert("Dynamic content load failed.");
                     }
                 });
-
-
+                var ReportRquireId = $("#T_ReportRequireId").val();
+                var url2 = "/BCGB/GetConfirmById?ReportRquireId=" + ReportRquireId + "&ReporBI_Id=" + reportid;                
+                $("#T_ReporBI_Id").val(reportid);
+                $.ajax({
+                    type: "GET",
+                    url: url2,
+                    success: function (data) {
+                        obj = JSON.parse(data);                       
+                        $("#L_DataStatus").val(obj.DataStatus);
+                        $("#T_reportBIName").val(obj.ReportBIName);
+                        /*$("#T_Description").val(obj.Description);*/
+                        $("#T_Description_auto").val(obj.Description);
+                       /* $("#T_ReportPathFile").val(obj.ReportPathFile);*/
+                        $("#T_ReportPathFile_auto").val(obj.ReportPathFile);
+                        /*$('#dts').attr('checked', obj.DataStatus);*/
+                        $('#dts_auto').prop('checked', obj.DataStatus);
+                    }
+                })
             };
 
             function onHistory(ReportRequirementId, ReporBI_Id) {
@@ -674,11 +644,54 @@
                 })
             })
 
+            $("#btnSave_auto").click(function () {
+                var data1 = $("#formConfirmReport_auto").serialize();
+
+                var T_ReportRequireId = $("#T_ReportRequireId").val();
+                var T_ReporBI_Id = $("#T_ReporBI_Id").val();
+                var T_DataStatus = $("#L_DataStatus").val();
+                var T_Description = $("#T_Description_auto").val();
+                var T_ReportPathFile = $("#T_ReportPathFile_auto").val();
+                var dataform = {
+                    'ReportRequirementId': T_ReportRequireId,
+                    'ReportId': T_ReporBI_Id,
+                    'DataStatus': T_DataStatus,
+                    'Description': T_Description,
+                    'ReportPathFile': T_ReportPathFile
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: "/BCGB/Save",
+                    data: JSON.stringify(dataform),
+                    dataType: "html",
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (result) {
+                        $("#dlgViewReportTableau").modal("hide");
+                        $("#tabReportConfirm").html(result);
+                    },
+                    error: function (er) {
+                        alert("Có lỗi xảy ra.");
+                        console.log(er);
+                    }
+                })
+            })
+
             $(function () {
                 $("#tabs").tabs();
             });
 
-            $("input[type=checkbox]").change(function () {
+            $("#dts_auto").change(function () {
+                if ($(this).prop("checked")) {
+                    $(this).val(true);
+                    $("#L_DataStatus").val(true);
+                } else {
+                    $(this).val(false);
+                    $("#L_DataStatus").val(false);
+                }
+            });
+
+            $("#dts").change(function () {
                 if ($(this).prop("checked")) {
                     $(this).val(true);
                     $("#T_DataStatus").val(true);
@@ -692,15 +705,24 @@
                 $("#Task_Deadline").datepicker({ dateFormat: "dd/mm/yy" }).val()
             });
 
-            /*hanv*/
             function onAddNewTask(id) {
                 var url = "/GBTask/Create?ReportRequirementId=" + id;
+                var obj;
+                $("#Task_ReportRequirementId").val(id);
                 $("#taskdetailmodal").modal();
                 $.ajax({
                     type: "GET",
                     url: url,
                     success: function (data) {
-
+                        obj = JSON.parse(data);
+                        var arrDMY = obj.Deadline.substring(0, 10).split("-");
+                        var dateDDMMYYYY = arrDMY[2] + '/' + arrDMY[1] + '/' + arrDMY[0];
+                        $("#Task_Deadline").datepicker({ dateFormat: "dd-mm-yy" }).val(dateDDMMYYYY);
+                        $("#Task_Id").val(obj.Id);
+                        /*$("#Task_ReportRequirementId").val(obj.ReportRequirementId);*/
+                        $("#Task_Title").val(obj.Title);
+                        $("#Description_2").val(obj.Description);
+                        $("#Task_DepartmentCode").val(obj.DepartmentCode).change();
                     }
                 })
             };

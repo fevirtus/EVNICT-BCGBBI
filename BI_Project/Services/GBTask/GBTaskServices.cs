@@ -251,7 +251,6 @@ namespace BI_Project.Services.GBTask
                     dicParas.Add("Description", Model.Description);
 
                     if (Model.Id == 0)
-                        //dicParas.Add("")
                         output = DBConnection.ExecSPNonQuery("SP_GB_TASK_INSERT", dicParas, ref dicParaOuts, true);
                     else
                     {

@@ -1,6 +1,6 @@
 ﻿            <!-- Main sidebar -->
 <div class="sidebar sidebar-main sidebar-fixed">
-@*<div class="sidebar sidebar-main">*@
+    @*<div class="sidebar sidebar-main">*@
     <div class="sidebar-content">
         <!-- User menu -->
         <div class="sidebar-user" style="display:none">
@@ -9,18 +9,18 @@
                     <a href="#" class="media-left"><img src="~/resources/images/avartar_yody.png" class="img-circle img-sm" alt=""></a>
                     <div class="media-body">
                         <span class="media-heading text-semibold">
-                            @if (Session["FullName"].ToString() != "")
+                            @if (Session["FullName"] != null && Session["FullName"].ToString() != "")
                             {
                                 @Html.Raw(Session["FullName"].ToString())
                             }
                             else
                             {
-                                if (Session["UserName"] != null)
+                                if (Session["UserName"] != null && Session["UserName"] != null)
                                 {
                                     @Html.Raw(Session["UserName"].ToString())
                                 }
                             }
-                            </span>
+                        </span>
                         <div class="text-size-mini text-muted">
                             <i class="icon-pin text-size-small"></i> EVN
                         </div>

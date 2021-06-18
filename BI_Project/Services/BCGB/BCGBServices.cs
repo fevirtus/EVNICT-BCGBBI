@@ -59,7 +59,7 @@ namespace BI_Project.Services.BCGB
                             if (!reader.IsDBNull(reader.GetOrdinal("Created")))
                                 entity.Created = reader.GetDateTime(reader.GetOrdinal("Created"));
                             if (!reader.IsDBNull(reader.GetOrdinal("DataAuto")))
-                                entity.DataStatus = reader.GetBoolean(reader.GetOrdinal("DataAuto"));
+                                entity.DataAuto = reader.GetBoolean(reader.GetOrdinal("DataAuto"));
                             if (!reader.IsDBNull(reader.GetOrdinal("Cycle")))
                                 entity.Cycle = reader.GetString(reader.GetOrdinal("Cycle"));
                             output.Add(entity);
@@ -225,6 +225,7 @@ namespace BI_Project.Services.BCGB
                                 output.Year = reader.GetInt32(reader.GetOrdinal("Year"));
                             if (!reader.IsDBNull(reader.GetOrdinal("ConfirmDate")))
                                 output.ConfirmDate = reader.GetDateTime(reader.GetOrdinal("ConfirmDate"));
+
                         }
                     }
                 }

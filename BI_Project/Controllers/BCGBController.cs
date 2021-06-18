@@ -21,6 +21,7 @@ using System.Web;
 using System.IO;
 using bicen.Models.EntityModels;
 using BI_Project.Services.ReportBi;
+using System.Globalization;
 
 namespace BI_Project.Controllers
 {
@@ -28,89 +29,119 @@ namespace BI_Project.Controllers
     {
         public ActionResult List()
         {
-            this.SetCommonData();
-            ViewData["pagename"] = "BCGB";
-            ViewData["action_block"] = "BCGB/BCGB";
-            this.GetLanguage();
+            //setup connection
+            this.SetCommonData();            
             this.SetConnectionDB();
+            this.GetLanguage();
             BCGBServices services = new BCGBServices(this.DBConnection);
-
-            //hanv
-            BlockLangGBTaskListModel blockLang = new BlockLangGBTaskListModel();
-            BI_Project.Models.UI.BlockModel blockModelGBTask = new Models.UI.BlockModel("block_task_list", this.LANGUAGE_OBJECT, blockLang);
             GBTaskServices GBTaskservices = new GBTaskServices(this.DBConnection);
-            string id = (Request.QueryString["ReportRequirementId"] == null ? "0" : Request.QueryString["ReportRequirementId"].ToString());
-            int ReportRequirementId = Convert.ToInt32(id);
-            ViewData["ReportRequirementId"] = ReportRequirementId;
-            blockModelGBTask.DataModel = GBTaskservices.GetList(ReportRequirementId);
-
-            List<EntityGBRPTEvaluateModel> lstEvaluate = GBTaskservices.GetListEvaluate(ReportRequirementId);
-            ViewData["Evaluates"] = lstEvaluate;
-
             DepartmentServices departmentServices = new DepartmentServices(this.DBConnection);
-            ViewData["departments"] = departmentServices.GetList();
-            ViewData["LISTTASK"] = GBTaskservices.GetList(ReportRequirementId);
-            //end
+            ReportRequireService reportRequireServices = new ReportRequireService(this.DBConnection);
 
-            BlockModel blockModel = new BlockModel("BCGB");
-            blockModel.DataModel = services.GetList("", ReportRequirementId);
+            //get current departId
+            string DepartId = "";
+            if (Session["DepartIdUserLogin"] != null)   DepartId = Session["DepartIdUserLogin"].ToString();
+            //get current departCode
+            string DepartCode = "";
+            if (Session["CodeIsAdmin"] != null) DepartCode = Session["CodeIsAdmin"].ToString();
+            //get reportRequireId
+            string ReportRequirementIdStr = (Request.QueryString["ReportRequirementId"] == null ? "0" : Request.QueryString["ReportRequirementId"].ToString());
+            int ReportRequirementId = Convert.ToInt32(ReportRequirementIdStr);
+            //get list evaluate by reportRequireId
+            List<EntityGBRPTEvaluateModel> lstEvaluate = GBTaskservices.GetListEvaluate(ReportRequirementId);
+            //get list all department
+            List<EntityDepartmentModel> lstDepartment = departmentServices.GetList();
+            //get list Task order by reportRequireId and DepartmentId
+            List<EntityGBTaskModel> LISTTASK = new List<EntityGBTaskModel>();
+            switch (DepartCode)
+            {
+                case "KH":
+                    LISTTASK = GBTaskservices.GetList(ReportRequirementId);
+                    break;
+                default:
+                    LISTTASK = GBTaskservices.GetList(ReportRequirementId, DepartCode);
+                    break;
+            }
+            //get list Report Confirm order by reportRequireId and DepartmentId
             List<EntityReportBIModel> listReportConfirm = services.GetList("", ReportRequirementId);
-            BI_Project.Services.ReportRequire.ReportRequireModel objtRequirementSelected = new Services.ReportRequire.ReportRequireService(this.DBConnection).GetReportById(ReportRequirementId);
-
+            //get a record reportRequirement by Id
+            ReportRequireModel objtRequirementSelected = reportRequireServices.GetReportById(ReportRequirementId);
+            
+            //write action to log
             if (services.ERROR != null) FileHelper.SaveFile(services.ERROR, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
             Logging.WriteToLog(this.GetType().ToString() + "-List()", LogType.Access);
-
-            ViewData["BlockData"] = blockModel;
-            //ViewData["ListReportBI"] = services.GetListReportBI(ReportRequirementId);
-            ViewData["ReportRequirementSelected"] = objtRequirementSelected;
+                        
+            //send data to front
+            ViewData["pagename"] = "BCGB";
+            ViewData["action_block"] = "BCGB/BCGB";
+            ViewData["ReportRequirementId"] = ReportRequirementId;
+            ViewData["Evaluates"] = lstEvaluate;
+            ViewData["departments"] = lstDepartment;
+            ViewData["LISTTASK"] = LISTTASK;
             ViewData["reportList"] = listReportConfirm;
+            ViewData["ReportRequirementSelected"] = objtRequirementSelected;
 
-
+            //return a view (direct page)
             return View("~/" + this.THEME_FOLDER + "/" + this.THEME_ACTIVE + "/index.cshtml");
+
+            //BI_Project.Models.UI.BlockModel blockModelGBTask = new Models.UI.BlockModel("block_task_list", this.LANGUAGE_OBJECT, blockLang);
+            //blockModelGBTask.DataModel = GBTaskservices.GetList(ReportRequirementId);
+            //BlockModel blockModel = new BlockModel("BCGB");
+            //blockModel.DataModel = services.GetList("", ReportRequirementId);
+            //ViewData["BlockData"] = blockModel;
+            //ViewData["ListReportBI"] = services.GetListReportBI(ReportRequirementId);
+
         }
 
         public ActionResult ViewDetail()
         {
+            //setup connection
             this.SetCommonData();
-            ViewData["pagename"] = "ViewDetail";
-            ViewData["action_block"] = "BCGB/ViewDetail";
-            this.GetLanguage();
             this.SetConnectionDB();
+            this.GetLanguage();
             BCGBServices services = new BCGBServices(this.DBConnection);
-
-            //hanv
-            BlockLangGBTaskListModel blockLang = new BlockLangGBTaskListModel();
-            BI_Project.Models.UI.BlockModel blockModelGBTask = new Models.UI.BlockModel("block_task_list", this.LANGUAGE_OBJECT, blockLang);
             GBTaskServices GBTaskservices = new GBTaskServices(this.DBConnection);
-            string id = (Request.QueryString["ReportRequirementId"] == null ? "0" : Request.QueryString["ReportRequirementId"].ToString());
-            int ReportRequirementId = Convert.ToInt32(id);
-            ViewData["ReportRequirementId"] = ReportRequirementId;
-            blockModelGBTask.DataModel = GBTaskservices.GetList(ReportRequirementId);
-
             DepartmentServices departmentServices = new DepartmentServices(this.DBConnection);
-            ViewData["departments"] = departmentServices.GetList();
-            string DepartCode = "";
-            if (Session["CodeIsAdmin"] != null)
-                DepartCode = Session["CodeIsAdmin"].ToString();
-            string DepartId = "";
-            if (Session["DepartIdUserLogin"] != null)
-                DepartId = Session["DepartIdUserLogin"].ToString();
-            ViewData["LISTTASK"] = GBTaskservices.GetList(ReportRequirementId);
-            //end
+            ReportRequireService reportRequireServices = new ReportRequireService(this.DBConnection);
 
+            //get current departCode
+            string DepartCode = "";
+            if (Session["CodeIsAdmin"] != null) DepartCode = Session["CodeIsAdmin"].ToString();
+            //get reportRequireId
+            string ReportRequirementIdStr = (Request.QueryString["ReportRequirementId"] == null ? "0" : Request.QueryString["ReportRequirementId"].ToString());
+            int ReportRequirementId = Convert.ToInt32(ReportRequirementIdStr);
+            //get list all department
+            List<EntityDepartmentModel> lstDepartment = departmentServices.GetList();
+            //get list Task order by reportRequireId and DepartmentId
+            List<EntityGBTaskModel> LISTTASK = new List<EntityGBTaskModel>();
+            switch (DepartCode)
+            {
+                case "KH":
+                    LISTTASK = GBTaskservices.GetList(ReportRequirementId);
+                    break;
+                default:
+                    LISTTASK = GBTaskservices.GetList(ReportRequirementId, DepartCode);
+                    break;
+            }
+            //get list Report Confirm order by reportRequireId and DepartmentId
             List<EntityReportBIModel> listReportConfirm = services.GetList("", ReportRequirementId);
-            BI_Project.Services.ReportRequire.ReportRequireModel objtRequirementSelected = new Services.ReportRequire.ReportRequireService(this.DBConnection).GetReportById(ReportRequirementId);
+            //get a record reportRequirement by Id
+            ReportRequireModel objtRequirementSelected = reportRequireServices.GetReportById(ReportRequirementId);
 
             if (services.ERROR != null) FileHelper.SaveFile(services.ERROR, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
             Logging.WriteToLog(this.GetType().ToString() + "-List()", LogType.Access);
 
+            ViewData["pagename"] = "BCGB";
+            ViewData["action_block"] = "BCGB/ViewDetail";
+            ViewData["ReportRequirementId"] = ReportRequirementId;
+            ViewData["departments"] = lstDepartment;
+            ViewData["LISTTASK"] = LISTTASK;
             ViewData["reportList"] = listReportConfirm;
             ViewData["ReportRequirementSelected"] = objtRequirementSelected;
-            
+
             return View("~/" + this.THEME_FOLDER + "/" + this.THEME_ACTIVE + "/index.cshtml");
         }
 
-        //không hiểu gì hết trơn
         [HttpGet]
         [CheckUserMenus]
         public ActionResult Detail()
@@ -193,9 +224,9 @@ namespace BI_Project.Controllers
         public ActionResult History(int ReportRequirementId, int ReporBI_Id)
         {
             this.SetConnectionDB();
+            this.GetLanguage();
             BCGBServices services = new BCGBServices(this.DBConnection);
             List<EntityReportConfirmHistoryModel> ListReportConfirmHistory = services.GetListReportConfirmHistory(ReportRequirementId, ReporBI_Id);
-            this.GetLanguage();
             if (services.ERROR != null) FileHelper.SaveFile(services.ERROR, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + BI_Project.Helpers.Utility.APIStringHelper.GenerateFileId() + ".txt");
             ViewData["ListReportConfirmHistory"] = ListReportConfirmHistory;
             return PartialView("_ReportConfirmHistory", new ViewDataDictionary {
@@ -205,29 +236,25 @@ namespace BI_Project.Controllers
         
         public ActionResult ViewReportBI(int id)
         {
-            //lay url tu menu voi id
+            //init variable
+            PageModel pageModel = new PageModel("Embed_Tableau");
+            TableauModel param = new TableauModel();
+            EntityDepartmentModel _entityDepartmentModel = new EntityDepartmentModel();
 
-            ViewData["pagename"] = "Embed_Tableau";
-            ViewData["action_block"] = "Tableau/TableauView";
-
+            //setup connection and pre attribute
             SetCommonData();
             GetLanguage();
             SetConnectionDB();
-
-
-            BI_Project.Models.UI.PageModel pageModel = new Models.UI.PageModel("Embed_Tableau");
-            // BI_Project.Models.UI.BlockModel blockModel = new BlockModel("TableauView");
             pageModel.SetLanguage(this.LANGUAGE_OBJECT);
-            //pageModel.H1Title = pageModel.GetElementByPath("page_excel.menu" + id + ".h1");
             pageModel.Title = pageModel.GetElementByPath("title");
-            ViewData["page_model"] = pageModel;
-
-            TableauModel param = new TableauModel();
-            ViewData["BlockData"] = param;
             MenuServices _menuServices = new MenuServices(DBConnection);
+            ReportBIServices reportBIservieces = new ReportBIServices(DBConnection);
+            UserServices _userServices = new UserServices(DBConnection);
+            DepartmentServices _departmentServices = new DepartmentServices(DBConnection);
 
-
-            EntityReportBIModel _report = new ReportBIServices(DBConnection).GetEntityById(id);
+            //get a reportBI by Id
+            EntityReportBIModel _report = reportBIservieces.GetEntityById(id);
+            //update status to log
             EntityUserTimeModel logger = (EntityUserTimeModel)Session["Logger"];
             logger.Dashboard = _report.ReportName;
             if (logger != null)
@@ -236,17 +263,17 @@ namespace BI_Project.Controllers
                 UserServices userServices = new UserServices(this.DBConnection);
                 var insertlog = userServices.UpdateLogUserDashboard(logger);
             }
-            UserServices _userServices = new UserServices(DBConnection);
 
-            DepartmentServices _departmentServices = new DepartmentServices(DBConnection);
+            //send data to front
+            ViewData["pagename"] = "Embed_Tableau";
+            ViewData["action_block"] = "Tableau/TableauView";
+            ViewData["page_model"] = pageModel;
+            ViewData["BlockData"] = param;
 
-            EntityDepartmentModel _entityDepartmentModel = new EntityDepartmentModel();
-
+            //set attribute for ViewBC
             param.Site_Root = _report.ReportCode;
             param.Ticket = BI_Core.Helpers.TableauHelper.GetTicket(_report.ReportCode);
-
             param.TableauUrl = _report.UrlLink;
-            //param.TableauUrl = "BCPTNPTD_1/Dashboard1?:iid=2";
             param.Hidden = 1;
             param.username = Session["UserName"].ToString();
             ViewBag.Id = id;
@@ -259,11 +286,9 @@ namespace BI_Project.Controllers
                 builderOrganization.Append(_list).Append(',');
             }
 
-
             string _resultListOrganization = builderOrganization.ToString().TrimEnd(',');
             ViewBag.ListDepartment = _resultListOrganization;
             if (Session["CodeIsAdmin"] == null) Session["Filter01IsAdmin"] = "P";
-            //if (Session["IsAdmin"] is false && (Session["Filter01IsAdmin"].ToString() != "PE" || Session["Filter01IsAdmin"].ToString() != "PA" || Session["Filter01IsAdmin"].ToString() != "PB" || Session["Filter01IsAdmin"].ToString() != "PC" || Session["Filter01IsAdmin"].ToString() != "PD"))
             if (Session["CodeIsAdmin"].ToString() != "P")
             {
                 param.filter = Session["CodeIsAdmin"].ToString();
@@ -271,15 +296,43 @@ namespace BI_Project.Controllers
             }
             Random rd = new Random();
             int item = rd.Next(100, 999);
-            string log = DateTime.Now.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture) + "_" + item;
+            string log = DateTime.Now.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture) + "_" + item;
             if (_menuServices.ERROR != null) FileHelper.SaveFile(new { ERROR = _menuServices.ERROR }, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
 
-            //FileHelper.SaveFile(_entityMenuModel, this.LOG_FOLDER + "/MenuModel_" + log + ".txt");
             FileHelper.SaveFile(param.Ticket, this.LOG_FOLDER + "/Ticket_" + log + ".txt");
 
             return PartialView("_TableauView", param);
         }
-        
+
+        //get a refcord Report Confirm by id and reportBI_Id to display on dialog
+        public JsonResult GetConfirmById(int ReportRquireId, int ReporBI_Id)
+        {
+            //setup connection
+            this.SetConnectionDB();
+            BCGBServices services = new BCGBServices(this.DBConnection);
+            ReportBIServices reportBIServices = new ReportBIServices(this.DBConnection);
+
+            //get record report confirm what we want
+            EntityReportConfirmModel model = services.getRCById(ReportRquireId, ReporBI_Id);
+            //get reportBI if have and set value into reportConfirm object
+            EntityReportBIModel objReport = reportBIServices.GetEntityById(ReporBI_Id);
+            if (objReport != null)
+            {
+                model.ReportBIName = objReport.ReportName;
+            }
+            model.ReportRequirementId = ReportRquireId;
+            model.ReportId = ReporBI_Id;
+
+            //change this object to a json file and put it to front
+            string value = string.Empty;
+            value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
+            //return a json object
+            return Json(value, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult HistoryDetail()
         {
 
@@ -342,28 +395,6 @@ namespace BI_Project.Controllers
             return RedirectToAction("ViewDetail", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
         }
 
-        public JsonResult GetConfirmById(int ReportRquireId, int ReporBI_Id)
-        {
-            this.SetConnectionDB();
-            BCGBServices services = new BCGBServices(this.DBConnection);
-            EntityReportConfirmModel model = new EntityReportConfirmModel();
-            model = services.getRCById(ReportRquireId, ReporBI_Id);
-            EntityReportBIModel objReport = new BI_Project.Services.ReportBi.ReportBIServices(this.DBConnection).GetEntityById(ReporBI_Id);
-            if (objReport != null)
-            {
-                model.ReportBIName = objReport.ReportName;
-            }
-            model.ReportRequirementId = ReportRquireId;
-            model.ReportId = ReporBI_Id;
-
-            string value = string.Empty;
-            value = JsonConvert.SerializeObject(model, Formatting.Indented, new JsonSerializerSettings
-            {
-                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-            });
-            return Json(value, JsonRequestBehavior.AllowGet);
-        }
-
         [HttpPost]
         public ActionResult Confirm(EntityReportConfirmModel model)
         {
@@ -411,21 +442,16 @@ namespace BI_Project.Controllers
         [HttpPost]
         public ActionResult Save(EntityReportConfirmModel model)
         {
-            model.Created = DateTime.Now;
-           
-            Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
-            ViewData["data_form"] = model;
-
-            this.GetLanguage();
-
+            //setup connection
             this.SetConnectionDB();
             BCGBServices services = new BCGBServices(this.DBConnection);
-            // check tài khoản đã tồn tại trong hệ thống hay chưa
-            model.ConfirmDate = DateTime.Now;
-            //var checkData = services.FindById(model.Id);
-            int result = 0;
-            HttpPostedFileBase postedFile = model.ImageFile;
+            List<EntityReportBIModel> reportList = services.GetList("", model.ReportRequirementId);
 
+            //set attribute for report
+            model.Created = DateTime.Now;
+            model.ConfirmDate = DateTime.Now;
+            //check exist file or not to create href of file
+            HttpPostedFileBase postedFile = model.ImageFile;
             if (postedFile != null)
             {
                 string path = Server.MapPath("~/Uploads/Report/");
@@ -438,11 +464,16 @@ namespace BI_Project.Controllers
                 postedFile.SaveAs(path + Path.GetFileName(fileName));
                 model.ReportPathFile = "/Uploads/Report/" + fileName;
             }
-            result = services.UpdateReport(model);
+            //save this report to db
+            int result = services.UpdateReport(model);
+                       
+            //logger
+            Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
             if (services.ERROR != null) FileHelper.SaveFile(new { data = model, ERROR = services.ERROR }, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
-            //***********************INSERT OR EDIT SUCCESSFULLY * *************************************************
-            TempData["data"] = model;
-            List<EntityReportBIModel> reportList = services.GetList("", model.ReportRequirementId);
+
+            //set attribute for View
+            ViewData["data_form"] = model;
+            TempData["data"] = model;            
             ViewData["reportList"] = reportList;
             return PartialView("_Reload", new ViewDataDictionary {
                 { "reportList", reportList },
@@ -453,21 +484,15 @@ namespace BI_Project.Controllers
         [HttpPost]
         public ActionResult DepartSaveConfirm(EntityReportConfirmModel model)
         {
-            model.Created = DateTime.Now;
-
-            Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
-            ViewData["data_form"] = model;
-
-            this.GetLanguage();
-
+            //setup connection
             this.SetConnectionDB();
             BCGBServices services = new BCGBServices(this.DBConnection);
-            // check tài khoản đã tồn tại trong hệ thống hay chưa
+            
+            //set attribute for report
+            model.Created = DateTime.Now;
             model.ConfirmDate = DateTime.Now;
-            //var checkData = services.FindById(model.Id);
-            int result = 0;
+            //check exist file or not to create href of file
             HttpPostedFileBase postedFile = model.ImageFile;
-
             if (postedFile != null)
             {
                 string path = Server.MapPath("~/Uploads/Report/");
@@ -480,16 +505,23 @@ namespace BI_Project.Controllers
                 postedFile.SaveAs(path + Path.GetFileName(fileName));
                 model.ReportPathFile = "/Uploads/Report/" + fileName;
             }
-            result = services.UpdateReport(model);
-            if (services.ERROR != null) FileHelper.SaveFile(new { data = model, ERROR = services.ERROR }, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
-            //***********************INSERT OR EDIT SUCCESSFULLY * *************************************************
-            TempData["data"] = model;
+            //save this report to db
+            int result = services.UpdateReport(model);
             List<EntityReportBIModel> reportList = services.GetList("", model.ReportRequirementId);
+
+            //logger
+            Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
+            if (services.ERROR != null) FileHelper.SaveFile(new { data = model, ERROR = services.ERROR }, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
+
+            //set attribute for View
+            ViewData["data_form"] = model;
+            TempData["data"] = model;
             ViewData["reportList"] = reportList;
             return PartialView("_Reload", new ViewDataDictionary {
                 { "reportList", reportList },
                 { "ReportRequirementId", model.ReportRequirementId}
             });
         }
+
     }
 }

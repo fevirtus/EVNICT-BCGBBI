@@ -31,8 +31,6 @@
                 <th>Trạng thái</th>
                 <th>Số liệu</th>
                 <th>T.Gian XN</th>
-                @*<th>Phương thức TTDL</th>*@
-                <th>Xem BC</th>
                 <th>Xác nhận</th>
             </tr>
         </thead>
@@ -43,51 +41,51 @@
                 foreach (EntityReportBIModel item in lstReporConfirmtBI)
                 {
                     index++;
-                    <tr>
-                        <td>@index</td>
-                        <td class="menu_item_@index">@item.ReportName </td>
-                        <td class="menu_item_@index">@item.DepartmentCode </td>
-                        <td class="menu_item_@index">
-                            @{ if (item.DataAuto)
-                                { <span>Attach File</span> }
-                                else
-                                { <span>Tự động</span> } }
-                        </td>
-                        <td class="menu_item_@index">
-                            @{ if (item.ConfirmStatus)
-                                { <span>Đã XN</span> }
-                                else
-                                { <span>Chưa XN</span> } }
-                        </td>
-                        <td class="menu_item_@index">
-                            @{ if (item.DataStatus)
-                                { <span>Đúng</span> }
-                                else
-                                { <span>Chưa đúng</span> } }
-                        </td>
-                        <td class="menu_item_@index">
-                            @{ if (item.ConfirmDate != null && item.ConfirmDate.Year > 1)
-                                {
-                                    <span> @item.ConfirmDate.ToString("dd/MM/yyyy HH:mm") </span> }
-                                else
-                                { <span></span> }
-                            }
-                        </td>
-                        @*<td class="menu_item_@index">
-                            @{ if (item.DataAuto)
-                                { <span>Dữ liệu tự động</span> }
-                                else
-                                { <span>Dữ liệu thủ công</span> } }
-                        </td>*@
-                        <td>
-                            <a href="#" onclick="onDetail(@item.Id)"><span class="glyphicon glyphicon-eye-open"></span></a>
-                        </td>
-                        <td>
-                            <a href="#" onclick="onConfirm(@ReportRequirementId, @item.Id)"><span class="glyphicon glyphicon-ok"></span></a>
-                            <a href="#" onclick="onHistory(@ReportRequirementId, @item.Id)"><span class="glyphicon glyphicon-time"></span></a>
+                        <tr>
+                            <td>@index</td>
+                            <td class="menu_item_@index">@item.ReportName </td>
+                            <td class="menu_item_@index">@item.DepartmentCode </td>
+                            <td class="menu_item_@index">
+                                @{ if (item.DataAuto)
+                                    { <span>Attach File</span> }
+                                    else
+                                    { <span>Tự động</span> } }
+                            </td>
+                            <td class="menu_item_@index">
+                                @{ if (item.ConfirmStatus)
+                                    { <span>Đã XN</span> }
+                                    else
+                                    { <span>Chưa XN</span> } }
+                            </td>
+                            <td class="menu_item_@index">
+                                @{ if (item.DataStatus)
+                                    { <span>Đúng</span> }
+                                    else
+                                    { <span>Chưa đúng</span> } }
+                            </td>
+                            <td class="menu_item_@index">
+                                @{ if (item.ConfirmDate != null && item.ConfirmDate.Year > 1)
+                                    {
+                                        <span> @item.ConfirmDate.ToString("dd/MM/yyyy HH:mm") </span> }
+                                    else
+                                    { <span></span> }
+                                }
+                            </td>
+                            <td>
+                                @{
+                                    if (item.DataAuto)
+                                    {
+                                        <a href="#" onclick="onDetail(@item.Id)"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                    }
+                                    else
+                                    {
+                                        <a href="#" onclick="onConfirm(@ReportRequirementId, @item.Id)"><span class="glyphicon glyphicon-ok"></span></a>
+                                    }
+                                }
+                                <a href="#" onclick="onHistory(@ReportRequirementId, @item.Id)"><span class="glyphicon glyphicon-time"></span></a>
 
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                 }
             }
         </tbody>

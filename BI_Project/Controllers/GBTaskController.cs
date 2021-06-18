@@ -22,11 +22,6 @@ namespace BI_Project.Controllers
         string m_action_block = "GBTask/block_task_list";
         string m_pagename = "task_list";
 
-        string m_action_block_addNew = "block_user_create";
-        string m_pagename_addNew = "user_create";
-
-
-
         public ActionResult List()
         {          
             this.SetCommonData();
@@ -76,7 +71,8 @@ namespace BI_Project.Controllers
             EntityCreateTaskModel model = new EntityCreateTaskModel();
             if (TempData["data"] != null)
             {
-                model = (EntityCreateTaskModel)ViewData["data_form1"];
+                //không hiểu dòng này để làm cái gì luôn
+                //model = (EntityCreateTaskModel)ViewData["data_form1"];
             }
             else
             {
@@ -147,7 +143,6 @@ namespace BI_Project.Controllers
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             });
             return Json(value, JsonRequestBehavior.AllowGet);
-
         }
 
         public JsonResult Save(BlockDataGBTaskCreateModel model)
@@ -272,7 +267,7 @@ namespace BI_Project.Controllers
         }
 
         [HttpPost]
-        //Hàm lưu
+        //Hàm lưu công việc được tạo hoặc sửa đổi
         public ActionResult Create(EntityCreateTaskModel model)
         {
             BlockDataGBTaskCreateModel task = new BlockDataGBTaskCreateModel();
@@ -291,6 +286,10 @@ namespace BI_Project.Controllers
             task.ReportRequirementId = model.ReportRequirementId;
 
             Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
+
+            //get current departCode
+            string DepartCode = "";
+            if (Session["CodeIsAdmin"] != null) DepartCode = Session["CodeIsAdmin"].ToString();
 
             ViewData["data_form1"] = TempData["data"];
             this.GetLanguage();
@@ -313,9 +312,18 @@ namespace BI_Project.Controllers
             }
             if (services.ERROR != null) FileHelper.SaveFile(new { data = model, ERROR = services.ERROR }, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
             //***********************INSERT OR EDIT SUCCESSFULLY * *************************************************
-            List<EntityGBTaskModel> LISTTASK = services.GetList(model.ReportRequirementId);
+            List<EntityGBTaskModel> LISTTASK = new List<EntityGBTaskModel>();
+            switch (DepartCode)
+            {
+                case "KH":
+                    LISTTASK = services.GetList(model.ReportRequirementId);
+                    break;
+                default:
+                    LISTTASK = services.GetList(model.ReportRequirementId, DepartCode);
+                    break;
+            }
             ViewData["LISTTASK"] = LISTTASK;
-            return PartialView("~/Views/BCGB/_Task.cshtml", new ViewDataDictionary {
+            return PartialView("~/Views/GBTask/_Task.cshtml", new ViewDataDictionary {
                 { "LISTTASK", LISTTASK },
                 { "ReportRequirementId", model.ReportRequirementId}
             });
@@ -424,32 +432,20 @@ namespace BI_Project.Controllers
         //Hàm lưu
         public ActionResult DepartConfirm(BlockDataGBTaskCreateModel model)
         {
-
-            Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
-
-
-            ViewData["data_form1"] = TempData["data"];
-            // get language
+            //setup connection
             this.GetLanguage();
-            //if (string.IsNullOrEmpty(model.Comment))
-            //{
-            //    return RedirectToAction("ViewDetail");
-            //}
-
-            //**************** DATABASE PROCESS*******************************************************
             this.SetConnectionDB();
             GBTaskServices services = new GBTaskServices(this.DBConnection);
-                      
-                        
-            // check tài khoản đã tồn tại trong hệ thống hay chưa
-            var checkData = services.FindById(model.Id);
+            List<EntityGBTaskModel> LISTTASK = new List<EntityGBTaskModel>();
+            //get current departCode
+            string DepartCode = "";
+            if (Session["CodeIsAdmin"] != null) DepartCode = Session["CodeIsAdmin"].ToString();
             int result = 0;
+
+            var checkData = services.FindById(model.Id);            
             if (checkData != null)
             {
-                //model.CreatorId = Session[this.SESSION_NAME_USERID];
-
                 HttpPostedFileBase postedFile = model.ImageFile;
-
                 if (postedFile != null)
                 {
                     string path = Server.MapPath("~/Uploads/TASK/");
@@ -461,38 +457,27 @@ namespace BI_Project.Controllers
                     string fileName = "TASK_" + model.Id.ToString() + "." + arrStr[1];
                     postedFile.SaveAs(path + Path.GetFileName(fileName));
                     model.ResultFile = "/Uploads/TASK/" + fileName;
-
-
                 }
                 result = services.ConfirmTask(model);
             }
-            else
+
+            switch (DepartCode)
             {
-                List<EntityGBTaskModel> LISTTASK = services.GetList(model.ReportRequirementId);
-                ViewData["LISTTASK"] = LISTTASK;
-                return PartialView("_Task", new ViewDataDictionary {
-                { "LISTTASK", LISTTASK },
-                { "ReportRequirementId", model.ReportRequirementId}
-            });
+                case "KH":
+                    LISTTASK = services.GetList(model.ReportRequirementId);
+                    break;
+                default:
+                    LISTTASK = services.GetList(model.ReportRequirementId, DepartCode);
+                    break;
             }
 
+            ViewData["LISTTASK"] = LISTTASK;
+            ViewData["data_form1"] = TempData["data"];
+
+            Logging.WriteToLog(this.GetType().ToString() + "-create()", LogType.Access);
             if (services.ERROR != null) FileHelper.SaveFile(new { data = model, ERROR = services.ERROR }, this.LOG_FOLDER + "/ERROR_" + this.GetType().ToString() + APIStringHelper.GenerateFileId() + ".txt");
 
-
-            //***********************INSERT OR EDIT SUCCESSFULLY * *************************************************
-            if (result > 0)
-            {
-                //                return RedirectToAction("List");
-                return PartialView("_Task", new ViewDataDictionary {
-                { "LISTTASK", LISTTASK },
-                { "ReportRequirementId", model.ReportRequirementId}
-            });
-            }
-            //TempData["data"] = model;
-            ////return RedirectToAction("Confirm");
-            //return RedirectToAction("ViewDetail", "BCGB", new { ReportRequirementId = model.ReportRequirementId });
-            
-            return PartialView("_Task", new ViewDataDictionary {
+            return PartialView("_TaskViewDetail", new ViewDataDictionary {
                 { "LISTTASK", LISTTASK },
                 { "ReportRequirementId", model.ReportRequirementId}
             });
